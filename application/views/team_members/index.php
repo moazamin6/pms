@@ -4,7 +4,8 @@
             <h1><?php echo lang('team_members'); ?></h1>
             <div class="title-button-group">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default btn-sm active mr-1"  title="<?php echo lang('list_view'); ?>"><i class="fa fa-bars"></i></button>
+                    <button type="button" class="btn btn-default btn-sm active mr-1"
+                            title="<?php echo lang('list_view'); ?>"><i class="fa fa-bars"></i></button>
                     <?php echo anchor(get_uri("team_members/view"), "<i class='fa fa-th-large'></i>", array("class" => "btn btn-default btn-sm")); ?>
                 </div>
                 <?php
@@ -16,7 +17,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table id="team_member-table" class="display" cellspacing="0" width="100%">            
+            <table id="team_member-table" class="display" cellspacing="0" width="100%">
             </table>
         </div>
     </div>
@@ -37,7 +38,12 @@
         $("#team_member-table").appTable({
             source: '<?php echo_uri("team_members/list_data/") ?>',
             order: [[1, "asc"]],
-            radioButtons: [{text: '<?php echo lang("active_members") ?>', name: "status", value: "active", isChecked: true}, {text: '<?php echo lang("inactive_members") ?>', name: "status", value: "inactive", isChecked: false}],
+            radioButtons: [{
+                text: '<?php echo lang("active_members") ?>',
+                name: "status",
+                value: "active",
+                isChecked: true
+            }, {text: '<?php echo lang("inactive_members") ?>', name: "status", value: "inactive", isChecked: false}],
             columns: [
                 {title: '', "class": "w50 text-center"},
                 {title: "<?php echo lang("name") ?>"},
@@ -52,4 +58,4 @@
 
         });
     });
-</script>    
+</script>

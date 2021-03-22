@@ -378,7 +378,7 @@ class Left_menu {
 
 
             if (get_array_value($this->ci->login_user->permissions, "hide_team_members_list") != "1") {
-                $sidebar_menu["team_members"] = array("name" => "team_members", "url" => "team_members", "class" => "fa-user font-16");
+                $sidebar_menu["team_members"] = array("name" => "team_members", "url" => "team_members/view", "class" => "fa-user font-16");
             }
 
 

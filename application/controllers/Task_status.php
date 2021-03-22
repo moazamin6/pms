@@ -36,9 +36,10 @@ class Task_status extends MY_Controller {
         );
 
         $task_status_info = $this->Task_status_model->get_one($id);
+        $data["title"] = $this->input->post('title');
         if (!$task_status_info->key_name) {
             //the title of default task statuses shouldn't be changed
-            $data["title"] = $this->input->post('title');
+
         }
 
         if (!$id) {
@@ -125,7 +126,7 @@ class Task_status extends MY_Controller {
 
         return array(
             $data->sort,
-            "<div class='pt10 pb10 field-row'  data-id='$data->id'><i class='fa fa-bars pull-left move-icon'></i> <span style='background-color:" . $data->color . "' class='color-tag  pull-left'></span>" . ($data->key_name ? lang($data->key_name) : $data->title) . '</div>',
+            "<div class='pt10 pb10 field-row'  data-id='$data->id'><i class='fa fa-bars pull-left move-icon'></i> <span style='background-color:" . $data->color . "' class='color-tag  pull-left'></span>" . ($data->title) . '</div>',
             $edit . $delete
         );
     }

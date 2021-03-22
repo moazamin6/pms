@@ -2,7 +2,7 @@
 <div class="modal-body clearfix">
     <input type="hidden" name="id" value="<?php echo $model_info->id; ?>" />
 
-    <?php if ($model_info->key_name) { ?>
+    <?php if (false) { ?>
 
         <div class="form-group">
             <div class=" col-md-12 text-center">

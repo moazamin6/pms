@@ -1,15 +1,18 @@
 <?php
 
-class Projects_model extends Crud_model {
+class Projects_model extends Crud_model
+{
 
     private $table = null;
 
-    function __construct() {
+    function __construct()
+    {
         $this->table = 'projects';
         parent::__construct($this->table);
     }
 
-    function get_details($options = array()) {
+    function get_details($options = array())
+    {
         $projects_table = $this->db->dbprefix('projects');
         $project_members_table = $this->db->dbprefix('project_members');
         $clients_table = $this->db->dbprefix('clients');
@@ -101,7 +104,15 @@ class Projects_model extends Crud_model {
         return $this->db->query($sql);
     }
 
-    function get_label_suggestions() {
+    function check_if_project_have_tasks($project_id)
+    {
+        $tasks_table = $this->db->dbprefix('tasks');
+        $sql = "SELECT id FROM $tasks_table WHERE project_id = $project_id";
+        return $this->db->query($sql)->result();
+    }
+
+    function get_label_suggestions()
+    {
         $projects_table = $this->db->dbprefix('projects');
         $sql = "SELECT GROUP_CONCAT(labels) as label_groups
         FROM $projects_table
@@ -109,7 +120,8 @@ class Projects_model extends Crud_model {
         return $this->db->query($sql)->row()->label_groups;
     }
 
-    function count_project_status($options = array()) {
+    function count_project_status($options = array())
+    {
         $projects_table = $this->db->dbprefix('projects');
         $project_members_table = $this->db->dbprefix('project_members');
 
@@ -138,7 +150,8 @@ class Projects_model extends Crud_model {
         return $info;
     }
 
-    function get_gantt_data($options = array()) {
+    function get_gantt_data($options = array())
+    {
         $tasks_table = $this->db->dbprefix('tasks');
         $milestones_table = $this->db->dbprefix('milestones');
         $users_table = $this->db->dbprefix('users');
@@ -209,7 +222,8 @@ class Projects_model extends Crud_model {
         return $this->db->query($sql)->result();
     }
 
-    function add_remove_star($project_id, $user_id, $type = "add") {
+    function add_remove_star($project_id, $user_id, $type = "add")
+    {
         $projects_table = $this->db->dbprefix('projects');
 
         $action = " CONCAT($projects_table.starred_by,',',':$user_id:') ";
@@ -225,7 +239,8 @@ class Projects_model extends Crud_model {
         return $this->db->query($sql);
     }
 
-    function get_starred_projects($user_id) {
+    function get_starred_projects($user_id)
+    {
         $projects_table = $this->db->dbprefix('projects');
 
         $sql = "SELECT $projects_table.*
@@ -235,7 +250,9 @@ class Projects_model extends Crud_model {
         return $this->db->query($sql);
     }
 
-    function delete_project_and_sub_items($project_id) {
+    function delete_project_and_sub_items($project_id)
+    {
+
         $projects_table = $this->db->dbprefix('projects');
         $tasks_table = $this->db->dbprefix('tasks');
         $milestones_table = $this->db->dbprefix('milestones');
@@ -287,7 +304,6 @@ class Projects_model extends Crud_model {
         }
 
 
-
         //delete the project files from directory
         $file_path = get_setting("project_file_path") . $project_id . "/";
         foreach ($project_files as $file) {
@@ -297,7 +313,8 @@ class Projects_model extends Crud_model {
         return true;
     }
 
-    function get_search_suggestion($search = "", $options = array()) {
+    function get_search_suggestion($search = "", $options = array())
+    {
         $projects_table = $this->db->dbprefix('projects');
         $project_members_table = $this->db->dbprefix('project_members');
 

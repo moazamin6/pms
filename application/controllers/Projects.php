@@ -724,6 +724,11 @@ class Projects extends MY_Controller {
 
         $id = $this->input->post('id');
 
+        if (count($this->Projects_model->check_if_project_have_tasks($id))){
+            echo json_encode(array("success" => false, 'message' => lang('record_cannot_be_deleted')));
+            die;
+        }
+
         if ($this->Projects_model->delete_project_and_sub_items($id)) {
             log_notification("project_deleted", array("project_id" => $id));
 

@@ -8,7 +8,8 @@
  */
 if (!function_exists('echo_uri')) {
 
-    function echo_uri($uri = "") {
+    function echo_uri($uri = "")
+    {
         echo get_uri($uri);
     }
 
@@ -16,13 +17,14 @@ if (!function_exists('echo_uri')) {
 
 /**
  * prepare uri
- * 
+ *
  * @param string $uri
- * @return full url 
+ * @return full url
  */
 if (!function_exists('get_uri')) {
 
-    function get_uri($uri = "") {
+    function get_uri($uri = "")
+    {
         $ci = get_instance();
         $index_page = $ci->config->item('index_page');
         return base_url($index_page . '/' . $uri);
@@ -32,13 +34,14 @@ if (!function_exists('get_uri')) {
 
 /**
  * use this to print file path
- * 
+ *
  * @param string $uri
  * @return full url of the given file path
  */
 if (!function_exists('get_file_uri')) {
 
-    function get_file_uri($uri = "") {
+    function get_file_uri($uri = "")
+    {
         return base_url($uri);
     }
 
@@ -46,13 +49,14 @@ if (!function_exists('get_file_uri')) {
 
 /**
  * get the url of user avatar
- * 
+ *
  * @param string $image_name
  * @return url of the avatar of given image reference
  */
 if (!function_exists('get_avatar')) {
 
-    function get_avatar($image = "") {
+    function get_avatar($image = "")
+    {
         if ($image === "system_bot") {
             return base_url("assets/images/avatar-bot.jpg");
         } else if ($image === "bitbucket") {
@@ -74,14 +78,15 @@ if (!function_exists('get_avatar')) {
 }
 
 /**
- * link the css files 
- * 
+ * link the css files
+ *
  * @param array $array
  * @return print css links
  */
 if (!function_exists('load_css')) {
 
-    function load_css(array $array) {
+    function load_css(array $array)
+    {
         $version = get_setting("app_version");
 
         foreach ($array as $uri) {
@@ -93,14 +98,15 @@ if (!function_exists('load_css')) {
 
 
 /**
- * link the javascript files 
- * 
+ * link the javascript files
+ *
  * @param array $array
  * @return print js links
  */
 if (!function_exists('load_js')) {
 
-    function load_js(array $array) {
+    function load_js(array $array)
+    {
         $version = get_setting("app_version");
 
         foreach ($array as $uri) {
@@ -111,14 +117,15 @@ if (!function_exists('load_js')) {
 }
 
 /**
- * check the array key and return the value 
- * 
+ * check the array key and return the value
+ *
  * @param array $array
  * @return extract array value safely
  */
 if (!function_exists('get_array_value')) {
 
-    function get_array_value($array, $key) {
+    function get_array_value($array, $key)
+    {
         if (is_array($array) && array_key_exists($key, $array)) {
             return $array[$key];
         }
@@ -128,15 +135,16 @@ if (!function_exists('get_array_value')) {
 
 /**
  * prepare a anchor tag for any js request
- * 
+ *
  * @param string $title
  * @param array $attributes
  * @return html link of anchor tag
  */
 if (!function_exists('js_anchor')) {
 
-    function js_anchor($title = '', $attributes = '') {
-        $title = (string) $title;
+    function js_anchor($title = '', $attributes = '')
+    {
+        $title = (string)$title;
         $html_attributes = "";
 
         if (is_array($attributes)) {
@@ -152,8 +160,8 @@ if (!function_exists('js_anchor')) {
 
 
 /**
- * prepare a anchor tag for modal 
- * 
+ * prepare a anchor tag for modal
+ *
  * @param string $url
  * @param string $title
  * @param array $attributes
@@ -161,7 +169,8 @@ if (!function_exists('js_anchor')) {
  */
 if (!function_exists('modal_anchor')) {
 
-    function modal_anchor($url, $title = '', $attributes = '') {
+    function modal_anchor($url, $title = '', $attributes = '')
+    {
         $attributes["data-act"] = "ajax-modal";
         if (get_array_value($attributes, "data-modal-title")) {
             $attributes["data-title"] = get_array_value($attributes, "data-modal-title");
@@ -177,7 +186,7 @@ if (!function_exists('modal_anchor')) {
 
 /**
  * prepare a anchor tag for ajax request
- * 
+ *
  * @param string $url
  * @param string $title
  * @param array $attributes
@@ -185,7 +194,8 @@ if (!function_exists('modal_anchor')) {
  */
 if (!function_exists('ajax_anchor')) {
 
-    function ajax_anchor($url, $title = '', $attributes = '') {
+    function ajax_anchor($url, $title = '', $attributes = '')
+    {
         $attributes["data-act"] = "ajax-request";
         $attributes["data-action-url"] = $url;
         return js_anchor($title, $attributes);
@@ -194,15 +204,16 @@ if (!function_exists('ajax_anchor')) {
 }
 
 /**
- * get the selected menu 
- * 
+ * get the selected menu
+ *
  * @param array $sidebar_menu
  * @return the array containing an active class key
  */
 if (!function_exists('active_menu')) {
 
-    function get_active_menu($sidebar_menu = array()) {
-        $ci = & get_instance();
+    function get_active_menu($sidebar_menu = array())
+    {
+        $ci = &get_instance();
         $controller_name = strtolower(get_class($ci));
         $uri_string = uri_string();
         $current_url = get_uri($uri_string);
@@ -275,15 +286,16 @@ if (!function_exists('active_menu')) {
 
 /**
  * get the selected submenu
- * 
+ *
  * @param string $submenu
  * @param boolean $is_controller
  * @return string "active" indecating the active sub page
  */
 if (!function_exists('active_submenu')) {
 
-    function active_submenu($submenu = "", $is_controller = false) {
-        $ci = & get_instance();
+    function active_submenu($submenu = "", $is_controller = false)
+    {
+        $ci = &get_instance();
         //if submenu is a controller then compare with controller name, otherwise compare with method name
         if ($is_controller && $submenu === strtolower(get_class($ci))) {
             return "active";
@@ -301,7 +313,8 @@ if (!function_exists('active_submenu')) {
  */
 if (!function_exists('get_setting')) {
 
-    function get_setting($key = "") {
+    function get_setting($key = "")
+    {
         $ci = get_instance();
         return $ci->config->item($key);
     }
@@ -309,17 +322,17 @@ if (!function_exists('get_setting')) {
 }
 
 
-
 /**
  * check if a string starts with a specified sting
- * 
+ *
  * @param string $string
  * @param string $needle
  * @return true/false
  */
 if (!function_exists('starts_with')) {
 
-    function starts_with($string, $needle) {
+    function starts_with($string, $needle)
+    {
         $string = $string;
         return $needle === "" || strrpos($string, $needle, -strlen($string)) !== false;
     }
@@ -328,29 +341,31 @@ if (!function_exists('starts_with')) {
 
 /**
  * check if a string ends with a specified sting
- * 
+ *
  * @param string $string
  * @param string $needle
  * @return true/false
  */
 if (!function_exists('ends_with')) {
 
-    function ends_with($string, $needle) {
+    function ends_with($string, $needle)
+    {
         return $needle === "" || (($temp = strlen($string) - strlen($string)) >= 0 && strpos($string, $needle, $temp) !== false);
     }
 
 }
 
 /**
- * create a encoded id for sequrity pupose 
- * 
+ * create a encoded id for sequrity pupose
+ *
  * @param string $id
  * @param string $salt
  * @return endoded value
  */
 if (!function_exists('encode_id')) {
 
-    function encode_id($id, $salt) {
+    function encode_id($id, $salt)
+    {
         $ci = get_instance();
         $id = $ci->encryption->encrypt($id . $salt);
         $id = str_replace("=", "~", $id);
@@ -364,14 +379,15 @@ if (!function_exists('encode_id')) {
 
 /**
  * decode the id which made by encode_id()
- * 
+ *
  * @param string $id
  * @param string $salt
  * @return decoded value
  */
 if (!function_exists('decode_id')) {
 
-    function decode_id($id, $salt) {
+    function decode_id($id, $salt)
+    {
         $ci = get_instance();
         $id = str_replace("_", "+", $id);
         $id = str_replace("~", "=", $id);
@@ -389,13 +405,14 @@ if (!function_exists('decode_id')) {
 
 /**
  * decode html data which submited using a encode method of encodeAjaxPostData() function
- * 
+ *
  * @param string $html
  * @return htmle
  */
 if (!function_exists('decode_ajax_post_data')) {
 
-    function decode_ajax_post_data($html) {
+    function decode_ajax_post_data($html)
+    {
         $html = str_replace("~", "=", $html);
         $html = str_replace("^", "&", $html);
         return $html;
@@ -405,13 +422,14 @@ if (!function_exists('decode_ajax_post_data')) {
 
 /**
  * check if fields has any value or not. and generate a error message for null value
- * 
+ *
  * @param array $fields
  * @return throw error for bad value
  */
 if (!function_exists('check_required_hidden_fields')) {
 
-    function check_required_hidden_fields($fields = array()) {
+    function check_required_hidden_fields($fields = array())
+    {
         $has_error = false;
         foreach ($fields as $field) {
             if (!$field) {
@@ -433,7 +451,8 @@ if (!function_exists('check_required_hidden_fields')) {
  */
 if (!function_exists('link_it')) {
 
-    function link_it($text) {
+    function link_it($text)
+    {
         if ($text != strip_tags($text)) {
             //contains HTML, return the actual text
             return $text;
@@ -452,7 +471,8 @@ if (!function_exists('link_it')) {
  */
 if (!function_exists('convert_mentions')) {
 
-    function convert_mentions($text, $convert_links = true) {
+    function convert_mentions($text, $convert_links = true)
+    {
 
         preg_match_all('#\@\[(.*?)\]#', $text, $matches);
 
@@ -493,7 +513,8 @@ if (!function_exists('convert_mentions')) {
  */
 if (!function_exists('get_members_from_mention')) {
 
-    function get_members_from_mention($text) {
+    function get_members_from_mention($text)
+    {
 
         preg_match_all('#\@\[(.*?)\]#', $text, $matchs);
 
@@ -518,7 +539,7 @@ if (!function_exists('get_members_from_mention')) {
 
 /**
  * send mail
- * 
+ *
  * @param string $to
  * @param string $subject
  * @param string $message
@@ -527,8 +548,9 @@ if (!function_exists('get_members_from_mention')) {
  */
 if (!function_exists('send_app_mail')) {
 
-    function send_app_mail($to, $subject, $message, $optoins = array()) {
-        $email_config = Array(
+    function send_app_mail($to, $subject, $message, $optoins = array())
+    {
+        $email_config = array(
             'charset' => 'utf-8',
             'mailtype' => 'html'
         );
@@ -606,12 +628,13 @@ if (!function_exists('send_app_mail')) {
 
 /**
  * get users ip address
- * 
+ *
  * @return ip
  */
 if (!function_exists('get_real_ip')) {
 
-    function get_real_ip() {
+    function get_real_ip()
+    {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -626,12 +649,13 @@ if (!function_exists('get_real_ip')) {
 
 /**
  * check if it's localhost
- * 
+ *
  * @return boolean
  */
 if (!function_exists('is_localhost')) {
 
-    function is_localhost() {
+    function is_localhost()
+    {
         $known_localhost_ip = array(
             '127.0.0.1',
             '::1'
@@ -646,13 +670,14 @@ if (!function_exists('is_localhost')) {
 
 /**
  * convert string to url
- * 
+ *
  * @param string $address
  * @return url
  */
 if (!function_exists('to_url')) {
 
-    function to_url($address = "") {
+    function to_url($address = "")
+    {
         if (strpos($address, 'http://') === false && strpos($address, 'https://') === false) {
             $address = "http://" . $address;
         }
@@ -663,13 +688,14 @@ if (!function_exists('to_url')) {
 
 /**
  * validate post data using the codeigniter's form validation method
- * 
+ *
  * @param string $address
  * @return throw error if foind any inconsistancy
  */
 if (!function_exists('validate_submitted_data')) {
 
-    function validate_submitted_data($fields = array()) {
+    function validate_submitted_data($fields = array())
+    {
         $ci = get_instance();
         foreach ($fields as $field_name => $requirement) {
             $ci->form_validation->set_rules($field_name, $field_name, $requirement);
@@ -691,13 +717,14 @@ if (!function_exists('validate_submitted_data')) {
 
 /**
  * validate post data using the codeigniter's form validation method
- * 
+ *
  * @param string $address
  * @return throw error if foind any inconsistancy
  */
 if (!function_exists('validate_numeric_value')) {
 
-    function validate_numeric_value($value = 0) {
+    function validate_numeric_value($value = 0)
+    {
         if ($value && !is_numeric($value)) {
             die("Invalid value");
         }
@@ -708,7 +735,7 @@ if (!function_exists('validate_numeric_value')) {
 /**
  * team members profile anchor. only clickable to team members
  * client's will see a none clickable link
- * 
+ *
  * @param string $id
  * @param string $name
  * @param array $attributes
@@ -716,7 +743,8 @@ if (!function_exists('validate_numeric_value')) {
  */
 if (!function_exists('get_team_member_profile_link')) {
 
-    function get_team_member_profile_link($id = 0, $name = "", $attributes = array()) {
+    function get_team_member_profile_link($id = 0, $name = "", $attributes = array())
+    {
         $ci = get_instance();
         if ($ci->login_user->user_type === "staff") {
             return anchor("team_members/view/" . $id, $name, $attributes);
@@ -731,7 +759,7 @@ if (!function_exists('get_team_member_profile_link')) {
 /**
  * team members profile anchor. only clickable to team members
  * client's will see a none clickable link
- * 
+ *
  * @param string $id
  * @param string $name
  * @param array $attributes
@@ -739,7 +767,8 @@ if (!function_exists('get_team_member_profile_link')) {
  */
 if (!function_exists('get_client_contact_profile_link')) {
 
-    function get_client_contact_profile_link($id = 0, $name = "", $attributes = array()) {
+    function get_client_contact_profile_link($id = 0, $name = "", $attributes = array())
+    {
         return anchor("clients/contact_profile/" . $id, $name, $attributes);
     }
 
@@ -748,13 +777,14 @@ if (!function_exists('get_client_contact_profile_link')) {
 
 /**
  * return a colorful label accroding to invoice status
- * 
+ *
  * @param Object $invoice_info
  * @return html
  */
 if (!function_exists('get_invoice_status_label')) {
 
-    function get_invoice_status_label($invoice_info, $return_html = true) {
+    function get_invoice_status_label($invoice_info, $return_html = true)
+    {
         $invoice_status_class = "label-default";
         $status = "not_paid";
         $now = get_my_local_time("Y-m-d");
@@ -793,16 +823,16 @@ if (!function_exists('get_invoice_status_label')) {
 }
 
 
-
 /**
  * get all data to make an invoice
- * 
+ *
  * @param Int $invoice_id
  * @return array
  */
 if (!function_exists('get_invoice_making_data')) {
 
-    function get_invoice_making_data($invoice_id) {
+    function get_invoice_making_data($invoice_id)
+    {
         $ci = get_instance();
         $invoice_info = $ci->Invoices_model->get_details(array("id" => $invoice_id))->row();
         if ($invoice_info) {
@@ -822,13 +852,14 @@ if (!function_exists('get_invoice_making_data')) {
 
 /**
  * get all data to make an invoice
- * 
+ *
  * @param Invoice making data $invoice_data
  * @return array
  */
 if (!function_exists('prepare_invoice_pdf')) {
 
-    function prepare_invoice_pdf($invoice_data, $mode = "download") {
+    function prepare_invoice_pdf($invoice_data, $mode = "download")
+    {
         $ci = get_instance();
         $ci->load->library('pdf');
         $ci->pdf->setPrintHeader(false);
@@ -869,13 +900,14 @@ if (!function_exists('prepare_invoice_pdf')) {
 
 /**
  * get all data to make an estimate
- * 
+ *
  * @param emtimate making data $estimate_data
  * @return array
  */
 if (!function_exists('prepare_estimate_pdf')) {
 
-    function prepare_estimate_pdf($estimate_data, $mode = "download") {
+    function prepare_estimate_pdf($estimate_data, $mode = "download")
+    {
         $ci = get_instance();
         $ci->load->library('pdf');
         $ci->pdf->setPrintHeader(false);
@@ -914,13 +946,14 @@ if (!function_exists('prepare_estimate_pdf')) {
 
 /**
  * get all data to make an order
- * 
+ *
  * @param emtimate making data $order_data
  * @return array
  */
 if (!function_exists('prepare_order_pdf')) {
 
-    function prepare_order_pdf($order_data, $mode = "download") {
+    function prepare_order_pdf($order_data, $mode = "download")
+    {
         $ci = get_instance();
         $ci->load->library('pdf');
         $ci->pdf->setPrintHeader(false);
@@ -958,14 +991,15 @@ if (!function_exists('prepare_order_pdf')) {
 }
 
 /**
- * 
+ *
  * get invoice number
  * @param Int $invoice_id
  * @return string
  */
 if (!function_exists('get_invoice_id')) {
 
-    function get_invoice_id($invoice_id) {
+    function get_invoice_id($invoice_id)
+    {
         $prefix = get_setting("invoice_prefix");
         $prefix = $prefix ? $prefix : strtoupper(lang("invoice")) . " #";
         return $prefix . $invoice_id;
@@ -974,14 +1008,15 @@ if (!function_exists('get_invoice_id')) {
 }
 
 /**
- * 
+ *
  * get estimate number
  * @param Int $estimate_id
  * @return string
  */
 if (!function_exists('get_estimate_id')) {
 
-    function get_estimate_id($estimate_id) {
+    function get_estimate_id($estimate_id)
+    {
         $prefix = get_setting("estimate_prefix");
         $prefix = $prefix ? $prefix : strtoupper(lang("estimate")) . " #";
         return $prefix . $estimate_id;
@@ -990,14 +1025,15 @@ if (!function_exists('get_estimate_id')) {
 }
 
 /**
- * 
+ *
  * get order number
  * @param Int $order_id
  * @return string
  */
 if (!function_exists('get_order_id')) {
 
-    function get_order_id($order_id) {
+    function get_order_id($order_id)
+    {
         $prefix = get_setting("order_prefix");
         $prefix = $prefix ? $prefix : strtoupper(lang("order")) . " #";
         return $prefix . $order_id;
@@ -1006,14 +1042,15 @@ if (!function_exists('get_order_id')) {
 }
 
 /**
- * 
+ *
  * get ticket number
  * @param Int $ticket_id
  * @return string
  */
 if (!function_exists('get_ticket_id')) {
 
-    function get_ticket_id($ticket_id) {
+    function get_ticket_id($ticket_id)
+    {
         $prefix = get_setting("ticket_prefix");
         $prefix = $prefix ? $prefix : lang("ticket") . " #";
         return $prefix . $ticket_id;
@@ -1024,13 +1061,14 @@ if (!function_exists('get_ticket_id')) {
 
 /**
  * get all data to make an estimate
- * 
+ *
  * @param Int $estimate_id
  * @return array
  */
 if (!function_exists('get_estimate_making_data')) {
 
-    function get_estimate_making_data($estimate_id) {
+    function get_estimate_making_data($estimate_id)
+    {
         $ci = get_instance();
         $estimate_info = $ci->Estimates_model->get_details(array("id" => $estimate_id))->row();
         if ($estimate_info) {
@@ -1048,13 +1086,14 @@ if (!function_exists('get_estimate_making_data')) {
 
 /**
  * get all data to make an order
- * 
+ *
  * @param Int $order_id
  * @return array
  */
 if (!function_exists('get_order_making_data')) {
 
-    function get_order_making_data($order_id = 0) {
+    function get_order_making_data($order_id = 0)
+    {
         $ci = get_instance();
         $data = array();
         if ($order_id) {
@@ -1081,12 +1120,13 @@ if (!function_exists('get_order_making_data')) {
 
 /**
  * get team members and teams select2 dropdown data list
- * 
+ *
  * @return array
  */
 if (!function_exists('get_team_members_and_teams_select2_data_list')) {
 
-    function get_team_members_and_teams_select2_data_list() {
+    function get_team_members_and_teams_select2_data_list()
+    {
         $ci = get_instance();
 
         $team_members = $ci->Users_model->get_all_where(array("deleted" => 0, "user_type" => "staff"))->result();
@@ -1107,15 +1147,15 @@ if (!function_exists('get_team_members_and_teams_select2_data_list')) {
 }
 
 
-
 /**
  * submit data for notification
- * 
+ *
  * @return array
  */
 if (!function_exists('log_notification')) {
 
-    function log_notification($event, $options = array(), $user_id = 0) {
+    function log_notification($event, $options = array(), $user_id = 0)
+    {
 
         $ci = get_instance();
 
@@ -1160,13 +1200,14 @@ if (!function_exists('log_notification')) {
 
 /**
  * save custom fields for any context
- * 
+ *
  * @param Int $estimate_id
  * @return array
  */
 if (!function_exists('save_custom_fields')) {
 
-    function save_custom_fields($related_to_type, $related_to_id, $is_admin = 0, $user_type = "", $activity_log_id = 0, $save_to_related_type = "", $user_id = 0) {
+    function save_custom_fields($related_to_type, $related_to_id, $is_admin = 0, $user_type = "", $activity_log_id = 0, $save_to_related_type = "", $user_id = 0)
+    {
         $ci = get_instance();
 
         $custom_fields = $ci->Custom_fields_model->get_combined_details($related_to_type, $related_to_id, $is_admin, $user_type)->result();
@@ -1238,7 +1279,8 @@ if (!function_exists('save_custom_fields')) {
  */
 if (!function_exists('update_custom_fields_changes')) {
 
-    function update_custom_fields_changes($related_to_type, $related_to_id, $changes, $activity_log_id = 0) {
+    function update_custom_fields_changes($related_to_type, $related_to_id, $changes, $activity_log_id = 0)
+    {
         if ($changes && count($changes)) {
             $ci = get_instance();
 
@@ -1296,7 +1338,7 @@ if (!function_exists('update_custom_fields_changes')) {
 
 /**
  * use this to clean xss and html elements
- * the best practice is to use this before rendering 
+ * the best practice is to use this before rendering
  * but you can use this before saving for suitable cases
  *
  * @param string or array $data
@@ -1304,7 +1346,8 @@ if (!function_exists('update_custom_fields_changes')) {
  */
 if (!function_exists("clean_data")) {
 
-    function clean_data($data) {
+    function clean_data($data)
+    {
         $ci = get_instance();
 
         $data = $ci->security->xss_clean($data);
@@ -1323,7 +1366,8 @@ if (!function_exists("clean_data")) {
 //return site logo
 if (!function_exists("get_logo_url")) {
 
-    function get_logo_url() {
+    function get_logo_url()
+    {
         return get_file_from_setting("site_logo");
     }
 
@@ -1332,7 +1376,8 @@ if (!function_exists("get_logo_url")) {
 //get logo from setting
 if (!function_exists("get_file_from_setting")) {
 
-    function get_file_from_setting($setting_name = "", $only_file_path_with_slash = false) {
+    function get_file_from_setting($setting_name = "", $only_file_path_with_slash = false)
+    {
 
         if ($setting_name) {
             $setting_value = get_setting($setting_name);
@@ -1363,7 +1408,8 @@ if (!function_exists("get_file_from_setting")) {
 //get site favicon
 if (!function_exists("get_favicon_url")) {
 
-    function get_favicon_url() {
+    function get_favicon_url()
+    {
         $favicon_from_setting = get_file_from_setting('favicon');
         return $favicon_from_setting ? $favicon_from_setting : get_file_uri("assets/images/favicon.png");
     }
@@ -1374,7 +1420,8 @@ if (!function_exists("get_favicon_url")) {
 //get color plate
 if (!function_exists("get_custom_theme_color_list")) {
 
-    function get_custom_theme_color_list() {
+    function get_custom_theme_color_list()
+    {
         //scan the css files for theme color and show a list
         try {
             $dir = getcwd() . '/assets/css/color/';
@@ -1391,7 +1438,7 @@ if (!function_exists("get_custom_theme_color_list")) {
                 }
             }
         } catch (Exception $exc) {
-            
+
         }
     }
 
@@ -1399,7 +1446,8 @@ if (!function_exists("get_custom_theme_color_list")) {
 //make random string
 if (!function_exists("make_random_string")) {
 
-    function make_random_string($length = 10) {
+    function make_random_string($length = 10)
+    {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $characters_length = strlen($characters);
         $random_string = '';
@@ -1416,7 +1464,8 @@ if (!function_exists("make_random_string")) {
 //add custom variable data
 if (!function_exists("get_custom_variables_data")) {
 
-    function get_custom_variables_data($related_to_type = "", $related_to_id = 0, $is_admin = 0) {
+    function get_custom_variables_data($related_to_type = "", $related_to_id = 0, $is_admin = 0)
+    {
         if ($related_to_type && $related_to_id) {
             $ci = get_instance();
             $variables_array = array();
@@ -1451,7 +1500,8 @@ if (!function_exists("get_custom_variables_data")) {
 //make labels view data for different contexts
 if (!function_exists("make_labels_view_data")) {
 
-    function make_labels_view_data($labels_list = "", $clickable = false, $large = false) {
+    function make_labels_view_data($labels_list = "", $clickable = false, $large = false)
+    {
         $labels = "";
 
         if ($labels_list) {
@@ -1479,7 +1529,8 @@ if (!function_exists("make_labels_view_data")) {
 //get update task info anchor data
 if (!function_exists("get_update_task_info_anchor_data")) {
 
-    function get_update_task_info_anchor_data($model_info, $type = "", $can_edit_tasks = false, $extra_data = "", $extra_condition = false) {
+    function get_update_task_info_anchor_data($model_info, $type = "", $can_edit_tasks = false, $extra_data = "", $extra_condition = false)
+    {
         if ($model_info && $type) {
 
             $start_date = "<span class='text-off'>" . lang("add") . " " . lang("start_date") . "<span>";
@@ -1534,7 +1585,8 @@ if (!function_exists("get_update_task_info_anchor_data")) {
 
 if (!function_exists('get_lead_contact_profile_link')) {
 
-    function get_lead_contact_profile_link($id = 0, $name = "", $attributes = array()) {
+    function get_lead_contact_profile_link($id = 0, $name = "", $attributes = array())
+    {
         return anchor("leads/contact_profile/" . $id, $name, $attributes);
     }
 
@@ -1542,7 +1594,8 @@ if (!function_exists('get_lead_contact_profile_link')) {
 
 if (!function_exists('decode_password')) {
 
-    function decode_password($data = "", $salt = "") {
+    function decode_password($data = "", $salt = "")
+    {
         if ($data && $salt) {
             if (strlen($data) > 100) {
                 //encoded data with encode_id
@@ -1559,7 +1612,8 @@ if (!function_exists('decode_password')) {
 
 if (!function_exists('validate_invoice_verification_code')) {
 
-    function validate_invoice_verification_code($code = "", $given_invoice_data = array()) {
+    function validate_invoice_verification_code($code = "", $given_invoice_data = array())
+    {
         if ($code) {
             $ci = get_instance();
             $options = array("code" => $code, "type" => "invoice_payment");
@@ -1589,7 +1643,8 @@ if (!function_exists('validate_invoice_verification_code')) {
 
 if (!function_exists('can_edit_this_task_status')) {
 
-    function can_edit_this_task_status($assigned_to = 0) {
+    function can_edit_this_task_status($assigned_to = 0)
+    {
         $ci = get_instance();
 
         if (get_array_value($ci->login_user->permissions, "can_update_only_assigned_tasks_status")) {
@@ -1606,7 +1661,8 @@ if (!function_exists('can_edit_this_task_status')) {
 
 if (!function_exists('send_message_via_pusher')) {
 
-    function send_message_via_pusher($to_user_id, $message_data, $message_id, $message_type = "message") {
+    function send_message_via_pusher($to_user_id, $message_data, $message_id, $message_type = "message")
+    {
         $ci = get_instance();
 
         $pusher_app_id = get_setting("pusher_app_id");
@@ -1626,7 +1682,7 @@ if (!function_exists('send_message_via_pusher')) {
         );
 
         $pusher = new Pusher\Pusher(
-                $pusher_key, $pusher_secret, $pusher_app_id, $options
+            $pusher_key, $pusher_secret, $pusher_app_id, $options
         );
 
         if ($message_type == "message") {
@@ -1667,7 +1723,8 @@ if (!function_exists('send_message_via_pusher')) {
 
 if (!function_exists('can_access_messages_module')) {
 
-    function can_access_messages_module() {
+    function can_access_messages_module()
+    {
         $ci = get_instance();
 
         $can_chat = false;
@@ -1686,7 +1743,8 @@ if (!function_exists('can_access_messages_module')) {
 
 if (!function_exists('add_auto_reply_to_ticket')) {
 
-    function add_auto_reply_to_ticket($ticket_id = 0) {
+    function add_auto_reply_to_ticket($ticket_id = 0)
+    {
         $auto_reply_to_tickets = get_setting("auto_reply_to_tickets");
         $auto_reply_to_tickets_message = get_setting('auto_reply_to_tickets_message');
 
@@ -1711,6 +1769,20 @@ if (!function_exists('add_auto_reply_to_ticket')) {
         //send notification
         if ($comment_id) {
             log_notification("ticket_commented", array("ticket_id" => $ticket_id, "ticket_comment_id" => $comment_id), "0");
+        }
+    }
+
+}
+
+if (!function_exists('dump')) {
+
+    function dd($data, $exit = true)
+    {
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
+        if ($exit) {
+            die;
         }
     }
 
