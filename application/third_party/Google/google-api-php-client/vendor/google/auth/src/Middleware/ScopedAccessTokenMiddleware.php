@@ -70,21 +70,24 @@ class ScopedAccessTokenMiddleware
     public function __construct(
         callable $tokenFunc,
         $scopes,
-        array $cacheConfig = null,
-        CacheItemPoolInterface $cache = null
-    ) {
+        array $cacheConfig = NULL,
+        CacheItemPoolInterface $cache = NULL
+    )
+    {
         $this->tokenFunc = $tokenFunc;
-        if (!(is_string($scopes) || is_array($scopes))) {
+        if(!(is_string($scopes) || is_array($scopes)))
+        {
             throw new \InvalidArgumentException(
                 'wants scope should be string or array');
         }
         $this->scopes = $scopes;
 
-        if (!is_null($cache)) {
+        if(!is_null($cache))
+        {
             $this->cache = $cache;
             $this->cacheConfig = array_merge([
                 'lifetime' => self::DEFAULT_CACHE_LIFETIME,
-                'prefix' => '',
+                'prefix'   => '',
             ], $cacheConfig);
         }
     }
@@ -124,9 +127,11 @@ class ScopedAccessTokenMiddleware
      */
     public function __invoke(callable $handler)
     {
-        return function (RequestInterface $request, array $options) use ($handler) {
+        return function(RequestInterface $request, array $options) use ($handler)
+        {
             // Requests using "auth"="scoped" will be authorized.
-            if (!isset($options['auth']) || $options['auth'] !== 'scoped') {
+            if(!isset($options['auth']) || $options['auth'] !== 'scoped')
+            {
                 return $handler($request, $options);
             }
 
@@ -141,11 +146,14 @@ class ScopedAccessTokenMiddleware
      */
     private function getCacheKey()
     {
-        $key = null;
+        $key = NULL;
 
-        if (is_string($this->scopes)) {
+        if(is_string($this->scopes))
+        {
             $key .= $this->scopes;
-        } elseif (is_array($this->scopes)) {
+        }
+        else if(is_array($this->scopes))
+        {
             $key .= implode(':', $this->scopes);
         }
 
@@ -163,7 +171,8 @@ class ScopedAccessTokenMiddleware
         $cacheKey = $this->getCacheKey();
         $cached = $this->getCachedValue($cacheKey);
 
-        if (!empty($cached)) {
+        if(!empty($cached))
+        {
             return $cached;
         }
 

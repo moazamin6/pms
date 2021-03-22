@@ -23,8 +23,8 @@ class OAuthErrorObject extends StripeObject
         // error objects when they have a null value. We manually set default
         // values here to facilitate generic error handling.
         $values = \array_merge([
-            'error' => null,
-            'error_description' => null,
+            'error'             => NULL,
+            'error_description' => NULL,
         ], $values);
         parent::refreshFrom($values, $opts, $partial);
     }

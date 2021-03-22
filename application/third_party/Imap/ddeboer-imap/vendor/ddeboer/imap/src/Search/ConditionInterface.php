@@ -9,10 +9,10 @@ namespace Ddeboer\Imap\Search;
  */
 interface ConditionInterface
 {
-    /**
-     * Converts the condition to a string that can be sent to the IMAP server.
-     *
-     * @return string
-     */
-    public function toString(): string;
+	/**
+	 * Converts the condition to a string that can be sent to the IMAP server.
+	 *
+	 * @return string
+	 */
+	public function toString(): string;
 }

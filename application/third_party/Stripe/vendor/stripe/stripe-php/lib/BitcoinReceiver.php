@@ -51,7 +51,8 @@ class BitcoinReceiver extends ApiResource
      */
     public function instanceUrl()
     {
-        if ($this['customer']) {
+        if($this['customer'])
+        {
             $base = Customer::classUrl();
             $parent = $this['customer'];
             $path = 'sources';

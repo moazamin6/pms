@@ -40,14 +40,14 @@ class SubscriptionSchedule extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return SubscriptionSchedule the canceled subscription schedule
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return SubscriptionSchedule the canceled subscription schedule
      */
-    public function cancel($params = null, $opts = null)
+    public function cancel($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/cancel';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -57,14 +57,14 @@ class SubscriptionSchedule extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return SubscriptionSchedule the released subscription schedule
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return SubscriptionSchedule the released subscription schedule
      */
-    public function release($params = null, $opts = null)
+    public function release($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/release';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

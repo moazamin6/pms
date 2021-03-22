@@ -5,6 +5,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'EmailReplyParser\\' => array($vendorDir . '/willdurand/email-reply-parser/src/EmailReplyParser'),
-);
+return [
+	'EmailReplyParser\\' => [$vendorDir . '/willdurand/email-reply-parser/src/EmailReplyParser'],
+];

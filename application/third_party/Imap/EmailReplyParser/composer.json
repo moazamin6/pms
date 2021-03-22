@@ -1,5 +1,5 @@
 {
-    "require": {
-        "willdurand/email-reply-parser": "^2.8"
-    }
+  "require": {
+    "willdurand/email-reply-parser": "^2.8"
+  }
 }

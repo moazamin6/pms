@@ -128,14 +128,14 @@ class Charge extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Charge the captured charge
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Charge the captured charge
      */
-    public function capture($params = null, $opts = null)
+    public function capture($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/capture';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

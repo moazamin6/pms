@@ -30,101 +30,101 @@
  */
 class Google_Service_CloudVideoIntelligence extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $operations;
-  public $videos;
-  
-  /**
-   * Constructs the internal representation of the CloudVideoIntelligence
-   * service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://videointelligence.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'videointelligence';
+	public $operations;
+	public $videos;
 
-    $this->operations = new Google_Service_CloudVideoIntelligence_Resource_Operations(
-        $this,
-        $this->serviceName,
-        'operations',
-        array(
-          'methods' => array(
-            'cancel' => array(
-              'path' => 'v1/operations/{+name}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/operations/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/operations/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/operations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'name' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->videos = new Google_Service_CloudVideoIntelligence_Resource_Videos(
-        $this,
-        $this->serviceName,
-        'videos',
-        array(
-          'methods' => array(
-            'annotate' => array(
-              'path' => 'v1/videos:annotate',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudVideoIntelligence
+	 * service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://videointelligence.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'videointelligence';
+
+		$this->operations = new Google_Service_CloudVideoIntelligence_Resource_Operations(
+			$this,
+			$this->serviceName,
+			'operations',
+			[
+				'methods' => [
+					'cancel'    => [
+						'path'       => 'v1/operations/{+name}:cancel',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1/operations/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/operations/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/operations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'name'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->videos = new Google_Service_CloudVideoIntelligence_Resource_Videos(
+			$this,
+			$this->serviceName,
+			'videos',
+			[
+				'methods' => [
+					'annotate' => [
+						'path'       => 'v1/videos:annotate',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+	}
 }

@@ -6,26 +6,27 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit51d1354631cca33813151d15ccc1a8b6
 {
-    public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Stripe\\' => 7,
-        ),
-    );
+	public static $prefixLengthsPsr4 = [
+		'S' =>
+			[
+				'Stripe\\' => 7,
+			],
+	];
 
-    public static $prefixDirsPsr4 = array (
-        'Stripe\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
-        ),
-    );
+	public static $prefixDirsPsr4 = [
+		'Stripe\\' =>
+			[
+				0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+			],
+	];
 
-    public static function getInitializer(ClassLoader $loader)
-    {
-        return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit51d1354631cca33813151d15ccc1a8b6::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit51d1354631cca33813151d15ccc1a8b6::$prefixDirsPsr4;
+	public static function getInitializer(ClassLoader $loader)
+	{
+		return \Closure::bind(function() use ($loader)
+		{
+			$loader->prefixLengthsPsr4 = ComposerStaticInit51d1354631cca33813151d15ccc1a8b6::$prefixLengthsPsr4;
+			$loader->prefixDirsPsr4 = ComposerStaticInit51d1354631cca33813151d15ccc1a8b6::$prefixDirsPsr4;
 
-        }, null, ClassLoader::class);
-    }
+		}, NULL, ClassLoader::class);
+	}
 }

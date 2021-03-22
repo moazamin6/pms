@@ -30,64 +30,64 @@
  */
 class Google_Service_Groupssettings extends Google_Service
 {
-  /** View and manage the settings of a G Suite group. */
-  const APPS_GROUPS_SETTINGS =
-      "https://www.googleapis.com/auth/apps.groups.settings";
+	/** View and manage the settings of a G Suite group. */
+	const APPS_GROUPS_SETTINGS =
+		"https://www.googleapis.com/auth/apps.groups.settings";
 
-  public $groups;
-  
-  /**
-   * Constructs the internal representation of the Groupssettings service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'groups/v1/groups/';
-    $this->version = 'v1';
-    $this->serviceName = 'groupssettings';
+	public $groups;
 
-    $this->groups = new Google_Service_Groupssettings_Resource_Groups(
-        $this,
-        $this->serviceName,
-        'groups',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{groupUniqueId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'groupUniqueId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{groupUniqueId}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'groupUniqueId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'update' => array(
-              'path' => '{groupUniqueId}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'groupUniqueId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Groupssettings service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'groups/v1/groups/';
+		$this->version = 'v1';
+		$this->serviceName = 'groupssettings';
+
+		$this->groups = new Google_Service_Groupssettings_Resource_Groups(
+			$this,
+			$this->serviceName,
+			'groups',
+			[
+				'methods' => [
+					'get'       => [
+						'path'       => '{groupUniqueId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'groupUniqueId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'patch'  => [
+						'path'       => '{groupUniqueId}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'groupUniqueId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'update' => [
+						'path'       => '{groupUniqueId}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'groupUniqueId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

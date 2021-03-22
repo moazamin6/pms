@@ -5,15 +5,15 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
-    'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
-    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
-    'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
-    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
-    'Google\\Auth\\' => array($vendorDir . '/google/auth/src'),
-    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
-);
+return [
+	'phpseclib\\'           => [$vendorDir . '/phpseclib/phpseclib/phpseclib'],
+	'Psr\\Log\\'            => [$vendorDir . '/psr/log/Psr/Log'],
+	'Psr\\Http\\Message\\'  => [$vendorDir . '/psr/http-message/src'],
+	'Psr\\Cache\\'          => [$vendorDir . '/psr/cache/src'],
+	'Monolog\\'             => [$vendorDir . '/monolog/monolog/src/Monolog'],
+	'GuzzleHttp\\Psr7\\'    => [$vendorDir . '/guzzlehttp/psr7/src'],
+	'GuzzleHttp\\Promise\\' => [$vendorDir . '/guzzlehttp/promises/src'],
+	'GuzzleHttp\\'          => [$vendorDir . '/guzzlehttp/guzzle/src'],
+	'Google\\Auth\\'        => [$vendorDir . '/google/auth/src'],
+	'Firebase\\JWT\\'       => [$vendorDir . '/firebase/php-jwt/src'],
+];

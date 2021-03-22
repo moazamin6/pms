@@ -46,14 +46,14 @@ class Authorization extends \Stripe\ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Authorization the approved authorization
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Authorization the approved authorization
      */
-    public function approve($params = null, $opts = null)
+    public function approve($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/approve';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -63,14 +63,14 @@ class Authorization extends \Stripe\ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Authorization the declined authorization
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Authorization the declined authorization
      */
-    public function decline($params = null, $opts = null)
+    public function decline($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/decline';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

@@ -28,11 +28,11 @@ class AuthTokenMiddlewareTest extends BaseTest
     private $mockCacheItem;
     private $mockCache;
     private $mockRequest;
-
+    
     protected function setUp()
     {
         $this->onlyGuzzle6();
-
+        
         $this->mockFetcher =
             $this
                 ->getMockBuilder('Google\Auth\FetchAuthTokenInterface')
@@ -51,7 +51,7 @@ class AuthTokenMiddlewareTest extends BaseTest
                 ->disableOriginalConstructor()
                 ->getMock();
     }
-
+    
     public function testOnlyTouchesWhenAuthConfigScoped()
     {
         $this->mockFetcher
@@ -61,13 +61,13 @@ class AuthTokenMiddlewareTest extends BaseTest
         $this->mockRequest
             ->expects($this->never())
             ->method('withHeader');
-
+        
         $middleware = new AuthTokenMiddleware($this->mockFetcher);
         $mock = new MockHandler([new Response(200)]);
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'not_google_auth']);
     }
-
+    
     public function testAddsTheTokenAsAnAuthorizationHeader()
     {
         $authResult = ['access_token' => '1/abcdef1234567890'];
@@ -80,14 +80,14 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->method('withHeader')
             ->with('authorization', 'Bearer ' . $authResult['access_token'])
             ->will($this->returnValue($this->mockRequest));
-
+        
         // Run the test.
         $middleware = new AuthTokenMiddleware($this->mockFetcher);
         $mock = new MockHandler([new Response(200)]);
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'google_auth']);
     }
-
+    
     public function testDoesNotAddAnAuthorizationHeaderOnNoAccessToken()
     {
         $authResult = ['not_access_token' => '1/abcdef1234567890'];
@@ -100,14 +100,14 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->method('withHeader')
             ->with('authorization', 'Bearer ')
             ->will($this->returnValue($this->mockRequest));
-
+        
         // Run the test.
         $middleware = new AuthTokenMiddleware($this->mockFetcher);
         $mock = new MockHandler([new Response(200)]);
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'google_auth']);
     }
-
+    
     public function testUsesCachedAuthToken()
     {
         $cacheKey = 'myKey';
@@ -137,11 +137,11 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->method('withHeader')
             ->with('authorization', 'Bearer ' . $cachedValue)
             ->will($this->returnValue($this->mockRequest));
-
+        
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
-            null,
+            NULL,
             $this->mockCache
         );
         $middleware = new AuthTokenMiddleware($cachedFetcher);
@@ -149,7 +149,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'google_auth']);
     }
-
+    
     public function testGetsCachedAuthTokenUsingCacheOptions()
     {
         $prefix = 'test_prefix_';
@@ -180,7 +180,7 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->method('withHeader')
             ->with('authorization', 'Bearer ' . $cachedValue)
             ->will($this->returnValue($this->mockRequest));
-
+        
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
@@ -192,7 +192,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'google_auth']);
     }
-
+    
     public function testShouldSaveValueInCacheWithSpecifiedPrefix()
     {
         $prefix = 'test_prefix_';
@@ -203,7 +203,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         $this->mockCacheItem
             ->expects($this->any())
             ->method('get')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue(NULL));
         $this->mockCacheItem
             ->expects($this->once())
             ->method('set')
@@ -231,7 +231,7 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->method('withHeader')
             ->with('authorization', 'Bearer ' . $token)
             ->will($this->returnValue($this->mockRequest));
-
+        
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
@@ -243,7 +243,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         $callable = $middleware($mock);
         $callable($this->mockRequest, ['auth' => 'google_auth']);
     }
-
+    
     /** @dataProvider provideShouldNotifyTokenCallback */
     public function testShouldNotifyTokenCallback(callable $tokenCallback)
     {
@@ -254,7 +254,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         $this->mockCacheItem
             ->expects($this->any())
             ->method('get')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue(NULL));
         $this->mockCache
             ->expects($this->any())
             ->method('getItem')
@@ -272,11 +272,11 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->expects($this->once())
             ->method('withHeader')
             ->will($this->returnValue($this->mockRequest));
-
+        
         MiddlewareCallback::$expectedKey = $this->getValidKeyName($prefix . $cacheKey);
         MiddlewareCallback::$expectedValue = $token;
         MiddlewareCallback::$called = false;
-
+        
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
@@ -285,7 +285,7 @@ class AuthTokenMiddlewareTest extends BaseTest
         );
         $middleware = new AuthTokenMiddleware(
             $cachedFetcher,
-            null,
+            NULL,
             $tokenCallback
         );
         $mock = new MockHandler([new Response(200)]);
@@ -293,11 +293,12 @@ class AuthTokenMiddlewareTest extends BaseTest
         $callable($this->mockRequest, ['auth' => 'google_auth']);
         $this->assertTrue(MiddlewareCallback::$called);
     }
-
+    
     public function provideShouldNotifyTokenCallback()
     {
         MiddlewareCallback::$phpunit = $this;
-        $anonymousFunc = function ($key, $value) {
+        $anonymousFunc = function($key, $value)
+        {
             MiddlewareCallback::staticInvoke($key, $value);
         };
         return [
@@ -318,19 +319,19 @@ class MiddlewareCallback
     public static $expectedKey;
     public static $expectedValue;
     public static $called = false;
-
+    
     public function __invoke($key, $value)
     {
         self::$phpunit->assertEquals(self::$expectedKey, $key);
         self::$phpunit->assertEquals(self::$expectedValue, $value);
         self::$called = true;
     }
-
+    
     public function methodInvoke($key, $value)
     {
         return $this($key, $value);
     }
-
+    
     public static function staticInvoke($key, $value)
     {
         $instance = new self();

@@ -2,6 +2,7 @@
 
 # top-most EditorConfig file
 root = true
+
 charset = utf-8
 
 # Get rid of whitespace to avoid diffs with a bunch of EOL changes

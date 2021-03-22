@@ -5,7 +5,7 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'Pusher\\' => array($vendorDir . '/pusher/pusher-php-server/src'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-);
+return [
+	'Pusher\\'   => [$vendorDir . '/pusher/pusher-php-server/src'],
+	'Psr\\Log\\' => [$vendorDir . '/psr/log/Psr/Log'],
+];

@@ -5,7 +5,7 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'Google_Service_Exception' => $baseDir . '/src/Google/Service/Exception.php',
-    'Google_Service_Resource' => $baseDir . '/src/Google/Service/Resource.php',
-);
+return [
+	'Google_Service_Exception' => $baseDir . '/src/Google/Service/Exception.php',
+	'Google_Service_Resource'  => $baseDir . '/src/Google/Service/Resource.php',
+];

@@ -32,155 +32,155 @@ class Google_Service_PolyService extends Google_Service
 {
 
 
-  public $assets;
-  public $users_assets;
-  public $users_likedassets;
-  
-  /**
-   * Constructs the internal representation of the PolyService service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://poly.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'poly';
+	public $assets;
+	public $users_assets;
+	public $users_likedassets;
 
-    $this->assets = new Google_Service_PolyService_Resource_Assets(
-        $this,
-        $this->serviceName,
-        'assets',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/assets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxComplexity' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'keywords' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'format' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'curated' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'category' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->users_assets = new Google_Service_PolyService_Resource_UsersAssets(
-        $this,
-        $this->serviceName,
-        'assets',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v1/{+name}/assets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'format' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'visibility' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->users_likedassets = new Google_Service_PolyService_Resource_UsersLikedassets(
-        $this,
-        $this->serviceName,
-        'likedassets',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v1/{+name}/likedassets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'format' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the PolyService service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://poly.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'poly';
+
+		$this->assets = new Google_Service_PolyService_Resource_Assets(
+			$this,
+			$this->serviceName,
+			'assets',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1/assets',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'pageToken'     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'maxComplexity' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'keywords'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'format'        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'curated'       => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'category'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->users_assets = new Google_Service_PolyService_Resource_UsersAssets(
+			$this,
+			$this->serviceName,
+			'assets',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v1/{+name}/assets',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'format'     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'  => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'   => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'visibility' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->users_likedassets = new Google_Service_PolyService_Resource_UsersLikedassets(
+			$this,
+			$this->serviceName,
+			'likedassets',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v1/{+name}/likedassets',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'orderBy'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'format'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

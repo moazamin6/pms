@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Header\Part;
 
 /**
@@ -14,14 +15,14 @@ namespace ZBateson\MailMimeParser\Header\Part;
  */
 class MimeLiteralPartFactory extends HeaderPartFactory
 {
-    /**
-     * Creates and returns a MimeLiteralPart.
-     * 
-     * @param string $value
-     * @return HeaderPart
-     */
-    public function newInstance($value)
-    {
-        return $this->newMimeLiteralPart($value);
-    }
+	/**
+	 * Creates and returns a MimeLiteralPart.
+	 *
+	 * @param string $value
+	 * @return HeaderPart
+	 */
+	public function newInstance($value)
+	{
+		return $this->newMimeLiteralPart($value);
+	}
 }

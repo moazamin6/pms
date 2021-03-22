@@ -37,7 +37,8 @@ class File extends ApiResource
     // `file_upload` object into the same class.
     const OBJECT_NAME_ALT = 'file_upload';
 
-    use ApiOperations\Create {
+    use ApiOperations\Create
+    {
         create as protected _create;
     }
 
@@ -50,14 +51,15 @@ class File extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\File the created file
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\File the created file
      */
-    public static function create($params = null, $opts = null)
+    public static function create($params = NULL, $opts = NULL)
     {
         $opts = \Stripe\Util\RequestOptions::parse($opts);
-        if (null === $opts->apiBase) {
+        if(NULL === $opts->apiBase)
+        {
             $opts->apiBase = Stripe::$apiUploadBase;
         }
         // Manually flatten params, otherwise curl's multipart encoder will

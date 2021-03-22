@@ -30,107 +30,107 @@
  */
 class Google_Service_ManufacturerCenter extends Google_Service
 {
-  /** Manage your product listings for Google Manufacturer Center. */
-  const MANUFACTURERCENTER =
-      "https://www.googleapis.com/auth/manufacturercenter";
+	/** Manage your product listings for Google Manufacturer Center. */
+	const MANUFACTURERCENTER =
+		"https://www.googleapis.com/auth/manufacturercenter";
 
-  public $accounts_products;
-  
-  /**
-   * Constructs the internal representation of the ManufacturerCenter service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://manufacturers.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'manufacturers';
+	public $accounts_products;
 
-    $this->accounts_products = new Google_Service_ManufacturerCenter_Resource_AccountsProducts(
-        $this,
-        $this->serviceName,
-        'products',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => 'v1/{+parent}/products/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+parent}/products/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'include' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+parent}/products',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'include' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'update' => array(
-              'path' => 'v1/{+parent}/products/{+name}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the ManufacturerCenter service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://manufacturers.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'manufacturers';
+
+		$this->accounts_products = new Google_Service_ManufacturerCenter_Resource_AccountsProducts(
+			$this,
+			$this->serviceName,
+			'products',
+			[
+				'methods' => [
+					'delete'    => [
+						'path'       => 'v1/{+parent}/products/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'name'   => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/{+parent}/products/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'  => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'name'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'include' => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/{+parent}/products',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'include'   => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'update' => [
+						'path'       => 'v1/{+parent}/products/{+name}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'name'   => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -30,163 +30,163 @@
  */
 class Google_Service_CloudSourceRepositories extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** Manage your source code repositories. */
-  const SOURCE_FULL_CONTROL =
-      "https://www.googleapis.com/auth/source.full_control";
-  /** View the contents of your source code repositories. */
-  const SOURCE_READ_ONLY =
-      "https://www.googleapis.com/auth/source.read_only";
-  /** Manage the contents of your source code repositories. */
-  const SOURCE_READ_WRITE =
-      "https://www.googleapis.com/auth/source.read_write";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** Manage your source code repositories. */
+	const SOURCE_FULL_CONTROL =
+		"https://www.googleapis.com/auth/source.full_control";
+	/** View the contents of your source code repositories. */
+	const SOURCE_READ_ONLY =
+		"https://www.googleapis.com/auth/source.read_only";
+	/** Manage the contents of your source code repositories. */
+	const SOURCE_READ_WRITE =
+		"https://www.googleapis.com/auth/source.read_write";
 
-  public $projects;
-  public $projects_repos;
-  
-  /**
-   * Constructs the internal representation of the CloudSourceRepositories
-   * service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://sourcerepo.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'sourcerepo';
+	public $projects;
+	public $projects_repos;
 
-    $this->projects = new Google_Service_CloudSourceRepositories_Resource_Projects(
-        $this,
-        $this->serviceName,
-        'projects',
-        array(
-          'methods' => array(
-            'getConfig' => array(
-              'path' => 'v1/{+name}/config',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'updateConfig' => array(
-              'path' => 'v1/{+name}/config',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_repos = new Google_Service_CloudSourceRepositories_Resource_ProjectsRepos(
-        $this,
-        $this->serviceName,
-        'repos',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+parent}/repos',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}/repos',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudSourceRepositories
+	 * service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://sourcerepo.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'sourcerepo';
+
+		$this->projects = new Google_Service_CloudSourceRepositories_Resource_Projects(
+			$this,
+			$this->serviceName,
+			'projects',
+			[
+				'methods' => [
+					'getConfig'       => [
+						'path'       => 'v1/{+name}/config',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'updateConfig' => [
+						'path'       => 'v1/{+name}/config',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_repos = new Google_Service_CloudSourceRepositories_Resource_ProjectsRepos(
+			$this,
+			$this->serviceName,
+			'repos',
+			[
+				'methods' => [
+					'create'                => [
+						'path'       => 'v1/{+parent}/repos',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete'             => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'                => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getIamPolicy'       => [
+						'path'       => 'v1/{+resource}:getIamPolicy',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'               => [
+						'path'       => 'v1/{+name}/repos',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'patch'              => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'setIamPolicy'       => [
+						'path'       => 'v1/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions' => [
+						'path'       => 'v1/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

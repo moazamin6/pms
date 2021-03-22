@@ -12,13 +12,13 @@ use Ddeboer\Imap\Search\ConditionInterface;
  */
 final class Unseen implements ConditionInterface
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return 'UNSEEN';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	public function toString(): string
+	{
+		return 'UNSEEN';
+	}
 }

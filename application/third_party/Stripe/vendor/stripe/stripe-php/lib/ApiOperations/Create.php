@@ -13,16 +13,16 @@ trait Create
      * @param null|array $params
      * @param null|array|string $options
      *
+     * @return static the created resource
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return static the created resource
      */
-    public static function create($params = null, $options = null)
+    public static function create($params = NULL, $options = NULL)
     {
         self::_validateParams($params);
         $url = static::classUrl();
 
-        list($response, $opts) = static::_staticRequest('post', $url, $params, $options);
+        [$response, $opts] = static::_staticRequest('post', $url, $params, $options);
         $obj = \Stripe\Util\Util::convertToStripeObject($response->json, $opts);
         $obj->setLastResponse($response);
 

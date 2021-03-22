@@ -31,58 +31,58 @@
  */
 class Google_Service_Texttospeech extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $text;
-  public $voices;
-  
-  /**
-   * Constructs the internal representation of the Texttospeech service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://texttospeech.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1beta1';
-    $this->serviceName = 'texttospeech';
+	public $text;
+	public $voices;
 
-    $this->text = new Google_Service_Texttospeech_Resource_Text(
-        $this,
-        $this->serviceName,
-        'text',
-        array(
-          'methods' => array(
-            'synthesize' => array(
-              'path' => 'v1beta1/text:synthesize',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-    $this->voices = new Google_Service_Texttospeech_Resource_Voices(
-        $this,
-        $this->serviceName,
-        'voices',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v1beta1/voices',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'languageCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Texttospeech service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://texttospeech.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1beta1';
+		$this->serviceName = 'texttospeech';
+
+		$this->text = new Google_Service_Texttospeech_Resource_Text(
+			$this,
+			$this->serviceName,
+			'text',
+			[
+				'methods' => [
+					'synthesize' => [
+						'path'       => 'v1beta1/text:synthesize',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+		$this->voices = new Google_Service_Texttospeech_Resource_Voices(
+			$this,
+			$this->serviceName,
+			'voices',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v1beta1/voices',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'languageCode' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

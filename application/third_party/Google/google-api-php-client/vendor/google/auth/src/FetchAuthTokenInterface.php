@@ -29,7 +29,7 @@ interface FetchAuthTokenInterface
      *
      * @return array a hash of auth tokens
      */
-    public function fetchAuthToken(callable $httpHandler = null);
+    public function fetchAuthToken(callable $httpHandler = NULL);
 
     /**
      * Obtains a key that can used to cache the results of #fetchAuthToken.

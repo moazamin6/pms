@@ -26,7 +26,8 @@ class SysVCacheItemPoolTest extends TestCase
 
     public function setUp()
     {
-        if (! extension_loaded('sysvshm')) {
+        if(!extension_loaded('sysvshm'))
+        {
             $this->markTestSkipped(
                 'sysvshm extension is required for running the test'
             );
@@ -116,7 +117,8 @@ class SysVCacheItemPoolTest extends TestCase
     {
         $keys = ['item1', 'item2'];
 
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             $this->saveItem($key, 'value');
         }
 
@@ -143,7 +145,8 @@ class SysVCacheItemPoolTest extends TestCase
     {
         $keys = ['item1', 'item2'];
 
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             $item = $this->pool->getItem($key);
             $item->set('value');
             $this->pool->saveDeferred($item);

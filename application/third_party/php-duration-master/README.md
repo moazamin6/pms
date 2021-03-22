@@ -1,5 +1,7 @@
 # PHP-Duration
+
 #### Convert durations between colon formatted time, human-readable time and seconds
+
 [![Total Downloads](https://img.shields.io/packagist/dt/khill/php-duration.svg?style=plastic)](https://packagist.org/packages/khill/php-duration)
 [![License](https://img.shields.io/packagist/l/khill/php-duration.svg?style=plastic)](http://opensource.org/licenses/MIT)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.3-8892BF.svg?style=plastic)](https://php.net/)
@@ -9,27 +11,28 @@
 [![Build Status](https://img.shields.io/travis/kevinkhill/php-duration/master.svg?style=plastic)](https://travis-ci.org/kevinkhill/php-duration)
 [![Coverage Status](https://img.shields.io/coveralls/kevinkhill/php-duration/master.svg?style=plastic)](https://coveralls.io/r/kevinkhill/php-duration?branch=master)
 
-This package was created with a very specific goal in mind, to enable an easy way for users to input how long something took, as a duration of time.
+This package was created with a very specific goal in mind, to enable an easy way for users to input how long something
+took, as a duration of time.
 
-The library can accept either in colon separated format, like 2:43 for 2 minutes and 43 seconds
-OR
-written as human readable or abbreviated time, such as 6m21s for 6 minutes and 21 seconds.
+The library can accept either in colon separated format, like 2:43 for 2 minutes and 43 seconds OR written as human
+readable or abbreviated time, such as 6m21s for 6 minutes and 21 seconds.
 
 Both can be converted into seconds and minutes with precision for easy storage into a database.
 
 Seconds, colon separated, abbreviated, all three can be parsed and interchanged.
- - supports hours, minutes, and seconds (with microseconds)
- - humanized input supports any form of the words "hour", "minute", "seconds"
-   - Example, you could input 1h4m2s or 4 Hr. 32 Min.
 
+- supports hours, minutes, and seconds (with microseconds)
+- humanized input supports any form of the words "hour", "minute", "seconds"
+    - Example, you could input 1h4m2s or 4 Hr. 32 Min.
 
 # Install
+
 ```bash
 composer require khill/php-duration:~1.0
 ```
 
-
 # Usage
+
 ```php
 use Khill\Duration\Duration;
 
@@ -76,7 +79,10 @@ echo $duration->toMinutes(null, 0); // 72
 ```
 
 # Note
-You do not have to create a new object for each conversion, you can also pass any of the three forms into any of the methods to get the immediate output.
+
+You do not have to create a new object for each conversion, you can also pass any of the three forms into any of the
+methods to get the immediate output.
+
 ```php
 $duration = new Duration;
 

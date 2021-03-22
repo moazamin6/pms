@@ -49,14 +49,14 @@ class Review extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Review the approved review
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Review the approved review
      */
-    public function approve($params = null, $opts = null)
+    public function approve($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/approve';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

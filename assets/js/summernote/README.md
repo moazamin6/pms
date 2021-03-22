@@ -10,6 +10,7 @@ Super simple WYSIWYG Editor.
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/summernoteis.svg)](https://saucelabs.com/u/summernoteis)
 
 ### Summernote
+
 Summernote is a JavaScript library that helps you create WYSIWYG editors online.
 
 Home page: <http://summernote.org>
@@ -19,7 +20,8 @@ Home page: <http://summernote.org>
 Summernote has a few special features:
 
 * Paste images from clipboard
-* Saves images directly in the content of the field using base64 encoding, so you don't need to implement image handling at all
+* Saves images directly in the content of the field using base64 encoding, so you don't need to implement image handling
+  at all
 * Simple UI
 * Interactive WYSIWYG editing
 * Handy integration with server
@@ -28,10 +30,10 @@ Summernote has a few special features:
 
 Summernote uses opensource libraries: [jQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com).
 
-For [Meteor](http://github.com/meteor/meteor), just run `meteor add summernote:summernote`. More info in the [Meteor README](meteor/README.md).
+For [Meteor](http://github.com/meteor/meteor), just run `meteor add summernote:summernote`. More info in
+the [Meteor README](meteor/README.md).
 
 Also there's an adaptation for React: [react-summernote](https://github.com/Vnkitaev/react-summernote)
-
 
 For other/no frameworks:
 
@@ -82,7 +84,9 @@ For more detail about API, please refer to [document](http://summernote.org/gett
 
 #### Warning - code injection
 
-The code view allows the user to enter script contents. Make sure to filter/[sanitize the HTML on the server](https://github.com/search?l=JavaScript&q=sanitize+html). Otherwise, an attacker can inject arbitrary JavaScript code into clients.
+The code view allows the user to enter script contents. Make sure to
+filter/[sanitize the HTML on the server](https://github.com/search?l=JavaScript&q=sanitize+html). Otherwise, an attacker
+can inject arbitrary JavaScript code into clients.
 
 #### document structure
 
@@ -102,6 +106,7 @@ The code view allows the user to enter script contents. Make sure to filter/[san
 6. `#text` and void inline node doesn't have children.
 
 #### build summernote
+
 ```bash
 # grunt-cli is need by grunt; you might have this installed already
 npm install -g grunt-cli
@@ -113,15 +118,18 @@ grunt build
 # generate minified copy: dist/summernote.min.js, dist/summernote.css
 grunt dist
 ```
+
 At this point, you should now have a `build/` directory populated with everything you need to use summernote.
 
 #### test summernote
+
 run tests with Karma and PhantomJS
+
 ```bash
 grunt test
 ```
-If you want run tests on other browser,
-change the values for `broswers` properties in `Gruntfile.js`.
+
+If you want run tests on other browser, change the values for `broswers` properties in `Gruntfile.js`.
 
 ```
 karma: {
@@ -132,11 +140,14 @@ karma: {
 }
 
 ```
-You can use `Chrome`, `ChromeCanary`, `Firefox`, `Opera`, `Safari`, `PhantomJS` and `IE` beside `PhantomJS`.
-Once you run `grunt test`, it will watch all javascript file. Therefore karma run tests every time you chage code.
+
+You can use `Chrome`, `ChromeCanary`, `Firefox`, `Opera`, `Safari`, `PhantomJS` and `IE` beside `PhantomJS`. Once you
+run `grunt test`, it will watch all javascript file. Therefore karma run tests every time you chage code.
 
 #### start local server for developing summernote.
+
 run local server with connect and watch.
+
 ```bash
 grunt server
 # Open a browser on http://localhost:3000.
@@ -144,17 +155,22 @@ grunt server
 ```
 
 #### Coding convention
+
 * JSHint: http://www.jshint.com/about/
 * JSHint rule: https://github.com/summernote/summernote/blob/master/.jshintrc
 
 #### Contribution guide
-* Please read [CONTRIBUTING.md](https://github.com/summernote/summernote/blob/develop/CONTRIBUTING.md) before sending pull requests.
+
+* Please read [CONTRIBUTING.md](https://github.com/summernote/summernote/blob/develop/CONTRIBUTING.md) before sending
+  pull requests.
 
 ### Contacts
+
 * Email: susukang98@gmail.com
 * Twitter: http://twitter.com/hackerwins
 * Chat with us:
-[![Join the chat at https://gitter.im/summernote/summernote](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/summernote/summernote?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+  [![Join the chat at https://gitter.im/summernote/summernote](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/summernote/summernote?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ### License
+
 summernote may be freely distributed under the MIT license.

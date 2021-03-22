@@ -53,8 +53,9 @@ class Customer extends ApiResource
 
     public static function getSavedNestedResources()
     {
-        static $savedNestedResources = null;
-        if (null === $savedNestedResources) {
+        static $savedNestedResources = NULL;
+        if(NULL === $savedNestedResources)
+        {
             $savedNestedResources = new Util\Set([
                 'source',
             ]);
@@ -69,11 +70,11 @@ class Customer extends ApiResource
      *
      * @return \Stripe\Customer the updated customer
      */
-    public function deleteDiscount($params = null, $opts = null)
+    public function deleteDiscount($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/discount';
-        list($response, $opts) = $this->_request('delete', $url, $params, $opts);
-        $this->refreshFrom(['discount' => null], $opts, true);
+        [$response, $opts] = $this->_request('delete', $url, $params, $opts);
+        $this->refreshFrom(['discount' => NULL], $opts, true);
     }
 
     const PATH_BALANCE_TRANSACTIONS = '/balance_transactions';
@@ -83,11 +84,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of customer balance transactions
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of customer balance transactions
      */
-    public static function allBalanceTransactions($id, $params = null, $opts = null)
+    public static function allBalanceTransactions($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_BALANCE_TRANSACTIONS, $params, $opts);
     }
@@ -97,11 +98,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\CustomerBalanceTransaction
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\CustomerBalanceTransaction
      */
-    public static function createBalanceTransaction($id, $params = null, $opts = null)
+    public static function createBalanceTransaction($id, $params = NULL, $opts = NULL)
     {
         return self::_createNestedResource($id, static::PATH_BALANCE_TRANSACTIONS, $params, $opts);
     }
@@ -112,11 +113,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\CustomerBalanceTransaction
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\CustomerBalanceTransaction
      */
-    public static function retrieveBalanceTransaction($id, $balanceTransactionId, $params = null, $opts = null)
+    public static function retrieveBalanceTransaction($id, $balanceTransactionId, $params = NULL, $opts = NULL)
     {
         return self::_retrieveNestedResource($id, static::PATH_BALANCE_TRANSACTIONS, $balanceTransactionId, $params, $opts);
     }
@@ -127,11 +128,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\CustomerBalanceTransaction
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\CustomerBalanceTransaction
      */
-    public static function updateBalanceTransaction($id, $balanceTransactionId, $params = null, $opts = null)
+    public static function updateBalanceTransaction($id, $balanceTransactionId, $params = NULL, $opts = NULL)
     {
         return self::_updateNestedResource($id, static::PATH_BALANCE_TRANSACTIONS, $balanceTransactionId, $params, $opts);
     }
@@ -143,11 +144,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of payment sources (AlipayAccount, BankAccount, BitcoinReceiver, Card or Source)
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of payment sources (AlipayAccount, BankAccount, BitcoinReceiver, Card or Source)
      */
-    public static function allSources($id, $params = null, $opts = null)
+    public static function allSources($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_SOURCES, $params, $opts);
     }
@@ -157,11 +158,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      */
-    public static function createSource($id, $params = null, $opts = null)
+    public static function createSource($id, $params = NULL, $opts = NULL)
     {
         return self::_createNestedResource($id, static::PATH_SOURCES, $params, $opts);
     }
@@ -172,11 +173,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      */
-    public static function deleteSource($id, $sourceId, $params = null, $opts = null)
+    public static function deleteSource($id, $sourceId, $params = NULL, $opts = NULL)
     {
         return self::_deleteNestedResource($id, static::PATH_SOURCES, $sourceId, $params, $opts);
     }
@@ -187,11 +188,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      */
-    public static function retrieveSource($id, $sourceId, $params = null, $opts = null)
+    public static function retrieveSource($id, $sourceId, $params = NULL, $opts = NULL)
     {
         return self::_retrieveNestedResource($id, static::PATH_SOURCES, $sourceId, $params, $opts);
     }
@@ -202,11 +203,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\AlipayAccount|\Stripe\BankAccount|\Stripe\BitcoinReceiver|\Stripe\Card|\Stripe\Source
      */
-    public static function updateSource($id, $sourceId, $params = null, $opts = null)
+    public static function updateSource($id, $sourceId, $params = NULL, $opts = NULL)
     {
         return self::_updateNestedResource($id, static::PATH_SOURCES, $sourceId, $params, $opts);
     }
@@ -218,11 +219,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of tax ids
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of tax ids
      */
-    public static function allTaxIds($id, $params = null, $opts = null)
+    public static function allTaxIds($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_TAX_IDS, $params, $opts);
     }
@@ -232,11 +233,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\TaxId
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\TaxId
      */
-    public static function createTaxId($id, $params = null, $opts = null)
+    public static function createTaxId($id, $params = NULL, $opts = NULL)
     {
         return self::_createNestedResource($id, static::PATH_TAX_IDS, $params, $opts);
     }
@@ -247,11 +248,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\TaxId
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\TaxId
      */
-    public static function deleteTaxId($id, $taxIdId, $params = null, $opts = null)
+    public static function deleteTaxId($id, $taxIdId, $params = NULL, $opts = NULL)
     {
         return self::_deleteNestedResource($id, static::PATH_TAX_IDS, $taxIdId, $params, $opts);
     }
@@ -262,11 +263,11 @@ class Customer extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\TaxId
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\TaxId
      */
-    public static function retrieveTaxId($id, $taxIdId, $params = null, $opts = null)
+    public static function retrieveTaxId($id, $taxIdId, $params = NULL, $opts = NULL)
     {
         return self::_retrieveNestedResource($id, static::PATH_TAX_IDS, $taxIdId, $params, $opts);
     }

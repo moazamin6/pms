@@ -15,36 +15,37 @@ namespace EmailReplyParser;
  */
 final class Email
 {
-    /**
-     * @var Fragment[]
-     */
-    private $fragments;
+	/**
+	 * @var Fragment[]
+	 */
+	private $fragments;
 
-    /**
-     * @param Fragment[] $fragments
-     */
-    public function __construct(array $fragments = array())
-    {
-        $this->fragments = $fragments;
-    }
+	/**
+	 * @param Fragment[] $fragments
+	 */
+	public function __construct(array $fragments = [])
+	{
+		$this->fragments = $fragments;
+	}
 
-    /**
-     * @return Fragment[]
-     */
-    public function getFragments()
-    {
-        return $this->fragments;
-    }
+	/**
+	 * @return Fragment[]
+	 */
+	public function getFragments()
+	{
+		return $this->fragments;
+	}
 
-    /**
-     * @return string
-     */
-    public function getVisibleText()
-    {
-        $visibleFragments = array_filter($this->fragments, function (Fragment $fragment) {
-            return !$fragment->isHidden();
-        });
+	/**
+	 * @return string
+	 */
+	public function getVisibleText()
+	{
+		$visibleFragments = array_filter($this->fragments, function(Fragment $fragment)
+		{
+			return !$fragment->isHidden();
+		});
 
-        return rtrim(implode("\n", $visibleFragments));
-    }
+		return rtrim(implode("\n", $visibleFragments));
+	}
 }

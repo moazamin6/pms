@@ -34,7 +34,8 @@ class ADCGetTest extends TestCase
 
     protected function tearDown()
     {
-        if ($this->originalHome != getenv('HOME')) {
+        if($this->originalHome != getenv('HOME'))
+        {
             putenv('HOME=' . $this->originalHome);
         }
         putenv(ServiceAccountCredentials::ENV_VAR);  // removes it from
@@ -85,8 +86,8 @@ class ADCGetTest extends TestCase
     {
         $wantedTokens = [
             'access_token' => '1/abdef1234567890',
-            'expires_in' => '57',
-            'token_type' => 'Bearer',
+            'expires_in'   => '57',
+            'token_type'   => 'Bearer',
         ];
         $jsonTokens = json_encode($wantedTokens);
 
@@ -113,7 +114,8 @@ class ADCGetMiddlewareTest extends TestCase
 
     protected function tearDown()
     {
-        if ($this->originalHome != getenv('HOME')) {
+        if($this->originalHome != getenv('HOME'))
+        {
             putenv('HOME=' . $this->originalHome);
         }
         putenv(ServiceAccountCredentials::ENV_VAR);  // removes it if assigned
@@ -181,8 +183,8 @@ class ADCGetMiddlewareTest extends TestCase
     {
         $wantedTokens = [
             'access_token' => '1/abdef1234567890',
-            'expires_in' => '57',
-            'token_type' => 'Bearer',
+            'expires_in'   => '57',
+            'token_type'   => 'Bearer',
         ];
         $jsonTokens = json_encode($wantedTokens);
 
@@ -238,7 +240,7 @@ class ADCGetCredentialsAppEngineTest extends BaseTest
         ]);
         $this->assertInstanceOf(
             'Google\Auth\Credentials\GCECredentials',
-            ApplicationDefaultCredentials::getCredentials(null, $httpHandler)
+            ApplicationDefaultCredentials::getCredentials(NULL, $httpHandler)
         );
     }
 }
@@ -257,7 +259,8 @@ class ADCGetSubscriberTest extends BaseTest
 
     protected function tearDown()
     {
-        if ($this->originalHome != getenv('HOME')) {
+        if($this->originalHome != getenv('HOME'))
+        {
             putenv('HOME=' . $this->originalHome);
         }
         putenv(ServiceAccountCredentials::ENV_VAR);  // removes it if assigned
@@ -325,8 +328,8 @@ class ADCGetSubscriberTest extends BaseTest
     {
         $wantedTokens = [
             'access_token' => '1/abdef1234567890',
-            'expires_in' => '57',
-            'token_type' => 'Bearer',
+            'expires_in'   => '57',
+            'token_type'   => 'Bearer',
         ];
         $jsonTokens = json_encode($wantedTokens);
 

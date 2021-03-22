@@ -30,7 +30,7 @@ class Guzzle5HttpHandlerTest extends BaseTest
     public function setUp()
     {
         $this->onlyGuzzle5();
-
+        
         $this->mockPsr7Request =
             $this
                 ->getMockBuilder('Psr\Http\Message\RequestInterface')
@@ -50,7 +50,7 @@ class Guzzle5HttpHandlerTest extends BaseTest
                 ->disableOriginalConstructor()
                 ->getMock();
     }
-
+    
     public function testSuccessfullySendsRealRequest()
     {
         $request = new \GuzzleHttp\Psr7\Request('get', 'http://httpbin.org/get');
@@ -59,11 +59,11 @@ class Guzzle5HttpHandlerTest extends BaseTest
         $response = $handler($request);
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $json = json_decode((string) $response->getBody(), true);
+        $json = json_decode((string)$response->getBody(), true);
         $this->assertArrayHasKey('url', $json);
         $this->assertEquals($request->getUri(), $json['url']);
     }
-
+    
     public function testSuccessfullySendsMockRequest()
     {
         $response = new Response(
@@ -79,19 +79,21 @@ class Guzzle5HttpHandlerTest extends BaseTest
             ->expects($this->any())
             ->method('createRequest')
             ->will($this->returnValue($this->mockRequest));
-
+        
         $handler = new Guzzle5HttpHandler($this->mockClient);
         $response = $handler($this->mockPsr7Request);
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Body Text', (string) $response->getBody());
+        $this->assertEquals('Body Text', (string)$response->getBody());
     }
-
+    
     public function testAsyncWithoutGuzzlePromiseThrowsException()
     {
         // Pretend the promise library doesn't exist
-        foreach (spl_autoload_functions() as $function) {
-            if ($function[0] instanceof ClassLoader) {
+        foreach(spl_autoload_functions() as $function)
+        {
+            if($function[0] instanceof ClassLoader)
+            {
                 $newAutoloader = clone $function[0];
                 $newAutoloader->setPsr4('GuzzleHttp\\Promise\\', '/tmp');
                 spl_autoload_register($newAutoloadFunc = [$newAutoloader, 'loadClass']);
@@ -106,26 +108,29 @@ class Guzzle5HttpHandlerTest extends BaseTest
             ->expects($this->any())
             ->method('createRequest')
             ->will($this->returnValue($this->mockRequest));
-
+        
         $handler = new Guzzle5HttpHandler($this->mockClient);
         $errorThrown = false;
-        try {
+        try
+        {
             $handler->async($this->mockPsr7Request);
-        } catch (Exception $e) {
+        }
+        catch(Exception $e)
+        {
             $this->assertEquals(
                 'Install guzzlehttp/promises to use async with Guzzle 5',
                 $e->getMessage()
             );
             $errorThrown = true;
         }
-
+        
         // Restore autoloader before assertion (in case it fails)
         spl_autoload_register($previousAutoloadFunc);
         spl_autoload_unregister($newAutoloadFunc);
-
+        
         $this->assertTrue($errorThrown);
     }
-
+    
     public function testSuccessfullySendsRequestAsync()
     {
         $response = new Response(
@@ -143,14 +148,14 @@ class Guzzle5HttpHandlerTest extends BaseTest
             ->expects($this->any())
             ->method('createRequest')
             ->will($this->returnValue($this->mockRequest));
-
+        
         $handler = new Guzzle5HttpHandler($this->mockClient);
         $promise = $handler->async($this->mockPsr7Request);
         $this->assertInstanceOf('Psr\Http\Message\ResponseInterface', $promise->wait());
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('Body Text', (string) $response->getBody());
+        $this->assertEquals('Body Text', (string)$response->getBody());
     }
-
+    
     /**
      * @expectedException Exception
      * @expectedExceptionMessage This is a test rejection message
@@ -162,7 +167,8 @@ class Guzzle5HttpHandlerTest extends BaseTest
             ->method('send')
             ->will($this->returnValue(new FutureResponse(
                 (new CompletedFutureValue(new Response(200)))
-                    ->then(function () {
+                    ->then(function()
+                    {
                         throw new Exception('This is a test rejection message');
                     })
             )));
@@ -170,12 +176,12 @@ class Guzzle5HttpHandlerTest extends BaseTest
             ->expects($this->any())
             ->method('createRequest')
             ->will($this->returnValue($this->mockRequest));
-
+        
         $handler = new Guzzle5HttpHandler($this->mockClient);
         $promise = $handler->async($this->mockPsr7Request);
         $promise->wait();
     }
-
+    
     public function testCreateGuzzle5Request()
     {
         $requestHeaders = [
@@ -194,9 +200,9 @@ class Guzzle5HttpHandlerTest extends BaseTest
         $this->mockClient
             ->expects($this->once())
             ->method('createRequest')
-            ->with(null, null, [
+            ->with(NULL, NULL, [
                 'headers' => $requestHeaders + ['header3' => 'value3'],
-                'body' => $mockBody,
+                'body'    => $mockBody,
             ])
             ->will($this->returnValue(
                 $this->getMock('GuzzleHttp\Message\RequestInterface')
@@ -210,8 +216,8 @@ class Guzzle5HttpHandlerTest extends BaseTest
         $handler = new Guzzle5HttpHandler($this->mockClient);
         $handler($this->mockPsr7Request, [
             'headers' => [
-                'header3' => 'value3'
-            ]
+                'header3' => 'value3',
+            ],
         ]);
     }
 }

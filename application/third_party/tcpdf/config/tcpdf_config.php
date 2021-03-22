@@ -84,102 +84,102 @@
 /**
  * Generic name for a blank image.
  */
-define ('K_BLANK_IMAGE', '_blank.png');
+define('K_BLANK_IMAGE', '_blank.png');
 
 /**
  * Page format.
  */
-define ('PDF_PAGE_FORMAT', 'A4');
+define('PDF_PAGE_FORMAT', 'A4');
 
 /**
  * Page orientation (P=portrait, L=landscape).
  */
-define ('PDF_PAGE_ORIENTATION', 'P');
+define('PDF_PAGE_ORIENTATION', 'P');
 
 /**
  * Document creator.
  */
-define ('PDF_CREATOR', 'TCPDF');
+define('PDF_CREATOR', 'TCPDF');
 
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'fairsketch');
+define('PDF_AUTHOR', 'fairsketch');
 
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'fairsketch');
+define('PDF_HEADER_TITLE', 'fairsketch');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by fairsketch - farisketch.com\nwww.fairsketch.com");
+define('PDF_HEADER_STRING', "by fairsketch - farisketch.com\nwww.fairsketch.com");
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
-define ('PDF_UNIT', 'mm');
+define('PDF_UNIT', 'mm');
 
 /**
  * Header margin.
  */
-define ('PDF_MARGIN_HEADER', 5);
+define('PDF_MARGIN_HEADER', 5);
 
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 10);
+define('PDF_MARGIN_FOOTER', 10);
 
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', 27);
+define('PDF_MARGIN_TOP', 27);
 
 /**
  * Bottom margin.
  */
-define ('PDF_MARGIN_BOTTOM', 25);
+define('PDF_MARGIN_BOTTOM', 25);
 
 /**
  * Left margin.
  */
-define ('PDF_MARGIN_LEFT', 15);
+define('PDF_MARGIN_LEFT', 15);
 
 /**
  * Right margin.
  */
-define ('PDF_MARGIN_RIGHT', 15);
+define('PDF_MARGIN_RIGHT', 15);
 
 /**
  * Default main font name.
  */
-define ('PDF_FONT_NAME_MAIN', 'dejavusans');
+define('PDF_FONT_NAME_MAIN', 'dejavusans');
 
 /**
  * Default main font size.
  */
-define ('PDF_FONT_SIZE_MAIN', 10);
+define('PDF_FONT_SIZE_MAIN', 10);
 
 /**
  * Default data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'dejavusans');
+define('PDF_FONT_NAME_DATA', 'dejavusans');
 
 /**
  * Default data font size.
  */
-define ('PDF_FONT_SIZE_DATA', 8);
+define('PDF_FONT_SIZE_DATA', 8);
 
 /**
  * Default monospaced font name.
  */
-define ('PDF_FONT_MONOSPACED', 'courier');
+define('PDF_FONT_MONOSPACED', 'courier');
 
 /**
  * Ratio used to adjust the conversion of pixels to user units.
  */
-define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+define('PDF_IMAGE_SCALE_RATIO', 1.25);
 
 /**
  * Magnification factor for titles.
@@ -199,7 +199,7 @@ define('K_TITLE_MAGNIFICATION', 1.3);
 /**
  * Reduction factor for small font.
  */
-define('K_SMALL_RATIO', 2/3);
+define('K_SMALL_RATIO', 2 / 3);
 
 /**
  * Set to true to enable the special procedure used to avoid the overlappind of symbols on Thai language.

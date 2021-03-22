@@ -69,7 +69,7 @@ class IAMUpdateMetadataCallbackTest extends TestCase
         $this->assertInternalType('callable', $update_metadata);
 
         $actual_metadata = call_user_func($update_metadata,
-            $metadata = array('foo' => 'bar'));
+            $metadata = ['foo' => 'bar']);
         $this->assertArrayHasKey(IAMCredentials::SELECTOR_KEY, $actual_metadata);
         $this->assertEquals(
             $actual_metadata[IAMCredentials::SELECTOR_KEY],

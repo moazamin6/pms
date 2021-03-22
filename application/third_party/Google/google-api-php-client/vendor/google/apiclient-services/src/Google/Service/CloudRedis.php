@@ -31,186 +31,186 @@
  */
 class Google_Service_CloudRedis extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $projects_locations;
-  public $projects_locations_instances;
-  public $projects_locations_operations;
-  
-  /**
-   * Constructs the internal representation of the CloudRedis service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://redis.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1beta1';
-    $this->serviceName = 'redis';
+	public $projects_locations;
+	public $projects_locations_instances;
+	public $projects_locations_operations;
 
-    $this->projects_locations = new Google_Service_CloudRedis_Resource_ProjectsLocations(
-        $this,
-        $this->serviceName,
-        'locations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1beta1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1beta1/{+name}/locations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_instances = new Google_Service_CloudRedis_Resource_ProjectsLocationsInstances(
-        $this,
-        $this->serviceName,
-        'instances',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1beta1/{+parent}/instances',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'instanceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1beta1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1beta1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1beta1/{+parent}/instances',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1beta1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_operations = new Google_Service_CloudRedis_Resource_ProjectsLocationsOperations(
-        $this,
-        $this->serviceName,
-        'operations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1beta1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1beta1/{+name}/operations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudRedis service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://redis.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1beta1';
+		$this->serviceName = 'redis';
+
+		$this->projects_locations = new Google_Service_CloudRedis_Resource_ProjectsLocations(
+			$this,
+			$this->serviceName,
+			'locations',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1beta1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1beta1/{+name}/locations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_instances = new Google_Service_CloudRedis_Resource_ProjectsLocationsInstances(
+			$this,
+			$this->serviceName,
+			'instances',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => 'v1beta1/{+parent}/instances',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent'     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'instanceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1beta1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1beta1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1beta1/{+parent}/instances',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					], 'patch'  => [
+						'path'       => 'v1beta1/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_operations = new Google_Service_CloudRedis_Resource_ProjectsLocationsOperations(
+			$this,
+			$this->serviceName,
+			'operations',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1beta1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1beta1/{+name}/operations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

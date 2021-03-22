@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Stream;
 
 use ArrayIterator;
@@ -25,68 +26,72 @@ use ZBateson\MailMimeParser\Message\Part\MessagePart;
  */
 class HeaderStream implements StreamInterface
 {
-    use StreamDecoratorTrait;
+	use StreamDecoratorTrait;
 
-    /**
-     * @var MessagePart the part to read from.
-     */
-    protected $part;
+	/**
+	 * @var MessagePart the part to read from.
+	 */
+	protected $part;
 
-    /**
-     * Constructor
-     * 
-     * @param MessagePart $part
-     */
-    public function __construct(MessagePart $part)
-    {
-        $this->part = $part;
-    }
+	/**
+	 * Constructor
+	 *
+	 * @param MessagePart $part
+	 */
+	public function __construct(MessagePart $part)
+	{
+		$this->part = $part;
+	}
 
-    /**
-     * Returns a header array for the current part.
-     *
-     * If the part is not a MimePart, Content-Type, Content-Disposition and
-     * Content-Transfer-Encoding headers are generated manually.
-     *
-     * @return array
-     */
-    private function getPartHeadersIterator()
-    {
-        if ($this->part instanceof ParentHeaderPart) {
-            return $this->part->getRawHeaderIterator();
-        } elseif ($this->part->getParent() !== null && $this->part->getParent()->isMime()) {
-            return new ArrayIterator([
-                [ 'Content-Type', $this->part->getContentType() ],
-                [ 'Content-Disposition', $this->part->getContentDisposition() ],
-                [ 'Content-Transfer-Encoding', $this->part->getContentTransferEncoding() ]
-            ]);
-        }
-        return new ArrayIterator();
-    }
+	/**
+	 * Returns a header array for the current part.
+	 *
+	 * If the part is not a MimePart, Content-Type, Content-Disposition and
+	 * Content-Transfer-Encoding headers are generated manually.
+	 *
+	 * @return array
+	 */
+	private function getPartHeadersIterator()
+	{
+		if($this->part instanceof ParentHeaderPart)
+		{
+			return $this->part->getRawHeaderIterator();
+		}
+		else if($this->part->getParent() !== NULL && $this->part->getParent()->isMime())
+		{
+			return new ArrayIterator([
+				['Content-Type', $this->part->getContentType()],
+				['Content-Disposition', $this->part->getContentDisposition()],
+				['Content-Transfer-Encoding', $this->part->getContentTransferEncoding()],
+			]);
+		}
+		return new ArrayIterator();
+	}
 
-    /**
-     * Writes out headers for $this->part and follows them with an empty line.
-     *
-     * @param StreamInterface $stream
-     */
-    public function writePartHeadersTo(StreamInterface $stream)
-    {
-        foreach ($this->getPartHeadersIterator() as $header) {
-            $stream->write("${header[0]}: ${header[1]}\r\n");
-        }
-        $stream->write("\r\n");
-    }
+	/**
+	 * Writes out headers for $this->part and follows them with an empty line.
+	 *
+	 * @param StreamInterface $stream
+	 */
+	public function writePartHeadersTo(StreamInterface $stream)
+	{
+		foreach($this->getPartHeadersIterator() as $header)
+		{
+			$stream->write("${header[0]}: ${header[1]}\r\n");
+		}
+		$stream->write("\r\n");
+	}
 
-    /**
-     * Creates the underlying stream lazily when required.
-     *
-     * @return StreamInterface
-     */
-    protected function createStream()
-    {
-        $stream = Psr7\stream_for();
-        $this->writePartHeadersTo($stream);
-        $stream->rewind();
-        return $stream;
-    }
+	/**
+	 * Creates the underlying stream lazily when required.
+	 *
+	 * @return StreamInterface
+	 */
+	protected function createStream()
+	{
+		$stream = Psr7\stream_for();
+		$this->writePartHeadersTo($stream);
+		$stream->rewind();
+		return $stream;
+	}
 }

@@ -1,6 +1,8 @@
 # zbateson/mail-mime-parser
 
-Testable and PSR-compliant mail mime parser alternative to PHP's imap* functions and Pear libraries for reading messages in _Internet Message Format_ [RFC 822](http://tools.ietf.org/html/rfc822) (and later revisions [RFC 2822](http://tools.ietf.org/html/rfc2822), [RFC 5322](http://tools.ietf.org/html/rfc5322)).
+Testable and PSR-compliant mail mime parser alternative to PHP's imap* functions and Pear libraries for reading messages
+in _Internet Message Format_ [RFC 822](http://tools.ietf.org/html/rfc822) (and later
+revisions [RFC 2822](http://tools.ietf.org/html/rfc2822), [RFC 5322](http://tools.ietf.org/html/rfc5322)).
 
 [![Build Status](https://travis-ci.org/zbateson/mail-mime-parser.svg?branch=master)](https://travis-ci.org/zbateson/mail-mime-parser)
 [![Code Coverage](https://scrutinizer-ci.com/g/zbateson/mail-mime-parser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/zbateson/mail-mime-parser/?branch=master)
@@ -22,13 +24,17 @@ composer require zbateson/mail-mime-parser
 
 ## Deprecation Notice (since 1.2.1)
 
-getContentResourceHandle, getTextResourceHandle, and getHtmlResourceHandle have all been deprecated due to #106. fread() will only return a single byte of a multibyte char, and so will cause potentially unexpected results/warnings in some cases, and psr7 streams should be used instead. Note that this deprecation doesn’t apply to getBinaryContentResourceHandle or getResourceHandle.
+getContentResourceHandle, getTextResourceHandle, and getHtmlResourceHandle have all been deprecated due to #106. fread()
+will only return a single byte of a multibyte char, and so will cause potentially unexpected results/warnings in some
+cases, and psr7 streams should be used instead. Note that this deprecation doesn’t apply to
+getBinaryContentResourceHandle or getResourceHandle.
 
 ## Requirements
 
-MailMimeParser requires PHP 5.4 or newer.  Tested on PHP 5.4, 5.5, 5.6, 7, 7.1, 7.2, 7.3 and 7.4 on travis.
+MailMimeParser requires PHP 5.4 or newer. Tested on PHP 5.4, 5.5, 5.6, 7, 7.1, 7.2, 7.3 and 7.4 on travis.
 
-Please note: hhvm support has been dropped as it no longer supports 'php' as of version 4.  Previous versions of hhvm may still work, but are no longer supported.
+Please note: hhvm support has been dropped as it no longer supports 'php' as of version 4. Previous versions of hhvm may
+still work, but are no longer supported.
 
 ## Usage
 

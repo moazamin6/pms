@@ -33,95 +33,95 @@ class Google_Service_Digitalassetlinks extends Google_Service
 {
 
 
-  public $assetlinks;
-  public $statements;
-  
-  /**
-   * Constructs the internal representation of the Digitalassetlinks service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://digitalassetlinks.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'digitalassetlinks';
+	public $assetlinks;
+	public $statements;
 
-    $this->assetlinks = new Google_Service_Digitalassetlinks_Resource_Assetlinks(
-        $this,
-        $this->serviceName,
-        'assetlinks',
-        array(
-          'methods' => array(
-            'check' => array(
-              'path' => 'v1/assetlinks:check',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'target.androidApp.certificate.sha256Fingerprint' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source.web.site' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source.androidApp.packageName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'target.androidApp.packageName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source.androidApp.certificate.sha256Fingerprint' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'relation' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'target.web.site' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->statements = new Google_Service_Digitalassetlinks_Resource_Statements(
-        $this,
-        $this->serviceName,
-        'statements',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v1/statements:list',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'source.androidApp.certificate.sha256Fingerprint' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'relation' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source.web.site' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source.androidApp.packageName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Digitalassetlinks service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://digitalassetlinks.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'digitalassetlinks';
+
+		$this->assetlinks = new Google_Service_Digitalassetlinks_Resource_Assetlinks(
+			$this,
+			$this->serviceName,
+			'assetlinks',
+			[
+				'methods' => [
+					'check' => [
+						'path'       => 'v1/assetlinks:check',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'target.androidApp.certificate.sha256Fingerprint' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source.web.site'                                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source.androidApp.packageName'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'target.androidApp.packageName'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source.androidApp.certificate.sha256Fingerprint' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'relation'                                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'target.web.site'                                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->statements = new Google_Service_Digitalassetlinks_Resource_Statements(
+			$this,
+			$this->serviceName,
+			'statements',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v1/statements:list',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'source.androidApp.certificate.sha256Fingerprint' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'relation'                                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source.web.site'                                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source.androidApp.packageName'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -31,200 +31,200 @@
  */
 class Google_Service_FirebaseRules extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** View and administer all your Firebase data and settings. */
-  const FIREBASE =
-      "https://www.googleapis.com/auth/firebase";
-  /** View all your Firebase data and settings. */
-  const FIREBASE_READONLY =
-      "https://www.googleapis.com/auth/firebase.readonly";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** View and administer all your Firebase data and settings. */
+	const FIREBASE =
+		"https://www.googleapis.com/auth/firebase";
+	/** View all your Firebase data and settings. */
+	const FIREBASE_READONLY =
+		"https://www.googleapis.com/auth/firebase.readonly";
 
-  public $projects;
-  public $projects_releases;
-  public $projects_rulesets;
-  
-  /**
-   * Constructs the internal representation of the FirebaseRules service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://firebaserules.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'firebaserules';
+	public $projects;
+	public $projects_releases;
+	public $projects_rulesets;
 
-    $this->projects = new Google_Service_FirebaseRules_Resource_Projects(
-        $this,
-        $this->serviceName,
-        'projects',
-        array(
-          'methods' => array(
-            'test' => array(
-              'path' => 'v1/{+name}:test',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_releases = new Google_Service_FirebaseRules_Resource_ProjectsReleases(
-        $this,
-        $this->serviceName,
-        'releases',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+name}/releases',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getExecutable' => array(
-              'path' => 'v1/{+name}:getExecutable',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'executableVersion' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}/releases',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_rulesets = new Google_Service_FirebaseRules_Resource_ProjectsRulesets(
-        $this,
-        $this->serviceName,
-        'rulesets',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+name}/rulesets',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}/rulesets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the FirebaseRules service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://firebaserules.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'firebaserules';
+
+		$this->projects = new Google_Service_FirebaseRules_Resource_Projects(
+			$this,
+			$this->serviceName,
+			'projects',
+			[
+				'methods' => [
+					'test' => [
+						'path'       => 'v1/{+name}:test',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_releases = new Google_Service_FirebaseRules_Resource_ProjectsReleases(
+			$this,
+			$this->serviceName,
+			'releases',
+			[
+				'methods' => [
+					'create'           => [
+						'path'       => 'v1/{+name}/releases',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete'        => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'           => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getExecutable' => [
+						'path'       => 'v1/{+name}:getExecutable',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'              => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'executableVersion' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list'          => [
+						'path'       => 'v1/{+name}/releases',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'patch'         => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_rulesets = new Google_Service_FirebaseRules_Resource_ProjectsRulesets(
+			$this,
+			$this->serviceName,
+			'rulesets',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => 'v1/{+name}/rulesets',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/{+name}/rulesets',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

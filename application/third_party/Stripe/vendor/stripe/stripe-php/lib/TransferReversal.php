@@ -35,7 +35,8 @@ class TransferReversal extends ApiResource
 {
     const OBJECT_NAME = 'transfer_reversal';
 
-    use ApiOperations\Update {
+    use ApiOperations\Update
+    {
         save as protected _save;
     }
 
@@ -46,11 +47,12 @@ class TransferReversal extends ApiResource
     {
         $id = $this['id'];
         $transfer = $this['transfer'];
-        if (!$id) {
+        if(!$id)
+        {
             throw new Exception\UnexpectedValueException(
                 'Could not determine which URL to request: ' .
                 "class instance has invalid ID: {$id}",
-                null
+                NULL
             );
         }
         $id = Util\Util::utf8($id);
@@ -66,11 +68,11 @@ class TransferReversal extends ApiResource
     /**
      * @param null|array|string $opts
      *
+     * @return TransferReversal the saved reversal
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return TransferReversal the saved reversal
      */
-    public function save($opts = null)
+    public function save($opts = NULL)
     {
         return $this->_save($opts);
     }

@@ -26,35 +26,36 @@ use Psr\Cache\CacheItemPoolInterface;
 class FetchAuthTokenCache implements FetchAuthTokenInterface
 {
     use CacheTrait;
-
+    
     /**
      * @var FetchAuthTokenInterface
      */
     private $fetcher;
-
+    
     /**
      * @var array
      */
     private $cacheConfig;
-
+    
     /**
      * @var CacheItemPoolInterface
      */
     private $cache;
-
+    
     public function __construct(
         FetchAuthTokenInterface $fetcher,
-        array $cacheConfig = null,
+        array $cacheConfig = NULL,
         CacheItemPoolInterface $cache
-    ) {
+    )
+    {
         $this->fetcher = $fetcher;
         $this->cache = $cache;
         $this->cacheConfig = array_merge([
             'lifetime' => 1500,
-            'prefix' => '',
-        ], (array) $cacheConfig);
+            'prefix'   => '',
+        ], (array)$cacheConfig);
     }
-
+    
     /**
      * Implements FetchAuthTokenInterface#fetchAuthToken.
      *
@@ -67,7 +68,7 @@ class FetchAuthTokenCache implements FetchAuthTokenInterface
      *
      * @throws \Exception
      */
-    public function fetchAuthToken(callable $httpHandler = null)
+    public function fetchAuthToken(callable $httpHandler = NULL)
     {
         // Use the cached value if its available.
         //
@@ -77,19 +78,21 @@ class FetchAuthTokenCache implements FetchAuthTokenInterface
         // TODO: correct caching; enable the cache to be cleared.
         $cacheKey = $this->fetcher->getCacheKey();
         $cached = $this->getCachedValue($cacheKey);
-        if (!empty($cached)) {
+        if(!empty($cached))
+        {
             return ['access_token' => $cached];
         }
-
+        
         $auth_token = $this->fetcher->fetchAuthToken($httpHandler);
-
-        if (isset($auth_token['access_token'])) {
+        
+        if(isset($auth_token['access_token']))
+        {
             $this->setCachedValue($cacheKey, $auth_token['access_token']);
         }
-
+        
         return $auth_token;
     }
-
+    
     /**
      * @return string
      */
@@ -97,7 +100,7 @@ class FetchAuthTokenCache implements FetchAuthTokenInterface
     {
         return $this->getFullCacheKey($this->fetcher->getCacheKey());
     }
-
+    
     /**
      * @return array|null
      */

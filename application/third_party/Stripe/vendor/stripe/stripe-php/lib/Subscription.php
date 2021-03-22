@@ -63,14 +63,16 @@ class Subscription extends ApiResource
     const STATUS_TRIALING = 'trialing';
     const STATUS_UNPAID = 'unpaid';
 
-    use ApiOperations\Delete {
+    use ApiOperations\Delete
+    {
         delete as protected _delete;
-      }
+    }
 
     public static function getSavedNestedResources()
     {
-        static $savedNestedResources = null;
-        if (null === $savedNestedResources) {
+        static $savedNestedResources = NULL;
+        if(NULL === $savedNestedResources)
+        {
             $savedNestedResources = new Util\Set([
                 'source',
             ]);
@@ -83,11 +85,11 @@ class Subscription extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Subscription the deleted subscription
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Subscription the deleted subscription
      */
-    public function cancel($params = null, $opts = null)
+    public function cancel($params = NULL, $opts = NULL)
     {
         return $this->_delete($params, $opts);
     }
@@ -96,14 +98,14 @@ class Subscription extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Subscription the updated subscription
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Subscription the updated subscription
      */
-    public function deleteDiscount($params = null, $opts = null)
+    public function deleteDiscount($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/discount';
-        list($response, $opts) = $this->_request('delete', $url, $params, $opts);
-        $this->refreshFrom(['discount' => null], $opts, true);
+        [$response, $opts] = $this->_request('delete', $url, $params, $opts);
+        $this->refreshFrom(['discount' => NULL], $opts, true);
     }
 }

@@ -30,255 +30,255 @@
  */
 class Google_Service_CloudBuild extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $operations;
-  public $projects_builds;
-  public $projects_triggers;
-  
-  /**
-   * Constructs the internal representation of the CloudBuild service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://cloudbuild.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'cloudbuild';
+	public $operations;
+	public $projects_builds;
+	public $projects_triggers;
 
-    $this->operations = new Google_Service_CloudBuild_Resource_Operations(
-        $this,
-        $this->serviceName,
-        'operations',
-        array(
-          'methods' => array(
-            'cancel' => array(
-              'path' => 'v1/{+name}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_builds = new Google_Service_CloudBuild_Resource_ProjectsBuilds(
-        $this,
-        $this->serviceName,
-        'builds',
-        array(
-          'methods' => array(
-            'cancel' => array(
-              'path' => 'v1/projects/{projectId}/builds/{id}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'create' => array(
-              'path' => 'v1/projects/{projectId}/builds',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/projects/{projectId}/builds/{id}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/projects/{projectId}/builds',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'retry' => array(
-              'path' => 'v1/projects/{projectId}/builds/{id}:retry',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_triggers = new Google_Service_CloudBuild_Resource_ProjectsTriggers(
-        $this,
-        $this->serviceName,
-        'triggers',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/projects/{projectId}/triggers',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/projects/{projectId}/triggers/{triggerId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'triggerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/projects/{projectId}/triggers/{triggerId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'triggerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/projects/{projectId}/triggers',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1/projects/{projectId}/triggers/{triggerId}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'triggerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'run' => array(
-              'path' => 'v1/projects/{projectId}/triggers/{triggerId}:run',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'triggerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudBuild service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://cloudbuild.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'cloudbuild';
+
+		$this->operations = new Google_Service_CloudBuild_Resource_Operations(
+			$this,
+			$this->serviceName,
+			'operations',
+			[
+				'methods' => [
+					'cancel'  => [
+						'path'       => 'v1/{+name}:cancel',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'  => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_builds = new Google_Service_CloudBuild_Resource_ProjectsBuilds(
+			$this,
+			$this->serviceName,
+			'builds',
+			[
+				'methods' => [
+					'cancel'    => [
+						'path'       => 'v1/projects/{projectId}/builds/{id}:cancel',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'id'        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'create' => [
+						'path'       => 'v1/projects/{projectId}/builds',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/projects/{projectId}/builds/{id}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'id'        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/projects/{projectId}/builds',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'retry'  => [
+						'path'       => 'v1/projects/{projectId}/builds/{id}:retry',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'id'        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_triggers = new Google_Service_CloudBuild_Resource_ProjectsTriggers(
+			$this,
+			$this->serviceName,
+			'triggers',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => 'v1/projects/{projectId}/triggers',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1/projects/{projectId}/triggers/{triggerId}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'triggerId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/projects/{projectId}/triggers/{triggerId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'triggerId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/projects/{projectId}/triggers',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'patch'  => [
+						'path'       => 'v1/projects/{projectId}/triggers/{triggerId}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'triggerId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'run'    => [
+						'path'       => 'v1/projects/{projectId}/triggers/{triggerId}:run',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'triggerId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

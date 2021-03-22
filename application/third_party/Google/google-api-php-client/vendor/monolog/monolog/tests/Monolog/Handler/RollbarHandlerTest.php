@@ -24,61 +24,62 @@ use PHPUnit_Framework_MockObject_MockObject as MockObject;
  */
 class RollbarHandlerTest extends TestCase
 {
-    /**
-     * @var MockObject
-     */
-    private $rollbarNotifier;
+	/**
+	 * @var MockObject
+	 */
+	private $rollbarNotifier;
 
-    /**
-     * @var array
-     */
-    public $reportedExceptionArguments = null;
+	/**
+	 * @var array
+	 */
+	public $reportedExceptionArguments = NULL;
 
-    protected function setUp()
-    {
-        parent::setUp();
+	protected function setUp()
+	{
+		parent::setUp();
 
-        $this->setupRollbarNotifierMock();
-    }
+		$this->setupRollbarNotifierMock();
+	}
 
-    /**
-     * When reporting exceptions to Rollbar the
-     * level has to be set in the payload data
-     */
-    public function testExceptionLogLevel()
-    {
-        $handler = $this->createHandler();
+	/**
+	 * When reporting exceptions to Rollbar the
+	 * level has to be set in the payload data
+	 */
+	public function testExceptionLogLevel()
+	{
+		$handler = $this->createHandler();
 
-        $handler->handle($this->createExceptionRecord(Logger::DEBUG));
+		$handler->handle($this->createExceptionRecord(Logger::DEBUG));
 
-        $this->assertEquals('debug', $this->reportedExceptionArguments['payload']['level']);
-    }
+		$this->assertEquals('debug', $this->reportedExceptionArguments['payload']['level']);
+	}
 
-    private function setupRollbarNotifierMock()
-    {
-        $this->rollbarNotifier = $this->getMockBuilder('RollbarNotifier')
-            ->setMethods(array('report_message', 'report_exception', 'flush'))
-            ->getMock();
+	private function setupRollbarNotifierMock()
+	{
+		$this->rollbarNotifier = $this->getMockBuilder('RollbarNotifier')
+			->setMethods(['report_message', 'report_exception', 'flush'])
+			->getMock();
 
-        $that = $this;
+		$that = $this;
 
-        $this->rollbarNotifier
-            ->expects($this->any())
-            ->method('report_exception')
-            ->willReturnCallback(function ($exception, $context, $payload) use ($that) {
-                $that->reportedExceptionArguments = compact('exception', 'context', 'payload');
-            });
-    }
+		$this->rollbarNotifier
+			->expects($this->any())
+			->method('report_exception')
+			->willReturnCallback(function($exception, $context, $payload) use ($that)
+			{
+				$that->reportedExceptionArguments = compact('exception', 'context', 'payload');
+			});
+	}
 
-    private function createHandler()
-    {
-        return new RollbarHandler($this->rollbarNotifier, Logger::DEBUG);
-    }
+	private function createHandler()
+	{
+		return new RollbarHandler($this->rollbarNotifier, Logger::DEBUG);
+	}
 
-    private function createExceptionRecord($level = Logger::DEBUG, $message = 'test', $exception = null)
-    {
-        return $this->getRecord($level, $message, array(
-            'exception' => $exception ?: new Exception()
-        ));
-    }
+	private function createExceptionRecord($level = Logger::DEBUG, $message = 'test', $exception = NULL)
+	{
+		return $this->getRecord($level, $message, [
+			'exception' => $exception ?: new Exception(),
+		]);
+	}
 }

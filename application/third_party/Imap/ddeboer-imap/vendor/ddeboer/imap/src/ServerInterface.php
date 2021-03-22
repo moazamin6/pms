@@ -9,13 +9,13 @@ namespace Ddeboer\Imap;
  */
 interface ServerInterface
 {
-    /**
-     * Authenticate connection.
-     *
-     * @param string $username Username
-     * @param string $password Password
-     *
-     * @return ConnectionInterface
-     */
-    public function authenticate(string $username, string $password): ConnectionInterface;
+	/**
+	 * Authenticate connection.
+	 *
+	 * @param string $username Username
+	 * @param string $password Password
+	 *
+	 * @return ConnectionInterface
+	 */
+	public function authenticate(string $username, string $password): ConnectionInterface;
 }

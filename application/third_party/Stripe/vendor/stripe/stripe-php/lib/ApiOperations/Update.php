@@ -15,16 +15,16 @@ trait Update
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return static the updated resource
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return static the updated resource
      */
-    public static function update($id, $params = null, $opts = null)
+    public static function update($id, $params = NULL, $opts = NULL)
     {
         self::_validateParams($params);
         $url = static::resourceUrl($id);
 
-        list($response, $opts) = static::_staticRequest('post', $url, $params, $opts);
+        [$response, $opts] = static::_staticRequest('post', $url, $params, $opts);
         $obj = \Stripe\Util\Util::convertToStripeObject($response->json, $opts);
         $obj->setLastResponse($response);
 
@@ -34,16 +34,17 @@ trait Update
     /**
      * @param null|array|string $opts
      *
+     * @return static the saved resource
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return static the saved resource
      */
-    public function save($opts = null)
+    public function save($opts = NULL)
     {
         $params = $this->serializeParameters();
-        if (\count($params) > 0) {
+        if(\count($params) > 0)
+        {
             $url = $this->instanceUrl();
-            list($response, $opts) = $this->_request('post', $url, $params, $opts);
+            [$response, $opts] = $this->_request('post', $url, $params, $opts);
             $this->refreshFrom($response, $opts);
         }
 

@@ -41,11 +41,13 @@ class IAMCredentials
      */
     public function __construct($selector, $token)
     {
-        if (!is_string($selector)) {
+        if(!is_string($selector))
+        {
             throw new \InvalidArgumentException(
                 'selector must be a string');
         }
-        if (!is_string($token)) {
+        if(!is_string($token))
+        {
             throw new \InvalidArgumentException(
                 'token must be a string');
         }
@@ -61,7 +63,7 @@ class IAMCredentials
      */
     public function getUpdateMetadataFunc()
     {
-        return array($this, 'updateMetadata');
+        return [$this, 'updateMetadata'];
     }
 
     /**
@@ -77,9 +79,10 @@ class IAMCredentials
      */
     public function updateMetadata(
         $metadata,
-        $unusedAuthUri = null,
-        callable $httpHandler = null
-    ) {
+        $unusedAuthUri = NULL,
+        callable $httpHandler = NULL
+    )
+    {
         $metadata_copy = $metadata;
         $metadata_copy[self::SELECTOR_KEY] = $this->selector;
         $metadata_copy[self::TOKEN_KEY] = $this->token;

@@ -40,7 +40,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
   |
  */
-$autoload['packages'] = array();
+$autoload['packages'] = [];
 
 /*
   | -------------------------------------------------------------------
@@ -59,7 +59,7 @@ $autoload['packages'] = array();
   |
   |	$autoload['libraries'] = array('user_agent' => 'ua');
  */
-$autoload['libraries'] = array('database', 'session', 'form_validation', 'encryption', 'template', 'finediff', 'parser');
+$autoload['libraries'] = ['database', 'session', 'form_validation', 'encryption', 'template', 'finediff', 'parser'];
 
 /*
   | -------------------------------------------------------------------
@@ -74,7 +74,7 @@ $autoload['libraries'] = array('database', 'session', 'form_validation', 'encryp
   |
   |	$autoload['drivers'] = array('cache');
  */
-$autoload['drivers'] = array();
+$autoload['drivers'] = [];
 
 /*
   | -------------------------------------------------------------------
@@ -84,7 +84,7 @@ $autoload['drivers'] = array();
   |
   |	$autoload['helper'] = array('url', 'file');
  */
-$autoload['helper'] = array('url', 'file', 'form', 'language', 'general', 'date_time', 'app_files', 'widget', 'activity_logs', 'currency');
+$autoload['helper'] = ['url', 'file', 'form', 'language', 'general', 'date_time', 'app_files', 'widget', 'activity_logs', 'currency'];
 
 /*
   | -------------------------------------------------------------------
@@ -98,7 +98,7 @@ $autoload['helper'] = array('url', 'file', 'form', 'language', 'general', 'date_
   | config files.  Otherwise, leave it blank.
   |
  */
-$autoload['config'] = array('app');
+$autoload['config'] = ['app'];
 
 /*
   | -------------------------------------------------------------------
@@ -112,7 +112,7 @@ $autoload['config'] = array('app');
   | "codeigniter_lang.php" would be referenced as array('codeigniter');
   |
  */
-$autoload['language'] = array('default', 'custom');
+$autoload['language'] = ['default', 'custom'];
 
 /*
   | -------------------------------------------------------------------
@@ -127,62 +127,62 @@ $autoload['language'] = array('default', 'custom');
   |
   |	$autoload['model'] = array('first_model' => 'first');
  */
-$autoload['model'] = array(
-    'Crud_model',
-    'Settings_model',
-    'Users_model',
-    'Team_model',
-    'Attendance_model',
-    'Leave_types_model',
-    'Leave_applications_model',
-    'Events_model',
-    'Announcements_model',
-    'Messages_model',
-    'Clients_model',
-    'Projects_model',
-    'Milestones_model',
-    'Task_status_model',
-    'Tasks_model',
-    'Project_comments_model',
-    'Activity_logs_model',
-    'Project_files_model',
-    'Notes_model',
-    'Project_members_model',
-    'Ticket_types_model',
-    'Tickets_model',
-    'Ticket_comments_model',
-    'Items_model',
-    'Invoices_model',
-    'Invoice_items_model',
-    'Invoice_payments_model',
-    'Payment_methods_model',
-    'Email_templates_model',
-    'Roles_model',
-    'Posts_model',
-    'Timesheets_model',
-    'Expenses_model',
-    'Expense_categories_model',
-    'Taxes_model',
-    'Social_links_model',
-    'Notification_settings_model',
-    'Notifications_model',
-    'Custom_fields_model',
-    'Estimate_forms_model',
-    'Estimate_requests_model',
-    'Custom_field_values_model',
-    'Estimates_model',
-    'Estimate_items_model',
-    'General_files_model',
-    'Todo_model',
-    'Client_groups_model',
-    'Dashboards_model',
-    'Lead_status_model',
-    'Lead_source_model',
-    'Order_items_model',
-    'Orders_model',
-    'Order_status_model',
-    'Labels_model',
-    'Verification_model',
-    'Item_categories_model'
-);
+$autoload['model'] = [
+	'Crud_model',
+	'Settings_model',
+	'Users_model',
+	'Team_model',
+	'Attendance_model',
+	'Leave_types_model',
+	'Leave_applications_model',
+	'Events_model',
+	'Announcements_model',
+	'Messages_model',
+	'Clients_model',
+	'Projects_model',
+	'Milestones_model',
+	'Task_status_model',
+	'Tasks_model',
+	'Project_comments_model',
+	'Activity_logs_model',
+	'Project_files_model',
+	'Notes_model',
+	'Project_members_model',
+	'Ticket_types_model',
+	'Tickets_model',
+	'Ticket_comments_model',
+	'Items_model',
+	'Invoices_model',
+	'Invoice_items_model',
+	'Invoice_payments_model',
+	'Payment_methods_model',
+	'Email_templates_model',
+	'Roles_model',
+	'Posts_model',
+	'Timesheets_model',
+	'Expenses_model',
+	'Expense_categories_model',
+	'Taxes_model',
+	'Social_links_model',
+	'Notification_settings_model',
+	'Notifications_model',
+	'Custom_fields_model',
+	'Estimate_forms_model',
+	'Estimate_requests_model',
+	'Custom_field_values_model',
+	'Estimates_model',
+	'Estimate_items_model',
+	'General_files_model',
+	'Todo_model',
+	'Client_groups_model',
+	'Dashboards_model',
+	'Lead_status_model',
+	'Lead_source_model',
+	'Order_items_model',
+	'Orders_model',
+	'Order_status_model',
+	'Labels_model',
+	'Verification_model',
+	'Item_categories_model',
+];
 

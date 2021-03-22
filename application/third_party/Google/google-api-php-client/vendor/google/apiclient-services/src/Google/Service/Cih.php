@@ -32,176 +32,176 @@ class Google_Service_Cih extends Google_Service
 {
 
 
-  public $associatedEmails;
-  public $userInteractions;
-  
-  /**
-   * Constructs the internal representation of the Cih service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'cih/v3/';
-    $this->version = 'v3';
-    $this->serviceName = 'cih';
+	public $associatedEmails;
+	public $userInteractions;
 
-    $this->associatedEmails = new Google_Service_Cih_Resource_AssociatedEmails(
-        $this,
-        $this->serviceName,
-        'associatedEmails',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'associatedEmails/insert/{customerId}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'customerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'associatedEmails/delete/{customerId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'customerId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'emailAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'operator' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->userInteractions = new Google_Service_Cih_Resource_UserInteractions(
-        $this,
-        $this->serviceName,
-        'userInteractions',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'userInteractions/{entityType}/{entityId}/{timestamp}/{interactionType}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'entityType' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'entityId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'timestamp' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'interactionType' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => 'userInteractions/insert',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'list' => array(
-              'path' => 'userInteractions',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'entity' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                  'required' => true,
-                ),
-                'entityFilter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'excludePassedInteractionOrigin' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'excludePassedInteractionType' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'includeRelatedInteractions' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'interactionOrigin' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'interactionType' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'lookup_participant_info' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'maxInteractionsPerPage' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'metaTypeFilter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'minMainEntityInteractions' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'phoneMatcher' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'timestampEnd' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'timestampStart' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Cih service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'cih/v3/';
+		$this->version = 'v3';
+		$this->serviceName = 'cih';
+
+		$this->associatedEmails = new Google_Service_Cih_Resource_AssociatedEmails(
+			$this,
+			$this->serviceName,
+			'associatedEmails',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => 'associatedEmails/insert/{customerId}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'customerId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete' => [
+						'path'       => 'associatedEmails/delete/{customerId}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'customerId'   => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'emailAddress' => [
+								'location' => 'query',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'operator'     => [
+								'location' => 'query',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->userInteractions = new Google_Service_Cih_Resource_UserInteractions(
+			$this,
+			$this->serviceName,
+			'userInteractions',
+			[
+				'methods' => [
+					'get'       => [
+						'path'       => 'userInteractions/{entityType}/{entityId}/{timestamp}/{interactionType}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'entityType'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'entityId'        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'timestamp'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'interactionType' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'insert' => [
+						'path'       => 'userInteractions/insert',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'list'   => [
+						'path'       => 'userInteractions',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'entity'                         => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+								'required' => true,
+							],
+							'entityFilter'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'excludePassedInteractionOrigin' => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'excludePassedInteractionType'   => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'includeRelatedInteractions'     => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'interactionOrigin'              => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'interactionType'                => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'lookup_participant_info'        => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'maxInteractionsPerPage'         => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'maxResults'                     => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'metaTypeFilter'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'minMainEntityInteractions'      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'                      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'phoneMatcher'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'timestampEnd'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'timestampStart'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

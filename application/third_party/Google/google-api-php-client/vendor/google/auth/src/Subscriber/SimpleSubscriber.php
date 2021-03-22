@@ -33,7 +33,7 @@ class SimpleSubscriber implements SubscriberInterface
      * @var array
      */
     private $config;
-
+    
     /**
      * Create a new Simple plugin.
      *
@@ -44,13 +44,14 @@ class SimpleSubscriber implements SubscriberInterface
      */
     public function __construct(array $config)
     {
-        if (!isset($config['key'])) {
+        if(!isset($config['key']))
+        {
             throw new \InvalidArgumentException('requires a key to have been set');
         }
-
+        
         $this->config = array_merge([], $config);
     }
-
+    
     /**
      * @return array
      */
@@ -58,7 +59,7 @@ class SimpleSubscriber implements SubscriberInterface
     {
         return ['before' => ['onBefore', RequestEvents::SIGN_REQUEST]];
     }
-
+    
     /**
      * Updates the request query with the developer key if auth is set to simple.
      *
@@ -82,7 +83,8 @@ class SimpleSubscriber implements SubscriberInterface
     {
         // Requests using "auth"="simple" with the developer key.
         $request = $event->getRequest();
-        if ($request->getConfig()['auth'] != 'simple') {
+        if($request->getConfig()['auth'] != 'simple')
+        {
             return;
         }
         $request->getQuery()->overwriteWith($this->config);

@@ -25,15 +25,15 @@ use GuzzleHttp\Transaction;
 class ScopedAccessTokenSubscriberTest extends BaseTest
 {
     const TEST_SCOPE = 'https://www.googleapis.com/auth/cloud-taskqueue';
-
+    
     private $mockCacheItem;
     private $mockCache;
     private $mockRequest;
-
+    
     protected function setUp()
     {
         $this->onlyGuzzle5();
-
+        
         $this->mockCacheItem =
             $this
                 ->getMockBuilder('Psr\Cache\CacheItemInterface')
@@ -48,33 +48,36 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
                 ->disableOriginalConstructor()
                 ->getMock();
     }
-
+    
     /**
      * @expectedException InvalidArgumentException
      */
     public function testRequiresScopeAsAStringOrArray()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
-        new ScopedAccessTokenSubscriber($fakeAuthFunc, new \stdClass(), array());
+        new ScopedAccessTokenSubscriber($fakeAuthFunc, new \stdClass(), []);
     }
-
+    
     public function testSubscribesToEvents()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
-        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, array());
+        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, []);
         $this->assertArrayHasKey('before', $s->getEvents());
     }
-
+    
     public function testAddsTheTokenAsAnAuthorizationHeader()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
-        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, array());
+        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, []);
         $client = new Client();
         $request = $client->createRequest('GET', 'http://testing.org',
             ['auth' => 'scoped']);
@@ -85,11 +88,12 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             $request->getHeader('authorization')
         );
     }
-
+    
     public function testUsesCachedAuthToken()
     {
         $cachedValue = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '';
         };
         $this->mockCacheItem
@@ -105,9 +109,9 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             ->method('getItem')
             ->with($this->getValidKeyName(self::TEST_SCOPE))
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         // Run the test
-        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, array(),
+        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, [],
             $this->mockCache);
         $client = new Client();
         $request = $client->createRequest('GET', 'http://testing.org',
@@ -119,12 +123,13 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             $request->getHeader('authorization')
         );
     }
-
+    
     public function testGetsCachedAuthTokenUsingCachePrefix()
     {
         $prefix = 'test_prefix_';
         $cachedValue = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '';
         };
         $this->mockCacheItem
@@ -140,7 +145,7 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             ->method('getItem')
             ->with($prefix . $this->getValidKeyName(self::TEST_SCOPE))
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         // Run the test
         $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE,
             ['prefix' => $prefix],
@@ -155,11 +160,12 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             $request->getHeader('authorization')
         );
     }
-
+    
     public function testShouldSaveValueInCache()
     {
         $token = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '2/abcdef1234567890';
         };
         $this->mockCacheItem
@@ -176,7 +182,7 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             ->method('getItem')
             ->with($this->getValidKeyName(self::TEST_SCOPE))
             ->will($this->returnValue($this->mockCacheItem));
-        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, array(),
+        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, [],
             $this->mockCache);
         $client = new Client();
         $request = $client->createRequest('GET', 'http://testing.org',
@@ -188,13 +194,14 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             $request->getHeader('authorization')
         );
     }
-
+    
     public function testShouldSaveValueInCacheWithCacheOptions()
     {
         $token = '2/abcdef1234567890';
         $prefix = 'test_prefix_';
         $lifetime = '70707';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '2/abcdef1234567890';
         };
         $this->mockCacheItem
@@ -214,7 +221,7 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             ->method('getItem')
             ->with($prefix . $this->getValidKeyName(self::TEST_SCOPE))
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         // Run the test
         $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE,
             ['prefix' => $prefix, 'lifetime' => $lifetime],
@@ -229,13 +236,14 @@ class ScopedAccessTokenSubscriberTest extends BaseTest
             $request->getHeader('authorization')
         );
     }
-
+    
     public function testOnlyTouchesWhenAuthConfigScoped()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
-        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, array());
+        $s = new ScopedAccessTokenSubscriber($fakeAuthFunc, self::TEST_SCOPE, []);
         $client = new Client();
         $request = $client->createRequest('GET', 'http://testing.org',
             ['auth' => 'notscoped']);

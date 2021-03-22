@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Header\Part;
 
 use ZBateson\MailMimeParser\Header\Part\HeaderPart;
@@ -17,18 +18,19 @@ use ZBateson\MbWrapper\MbWrapper;
  */
 class LiteralPart extends HeaderPart
 {
-    /**
-     * Creates a LiteralPart out of the passed string token
-     * 
-     * @param MbWrapper $charsetConverter
-     * @param string $token
-     */
-    public function __construct(MbWrapper $charsetConverter, $token = null)
-    {
-        parent::__construct($charsetConverter);
-        $this->value = $token;
-        if ($token !== null) {
-            $this->value = preg_replace('/\r|\n/', '', $this->convertEncoding($token));
-        }
-    }
+	/**
+	 * Creates a LiteralPart out of the passed string token
+	 *
+	 * @param MbWrapper $charsetConverter
+	 * @param string $token
+	 */
+	public function __construct(MbWrapper $charsetConverter, $token = NULL)
+	{
+		parent::__construct($charsetConverter);
+		$this->value = $token;
+		if($token !== NULL)
+		{
+			$this->value = preg_replace('/\r|\n/', '', $this->convertEncoding($token));
+		}
+	}
 }

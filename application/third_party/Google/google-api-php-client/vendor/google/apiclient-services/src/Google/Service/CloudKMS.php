@@ -31,359 +31,359 @@
  */
 class Google_Service_CloudKMS extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $projects_locations;
-  public $projects_locations_keyRings;
-  public $projects_locations_keyRings_cryptoKeys;
-  public $projects_locations_keyRings_cryptoKeys_cryptoKeyVersions;
-  
-  /**
-   * Constructs the internal representation of the CloudKMS service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://cloudkms.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'cloudkms';
+	public $projects_locations;
+	public $projects_locations_keyRings;
+	public $projects_locations_keyRings_cryptoKeys;
+	public $projects_locations_keyRings_cryptoKeys_cryptoKeyVersions;
 
-    $this->projects_locations = new Google_Service_CloudKMS_Resource_ProjectsLocations(
-        $this,
-        $this->serviceName,
-        'locations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}/locations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_keyRings = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRings(
-        $this,
-        $this->serviceName,
-        'keyRings',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+parent}/keyRings',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'keyRingId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+parent}/keyRings',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_keyRings_cryptoKeys = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys(
-        $this,
-        $this->serviceName,
-        'cryptoKeys',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+parent}/cryptoKeys',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'cryptoKeyId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'decrypt' => array(
-              'path' => 'v1/{+name}:decrypt',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'encrypt' => array(
-              'path' => 'v1/{+name}:encrypt',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+parent}/cryptoKeys',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'updatePrimaryVersion' => array(
-              'path' => 'v1/{+name}:updatePrimaryVersion',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_keyRings_cryptoKeys_cryptoKeyVersions = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersions(
-        $this,
-        $this->serviceName,
-        'cryptoKeyVersions',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+parent}/cryptoKeyVersions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'destroy' => array(
-              'path' => 'v1/{+name}:destroy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+parent}/cryptoKeyVersions',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'restore' => array(
-              'path' => 'v1/{+name}:restore',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudKMS service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://cloudkms.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'cloudkms';
+
+		$this->projects_locations = new Google_Service_CloudKMS_Resource_ProjectsLocations(
+			$this,
+			$this->serviceName,
+			'locations',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1/{+name}/locations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_keyRings = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRings(
+			$this,
+			$this->serviceName,
+			'keyRings',
+			[
+				'methods' => [
+					'create'                => [
+						'path'       => 'v1/{+parent}/keyRings',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'keyRingId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'get'                => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getIamPolicy'       => [
+						'path'       => 'v1/{+resource}:getIamPolicy',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'               => [
+						'path'       => 'v1/{+parent}/keyRings',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					], 'setIamPolicy'       => [
+						'path'       => 'v1/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions' => [
+						'path'       => 'v1/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_keyRings_cryptoKeys = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys(
+			$this,
+			$this->serviceName,
+			'cryptoKeys',
+			[
+				'methods' => [
+					'create'                  => [
+						'path'       => 'v1/{+parent}/cryptoKeys',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'cryptoKeyId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'decrypt'              => [
+						'path'       => 'v1/{+name}:decrypt',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'encrypt'              => [
+						'path'       => 'v1/{+name}:encrypt',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'                  => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getIamPolicy'         => [
+						'path'       => 'v1/{+resource}:getIamPolicy',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'                 => [
+						'path'       => 'v1/{+parent}/cryptoKeys',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					], 'patch'                => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'setIamPolicy'         => [
+						'path'       => 'v1/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions'   => [
+						'path'       => 'v1/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'updatePrimaryVersion' => [
+						'path'       => 'v1/{+name}:updatePrimaryVersion',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_keyRings_cryptoKeys_cryptoKeyVersions = new Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeysCryptoKeyVersions(
+			$this,
+			$this->serviceName,
+			'cryptoKeyVersions',
+			[
+				'methods' => [
+					'create'     => [
+						'path'       => 'v1/{+parent}/cryptoKeyVersions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'destroy' => [
+						'path'       => 'v1/{+name}:destroy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'     => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'    => [
+						'path'       => 'v1/{+parent}/cryptoKeyVersions',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					], 'patch'   => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'restore' => [
+						'path'       => 'v1/{+name}:restore',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

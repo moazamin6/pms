@@ -12,8 +12,8 @@ use Ddeboer\Imap\MessageIteratorInterface;
  */
 final class RawMessageIterator extends \ArrayIterator implements MessageIteratorInterface
 {
-    public function current(): MessageInterface
-    {
-        return parent::current();
-    }
+	public function current(): MessageInterface
+	{
+		return parent::current();
+	}
 }

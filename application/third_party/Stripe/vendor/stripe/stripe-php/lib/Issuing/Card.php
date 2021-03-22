@@ -41,14 +41,14 @@ class Card extends \Stripe\ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Issuing\CardDetails the card details associated with that issuing card
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Issuing\CardDetails the card details associated with that issuing card
      */
-    public function details($params = null, $opts = null)
+    public function details($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/details';
-        list($response, $opts) = $this->_request('get', $url, $params, $opts);
+        [$response, $opts] = $this->_request('get', $url, $params, $opts);
         $obj = \Stripe\Util\Util::convertToStripeObject($response, $opts);
         $obj->setLastResponse($response);
 

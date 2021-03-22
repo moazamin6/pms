@@ -10,37 +10,37 @@ namespace Ddeboer\Imap\Search;
  */
 abstract class AbstractText implements ConditionInterface
 {
-    /**
-     * Text to be used for the condition.
-     *
-     * @var string
-     */
-    private $text;
+	/**
+	 * Text to be used for the condition.
+	 *
+	 * @var string
+	 */
+	private $text;
 
-    /**
-     * Constructor.
-     *
-     * @param string $text optional text for the condition
-     */
-    public function __construct(string $text)
-    {
-        $this->text = $text;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param string $text optional text for the condition
+	 */
+	public function __construct(string $text)
+	{
+		$this->text = $text;
+	}
 
-    /**
-     * Converts the condition to a string that can be sent to the IMAP server.
-     *
-     * @return string
-     */
-    final public function toString(): string
-    {
-        return \sprintf('%s "%s"', $this->getKeyword(), $this->text);
-    }
+	/**
+	 * Converts the condition to a string that can be sent to the IMAP server.
+	 *
+	 * @return string
+	 */
+	final public function toString(): string
+	{
+		return \sprintf('%s "%s"', $this->getKeyword(), $this->text);
+	}
 
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    abstract protected function getKeyword(): string;
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	abstract protected function getKeyword(): string;
 }

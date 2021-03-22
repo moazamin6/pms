@@ -22,9 +22,10 @@ date_default_timezone_set('UTC');
 // autoload base test
 require_once __DIR__ . '/BaseTest.php';
 
-function buildResponse($code, array $headers = [], $body = null)
+function buildResponse($code, array $headers = [], $body = NULL)
 {
-    if (class_exists('GuzzleHttp\HandlerStack')) {
+    if(class_exists('GuzzleHttp\HandlerStack'))
+    {
         return new \GuzzleHttp\Psr7\Response($code, $headers, $body);
     }
 
@@ -37,7 +38,8 @@ function buildResponse($code, array $headers = [], $body = null)
 
 function getHandler(array $mockResponses = [])
 {
-    if (class_exists('GuzzleHttp\HandlerStack')) {
+    if(class_exists('GuzzleHttp\HandlerStack'))
+    {
         $mock = new \GuzzleHttp\Handler\MockHandler($mockResponses);
 
         $handler = \GuzzleHttp\HandlerStack::create($mock);

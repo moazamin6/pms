@@ -31,132 +31,132 @@
  */
 class Google_Service_Surveys extends Google_Service
 {
-  /** View and manage your surveys and results. */
-  const SURVEYS =
-      "https://www.googleapis.com/auth/surveys";
-  /** View your surveys and survey results. */
-  const SURVEYS_READONLY =
-      "https://www.googleapis.com/auth/surveys.readonly";
-  /** View your email address. */
-  const USERINFO_EMAIL =
-      "https://www.googleapis.com/auth/userinfo.email";
+	/** View and manage your surveys and results. */
+	const SURVEYS =
+		"https://www.googleapis.com/auth/surveys";
+	/** View your surveys and survey results. */
+	const SURVEYS_READONLY =
+		"https://www.googleapis.com/auth/surveys.readonly";
+	/** View your email address. */
+	const USERINFO_EMAIL =
+		"https://www.googleapis.com/auth/userinfo.email";
 
-  public $results;
-  public $surveys;
-  
-  /**
-   * Constructs the internal representation of the Surveys service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'surveys/v2/';
-    $this->version = 'v2';
-    $this->serviceName = 'surveys';
+	public $results;
+	public $surveys;
 
-    $this->results = new Google_Service_Surveys_Resource_Results(
-        $this,
-        $this->serviceName,
-        'results',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'surveys/{surveyUrlId}/results',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'surveyUrlId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->surveys = new Google_Service_Surveys_Resource_Surveys(
-        $this,
-        $this->serviceName,
-        'surveys',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => 'surveys/{surveyUrlId}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'surveyUrlId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'surveys/{surveyUrlId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'surveyUrlId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'insert' => array(
-              'path' => 'surveys',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'list' => array(
-              'path' => 'surveys',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'startIndex' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'token' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'start' => array(
-              'path' => 'surveys/{resourceId}/start',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resourceId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'stop' => array(
-              'path' => 'surveys/{resourceId}/stop',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resourceId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'update' => array(
-              'path' => 'surveys/{surveyUrlId}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'surveyUrlId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Surveys service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'surveys/v2/';
+		$this->version = 'v2';
+		$this->serviceName = 'surveys';
+
+		$this->results = new Google_Service_Surveys_Resource_Results(
+			$this,
+			$this->serviceName,
+			'results',
+			[
+				'methods' => [
+					'get' => [
+						'path'       => 'surveys/{surveyUrlId}/results',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'surveyUrlId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->surveys = new Google_Service_Surveys_Resource_Surveys(
+			$this,
+			$this->serviceName,
+			'surveys',
+			[
+				'methods' => [
+					'delete'    => [
+						'path'       => 'surveys/{surveyUrlId}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'surveyUrlId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'surveys/{surveyUrlId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'surveyUrlId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'insert' => [
+						'path'       => 'surveys',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'list'   => [
+						'path'       => 'surveys',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'maxResults' => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'startIndex' => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'token'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'start'  => [
+						'path'       => 'surveys/{resourceId}/start',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resourceId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'stop'   => [
+						'path'       => 'surveys/{resourceId}/stop',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resourceId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'update' => [
+						'path'       => 'surveys/{surveyUrlId}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'surveyUrlId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

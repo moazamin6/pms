@@ -139,14 +139,14 @@ class Invoice extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Invoice the upcoming invoice
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Invoice the upcoming invoice
      */
-    public static function upcoming($params = null, $opts = null)
+    public static function upcoming($params = NULL, $opts = NULL)
     {
         $url = static::classUrl() . '/upcoming';
-        list($response, $opts) = static::_staticRequest('get', $url, $params, $opts);
+        [$response, $opts] = static::_staticRequest('get', $url, $params, $opts);
         $obj = Util\Util::convertToStripeObject($response->json, $opts);
         $obj->setLastResponse($response);
 
@@ -158,11 +158,11 @@ class Invoice extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of lines (InvoiceLineItem)
      * @throws StripeExceptionApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of lines (InvoiceLineItem)
      */
-    public static function allLines($id, $params = null, $opts = null)
+    public static function allLines($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_LINES, $params, $opts);
     }
@@ -171,14 +171,14 @@ class Invoice extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Invoice the finalized invoice
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Invoice the finalized invoice
      */
-    public function finalizeInvoice($params = null, $opts = null)
+    public function finalizeInvoice($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/finalize';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -187,15 +187,15 @@ class Invoice extends ApiResource
     /**
      * @param null|array $params
      * @param null|array|string $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Invoice the uncollectible invoice
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      */
-    public function markUncollectible($params = null, $opts = null)
+    public function markUncollectible($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/mark_uncollectible';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -204,15 +204,15 @@ class Invoice extends ApiResource
     /**
      * @param null|array $params
      * @param null|array|string $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Invoice the paid invoice
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      */
-    public function pay($params = null, $opts = null)
+    public function pay($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/pay';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -221,15 +221,15 @@ class Invoice extends ApiResource
     /**
      * @param null|array $params
      * @param null|array|string $opts
-     *
-     * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
      * @return Invoice the sent invoice
+     * @throws \Stripe\Exception\ApiErrorException if the request fails
+     *
      */
-    public function sendInvoice($params = null, $opts = null)
+    public function sendInvoice($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/send';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -239,14 +239,14 @@ class Invoice extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Invoice the voided invoice
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Invoice the voided invoice
      */
-    public function voidInvoice($params = null, $opts = null)
+    public function voidInvoice($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/void';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

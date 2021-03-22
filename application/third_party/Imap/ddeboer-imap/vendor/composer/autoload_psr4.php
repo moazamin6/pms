@@ -5,6 +5,6 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'Ddeboer\\Imap\\' => array($vendorDir . '/ddeboer/imap/src'),
-);
+return [
+	'Ddeboer\\Imap\\' => [$vendorDir . '/ddeboer/imap/src'],
+];

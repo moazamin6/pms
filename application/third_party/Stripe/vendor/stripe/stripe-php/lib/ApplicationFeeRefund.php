@@ -24,7 +24,8 @@ class ApplicationFeeRefund extends ApiResource
 {
     const OBJECT_NAME = 'fee_refund';
 
-    use ApiOperations\Update {
+    use ApiOperations\Update
+    {
         save as protected _save;
     }
 
@@ -35,11 +36,12 @@ class ApplicationFeeRefund extends ApiResource
     {
         $id = $this['id'];
         $fee = $this['fee'];
-        if (!$id) {
+        if(!$id)
+        {
             throw new Exception\UnexpectedValueException(
                 'Could not determine which URL to request: ' .
                 "class instance has invalid ID: {$id}",
-                null
+                NULL
             );
         }
         $id = Util\Util::utf8($id);
@@ -57,7 +59,7 @@ class ApplicationFeeRefund extends ApiResource
      *
      * @return ApplicationFeeRefund the saved refund
      */
-    public function save($opts = null)
+    public function save($opts = NULL)
     {
         return $this->_save($opts);
     }

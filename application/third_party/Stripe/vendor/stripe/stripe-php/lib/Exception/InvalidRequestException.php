@@ -25,13 +25,14 @@ class InvalidRequestException extends ApiErrorException
      */
     public static function factory(
         $message,
-        $httpStatus = null,
-        $httpBody = null,
-        $jsonBody = null,
-        $httpHeaders = null,
-        $stripeCode = null,
-        $stripeParam = null
-    ) {
+        $httpStatus = NULL,
+        $httpBody = NULL,
+        $jsonBody = NULL,
+        $httpHeaders = NULL,
+        $stripeCode = NULL,
+        $stripeParam = NULL
+    )
+    {
         $instance = parent::factory($message, $httpStatus, $httpBody, $jsonBody, $httpHeaders, $stripeCode);
         $instance->setStripeParam($stripeParam);
 

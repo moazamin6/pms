@@ -50,10 +50,11 @@ class CustomerBalanceTransaction extends ApiResource
     {
         $id = $this['id'];
         $customer = $this['customer'];
-        if (!$id) {
+        if(!$id)
+        {
             throw new Exception\UnexpectedValueException(
                 "Could not determine which URL to request: class instance has invalid ID: {$id}",
-                null
+                NULL
             );
         }
         $id = Util\Util::utf8($id);
@@ -72,12 +73,12 @@ class CustomerBalanceTransaction extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function retrieve($_id, $_opts = null)
+    public static function retrieve($_id, $_opts = NULL)
     {
         $msg = 'Customer Balance Transactions cannot be retrieved without a ' .
-               'customer ID. Retrieve a Customer Balance Transaction using ' .
-               "`Customer::retrieveBalanceTransaction('customer_id', " .
-               "'balance_transaction_id')`.";
+            'customer ID. Retrieve a Customer Balance Transaction using ' .
+            "`Customer::retrieveBalanceTransaction('customer_id', " .
+            "'balance_transaction_id')`.";
 
         throw new Exception\BadMethodCallException($msg);
     }
@@ -89,12 +90,12 @@ class CustomerBalanceTransaction extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function update($_id, $_params = null, $_options = null)
+    public static function update($_id, $_params = NULL, $_options = NULL)
     {
         $msg = 'Customer Balance Transactions cannot be updated without a ' .
-               'customer ID. Update a Customer Balance Transaction using ' .
-               "`Customer::updateBalanceTransaction('customer_id', " .
-               "'balance_transaction_id', \$updateParams)`.";
+            'customer ID. Update a Customer Balance Transaction using ' .
+            "`Customer::updateBalanceTransaction('customer_id', " .
+            "'balance_transaction_id', \$updateParams)`.";
 
         throw new Exception\BadMethodCallException($msg);
     }

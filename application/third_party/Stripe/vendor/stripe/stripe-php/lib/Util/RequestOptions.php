@@ -18,7 +18,7 @@ class RequestOptions
     public $apiKey;
     public $apiBase;
 
-    public function __construct($key = null, $headers = [], $base = null)
+    public function __construct($key = NULL, $headers = [], $base = NULL)
     {
         $this->apiKey = $key;
         $this->headers = $headers;
@@ -28,7 +28,7 @@ class RequestOptions
     public function __debugInfo()
     {
         return [
-            'apiKey' => $this->redactedApiKey(),
+            'apiKey'  => $this->redactedApiKey(),
             'headers' => $this->headers,
             'apiBase' => $this->apiBase,
         ];
@@ -45,10 +45,12 @@ class RequestOptions
     public function merge($options)
     {
         $other_options = self::parse($options);
-        if (null === $other_options->apiKey) {
+        if(NULL === $other_options->apiKey)
+        {
             $other_options->apiKey = $this->apiKey;
         }
-        if (null === $other_options->apiBase) {
+        if(NULL === $other_options->apiBase)
+        {
             $other_options->apiBase = $this->apiBase;
         }
         $other_options->headers = \array_merge($this->headers, $other_options->headers);
@@ -61,8 +63,10 @@ class RequestOptions
      */
     public function discardNonPersistentHeaders()
     {
-        foreach ($this->headers as $k => $v) {
-            if (!\in_array($k, self::$HEADERS_TO_PERSIST, true)) {
+        foreach($this->headers as $k => $v)
+        {
+            if(!\in_array($k, self::$HEADERS_TO_PERSIST, true))
+            {
                 unset($this->headers[$k]);
             }
         }
@@ -77,35 +81,44 @@ class RequestOptions
      */
     public static function parse($options)
     {
-        if ($options instanceof self) {
+        if($options instanceof self)
+        {
             return $options;
         }
 
-        if (null === $options) {
-            return new RequestOptions(null, [], null);
+        if(NULL === $options)
+        {
+            return new RequestOptions(NULL, [], NULL);
         }
 
-        if (\is_string($options)) {
-            return new RequestOptions($options, [], null);
+        if(\is_string($options))
+        {
+            return new RequestOptions($options, [], NULL);
         }
 
-        if (\is_array($options)) {
+        if(\is_array($options))
+        {
             $headers = [];
-            $key = null;
-            $base = null;
-            if (\array_key_exists('api_key', $options)) {
+            $key = NULL;
+            $base = NULL;
+            if(\array_key_exists('api_key', $options))
+            {
                 $key = $options['api_key'];
             }
-            if (\array_key_exists('idempotency_key', $options)) {
+            if(\array_key_exists('idempotency_key', $options))
+            {
                 $headers['Idempotency-Key'] = $options['idempotency_key'];
             }
-            if (\array_key_exists('stripe_account', $options)) {
+            if(\array_key_exists('stripe_account', $options))
+            {
                 $headers['Stripe-Account'] = $options['stripe_account'];
             }
-            if (\array_key_exists('stripe_version', $options)) {
+            if(\array_key_exists('stripe_version', $options))
+            {
                 $headers['Stripe-Version'] = $options['stripe_version'];
             }
-            if (\array_key_exists('api_base', $options)) {
+            if(\array_key_exists('api_base', $options))
+            {
                 $base = $options['api_base'];
             }
 
@@ -113,9 +126,9 @@ class RequestOptions
         }
 
         $message = 'The second argument to Stripe API method calls is an '
-           . 'optional per-request apiKey, which must be a string, or '
-           . 'per-request options, which must be an array. (HINT: you can set '
-           . 'a global apiKey by "Stripe::setApiKey(<apiKey>)")';
+            . 'optional per-request apiKey, which must be a string, or '
+            . 'per-request options, which must be an array. (HINT: you can set '
+            . 'a global apiKey by "Stripe::setApiKey(<apiKey>)")';
 
         throw new Exception\InvalidArgumentException($message);
     }

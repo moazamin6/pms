@@ -30,44 +30,44 @@
  */
 class Google_Service_Playcustomapp extends Google_Service
 {
-  /** View and manage your Google Play Developer account. */
-  const ANDROIDPUBLISHER =
-      "https://www.googleapis.com/auth/androidpublisher";
+	/** View and manage your Google Play Developer account. */
+	const ANDROIDPUBLISHER =
+		"https://www.googleapis.com/auth/androidpublisher";
 
-  public $accounts_customApps;
-  
-  /**
-   * Constructs the internal representation of the Playcustomapp service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'playcustomapp/v1/accounts/';
-    $this->version = 'v1';
-    $this->serviceName = 'playcustomapp';
+	public $accounts_customApps;
 
-    $this->accounts_customApps = new Google_Service_Playcustomapp_Resource_AccountsCustomApps(
-        $this,
-        $this->serviceName,
-        'customApps',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => '{account}/customApps',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'account' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Playcustomapp service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'playcustomapp/v1/accounts/';
+		$this->version = 'v1';
+		$this->serviceName = 'playcustomapp';
+
+		$this->accounts_customApps = new Google_Service_Playcustomapp_Resource_AccountsCustomApps(
+			$this,
+			$this->serviceName,
+			'customApps',
+			[
+				'methods' => [
+					'create' => [
+						'path'       => '{account}/customApps',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'account' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

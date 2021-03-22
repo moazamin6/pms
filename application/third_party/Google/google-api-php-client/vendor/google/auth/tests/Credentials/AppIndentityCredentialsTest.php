@@ -18,6 +18,7 @@
 namespace Google\Auth\Tests;
 
 use google\appengine\api\app_identity\AppIdentityService;
+
 // included from tests\mocks\AppIdentityService.php
 use Google\Auth\Credentials\AppIdentityCredentials;
 use PHPUnit\Framework\TestCase;
@@ -56,7 +57,7 @@ class AppIdentityCredentialsFetchAuthTokenTest extends TestCase
     public function testShouldBeEmptyIfNotOnAppEngine()
     {
         $g = new AppIdentityCredentials();
-        $this->assertEquals(array(), $g->fetchAuthToken());
+        $this->assertEquals([], $g->fetchAuthToken());
     }
 
     /* @expectedException */
@@ -73,8 +74,8 @@ class AppIdentityCredentialsFetchAuthTokenTest extends TestCase
 
         $wantedToken = [
             'access_token' => '1/abdef1234567890',
-            'expires_in' => '57',
-            'token_type' => 'Bearer',
+            'expires_in'   => '57',
+            'token_type'   => 'Bearer',
         ];
 
         AppIdentityService::$accessToken = $wantedToken;

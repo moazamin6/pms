@@ -94,7 +94,7 @@ class GCECredentialsFetchAuthTokenTest extends TestCase
             buildResponse(500),
         ]);
         $g = new GCECredentials();
-        $this->assertEquals(array(), $g->fetchAuthToken($httpHandler));
+        $this->assertEquals([], $g->fetchAuthToken($httpHandler));
     }
 
     /**
@@ -116,8 +116,8 @@ class GCECredentialsFetchAuthTokenTest extends TestCase
     {
         $wantedTokens = [
             'access_token' => '1/abdef1234567890',
-            'expires_in' => '57',
-            'token_type' => 'Bearer',
+            'expires_in'   => '57',
+            'token_type'   => 'Bearer',
         ];
         $jsonTokens = json_encode($wantedTokens);
         $httpHandler = getHandler([

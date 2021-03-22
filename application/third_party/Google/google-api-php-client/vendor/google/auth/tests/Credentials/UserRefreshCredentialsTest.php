@@ -27,10 +27,10 @@ use PHPUnit\Framework\TestCase;
 function createURCTestJson()
 {
     return [
-        'client_id' => 'client123',
+        'client_id'     => 'client123',
         'client_secret' => 'clientSecret123',
         'refresh_token' => 'refreshToken123',
-        'type' => 'authorized_user',
+        'type'          => 'authorized_user',
     ];
 }
 
@@ -153,7 +153,8 @@ class URCFromWellKnownFileTest extends TestCase
 
     protected function tearDown()
     {
-        if ($this->originalHome != getenv('HOME')) {
+        if($this->originalHome != getenv('HOME'))
+        {
             putenv('HOME=' . $this->originalHome);
         }
     }

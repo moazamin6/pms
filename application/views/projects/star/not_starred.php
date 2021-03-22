@@ -1,1 +1,1 @@
- <?php echo ajax_anchor(get_uri("projects/add_remove_star/" . $project_id."/add"), "<i class='fa fa-star-o star-btn'></i>", array("data-real-target" => "#star-mark"));
+<?php echo ajax_anchor(get_uri("projects/add_remove_star/" . $project_id . "/add"), "<i class='fa fa-star-o star-btn'></i>", ["data-real-target" => "#star-mark"]);

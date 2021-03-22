@@ -31,190 +31,190 @@
  */
 class Google_Service_Datastore extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** View and manage your Google Cloud Datastore data. */
-  const DATASTORE =
-      "https://www.googleapis.com/auth/datastore";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your Google Cloud Datastore data. */
+	const DATASTORE =
+		"https://www.googleapis.com/auth/datastore";
 
-  public $projects;
-  public $projects_operations;
-  
-  /**
-   * Constructs the internal representation of the Datastore service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://datastore.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'datastore';
+	public $projects;
+	public $projects_operations;
 
-    $this->projects = new Google_Service_Datastore_Resource_Projects(
-        $this,
-        $this->serviceName,
-        'projects',
-        array(
-          'methods' => array(
-            'allocateIds' => array(
-              'path' => 'v1/projects/{projectId}:allocateIds',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'beginTransaction' => array(
-              'path' => 'v1/projects/{projectId}:beginTransaction',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'commit' => array(
-              'path' => 'v1/projects/{projectId}:commit',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'export' => array(
-              'path' => 'v1/projects/{projectId}:export',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'import' => array(
-              'path' => 'v1/projects/{projectId}:import',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'lookup' => array(
-              'path' => 'v1/projects/{projectId}:lookup',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'reserveIds' => array(
-              'path' => 'v1/projects/{projectId}:reserveIds',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'rollback' => array(
-              'path' => 'v1/projects/{projectId}:rollback',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'runQuery' => array(
-              'path' => 'v1/projects/{projectId}:runQuery',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_operations = new Google_Service_Datastore_Resource_ProjectsOperations(
-        $this,
-        $this->serviceName,
-        'operations',
-        array(
-          'methods' => array(
-            'cancel' => array(
-              'path' => 'v1/{+name}:cancel',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+name}/operations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Datastore service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://datastore.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'datastore';
+
+		$this->projects = new Google_Service_Datastore_Resource_Projects(
+			$this,
+			$this->serviceName,
+			'projects',
+			[
+				'methods' => [
+					'allocateIds'         => [
+						'path'       => 'v1/projects/{projectId}:allocateIds',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'beginTransaction' => [
+						'path'       => 'v1/projects/{projectId}:beginTransaction',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'commit'           => [
+						'path'       => 'v1/projects/{projectId}:commit',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'export'           => [
+						'path'       => 'v1/projects/{projectId}:export',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'import'           => [
+						'path'       => 'v1/projects/{projectId}:import',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'lookup'           => [
+						'path'       => 'v1/projects/{projectId}:lookup',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'reserveIds'       => [
+						'path'       => 'v1/projects/{projectId}:reserveIds',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'rollback'         => [
+						'path'       => 'v1/projects/{projectId}:rollback',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'runQuery'         => [
+						'path'       => 'v1/projects/{projectId}:runQuery',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'projectId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_operations = new Google_Service_Datastore_Resource_ProjectsOperations(
+			$this,
+			$this->serviceName,
+			'operations',
+			[
+				'methods' => [
+					'cancel'    => [
+						'path'       => 'v1/{+name}:cancel',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'   => [
+						'path'       => 'v1/{+name}/operations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

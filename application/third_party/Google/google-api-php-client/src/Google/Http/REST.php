@@ -27,156 +27,172 @@ use Psr\Http\Message\ResponseInterface;
  */
 class Google_Http_REST
 {
-  /**
-   * Executes a Psr\Http\Message\RequestInterface and (if applicable) automatically retries
-   * when errors occur.
-   *
-   * @param Google_Client $client
-   * @param Psr\Http\Message\RequestInterface $req
-   * @return array decoded result
-   * @throws Google_Service_Exception on server side error (ie: not authenticated,
-   *  invalid or malformed post body, invalid url)
-   */
-  public static function execute(
-      ClientInterface $client,
-      RequestInterface $request,
-      $expectedClass = null,
-      $config = array(),
-      $retryMap = null
-  ) {
-    $runner = new Google_Task_Runner(
-        $config,
-        sprintf('%s %s', $request->getMethod(), (string) $request->getUri()),
-        array(get_class(), 'doExecute'),
-        array($client, $request, $expectedClass)
-    );
+	/**
+	 * Executes a Psr\Http\Message\RequestInterface and (if applicable) automatically retries
+	 * when errors occur.
+	 *
+	 * @param Google_Client $client
+	 * @param Psr\Http\Message\RequestInterface $req
+	 * @return array decoded result
+	 * @throws Google_Service_Exception on server side error (ie: not authenticated,
+	 *  invalid or malformed post body, invalid url)
+	 */
+	public static function execute(
+		ClientInterface $client,
+		RequestInterface $request,
+		$expectedClass = NULL,
+		$config = [],
+		$retryMap = NULL
+	)
+	{
+		$runner = new Google_Task_Runner(
+			$config,
+			sprintf('%s %s', $request->getMethod(), (string)$request->getUri()),
+			[get_class(), 'doExecute'],
+			[$client, $request, $expectedClass]
+		);
 
-    if (null !== $retryMap) {
-      $runner->setRetryMap($retryMap);
-    }
+		if(NULL !== $retryMap)
+		{
+			$runner->setRetryMap($retryMap);
+		}
 
-    return $runner->run();
-  }
+		return $runner->run();
+	}
 
-  /**
-   * Executes a Psr\Http\Message\RequestInterface
-   *
-   * @param Google_Client $client
-   * @param Psr\Http\Message\RequestInterface $request
-   * @return array decoded result
-   * @throws Google_Service_Exception on server side error (ie: not authenticated,
-   *  invalid or malformed post body, invalid url)
-   */
-  public static function doExecute(ClientInterface $client, RequestInterface $request, $expectedClass = null)
-  {
-    try {
-      $httpHandler = HttpHandlerFactory::build($client);
-      $response = $httpHandler($request);
-    } catch (RequestException $e) {
-      // if Guzzle throws an exception, catch it and handle the response
-      if (!$e->hasResponse()) {
-        throw $e;
-      }
+	/**
+	 * Executes a Psr\Http\Message\RequestInterface
+	 *
+	 * @param Google_Client $client
+	 * @param Psr\Http\Message\RequestInterface $request
+	 * @return array decoded result
+	 * @throws Google_Service_Exception on server side error (ie: not authenticated,
+	 *  invalid or malformed post body, invalid url)
+	 */
+	public static function doExecute(ClientInterface $client, RequestInterface $request, $expectedClass = NULL)
+	{
+		try
+		{
+			$httpHandler = HttpHandlerFactory::build($client);
+			$response = $httpHandler($request);
+		}
+		catch(RequestException $e)
+		{
+			// if Guzzle throws an exception, catch it and handle the response
+			if(!$e->hasResponse())
+			{
+				throw $e;
+			}
 
-      $response = $e->getResponse();
-      // specific checking for Guzzle 5: convert to PSR7 response
-      if ($response instanceof \GuzzleHttp\Message\ResponseInterface) {
-        $response = new Response(
-            $response->getStatusCode(),
-            $response->getHeaders() ?: [],
-            $response->getBody(),
-            $response->getProtocolVersion(),
-            $response->getReasonPhrase()
-        );
-      }
-    }
+			$response = $e->getResponse();
+			// specific checking for Guzzle 5: convert to PSR7 response
+			if($response instanceof \GuzzleHttp\Message\ResponseInterface)
+			{
+				$response = new Response(
+					$response->getStatusCode(),
+					$response->getHeaders() ?: [],
+					$response->getBody(),
+					$response->getProtocolVersion(),
+					$response->getReasonPhrase()
+				);
+			}
+		}
 
-    return self::decodeHttpResponse($response, $request, $expectedClass);
-  }
+		return self::decodeHttpResponse($response, $request, $expectedClass);
+	}
 
-  /**
-   * Decode an HTTP Response.
-   * @static
-   * @throws Google_Service_Exception
-   * @param Psr\Http\Message\RequestInterface $response The http response to be decoded.
-   * @param Psr\Http\Message\ResponseInterface $response
-   * @return mixed|null
-   */
-  public static function decodeHttpResponse(
-      ResponseInterface $response,
-      RequestInterface $request = null,
-      $expectedClass = null
-  ) {
-    $code = $response->getStatusCode();
+	/**
+	 * Decode an HTTP Response.
+	 * @static
+	 * @param Psr\Http\Message\RequestInterface $response The http response to be decoded.
+	 * @param Psr\Http\Message\ResponseInterface $response
+	 * @return mixed|null
+	 * @throws Google_Service_Exception
+	 */
+	public static function decodeHttpResponse(
+		ResponseInterface $response,
+		RequestInterface $request = NULL,
+		$expectedClass = NULL
+	)
+	{
+		$code = $response->getStatusCode();
 
-    // retry strategy
-    if (intVal($code) >= 400) {
-      // if we errored out, it should be safe to grab the response body
-      $body = (string) $response->getBody();
+		// retry strategy
+		if(intVal($code) >= 400)
+		{
+			// if we errored out, it should be safe to grab the response body
+			$body = (string)$response->getBody();
 
-      // Check if we received errors, and add those to the Exception for convenience
-      throw new Google_Service_Exception($body, $code, null, self::getResponseErrors($body));
-    }
+			// Check if we received errors, and add those to the Exception for convenience
+			throw new Google_Service_Exception($body, $code, NULL, self::getResponseErrors($body));
+		}
 
-    // Ensure we only pull the entire body into memory if the request is not
-    // of media type
-    $body = self::decodeBody($response, $request);
+		// Ensure we only pull the entire body into memory if the request is not
+		// of media type
+		$body = self::decodeBody($response, $request);
 
-    if ($expectedClass = self::determineExpectedClass($expectedClass, $request)) {
-      $json = json_decode($body, true);
+		if($expectedClass = self::determineExpectedClass($expectedClass, $request))
+		{
+			$json = json_decode($body, true);
 
-      return new $expectedClass($json);
-    }
+			return new $expectedClass($json);
+		}
 
-    return $response;
-  }
+		return $response;
+	}
 
-  private static function decodeBody(ResponseInterface $response, RequestInterface $request = null)
-  {
-    if (self::isAltMedia($request)) {
-      // don't decode the body, it's probably a really long string
-      return '';
-    }
+	private static function decodeBody(ResponseInterface $response, RequestInterface $request = NULL)
+	{
+		if(self::isAltMedia($request))
+		{
+			// don't decode the body, it's probably a really long string
+			return '';
+		}
 
-    return (string) $response->getBody();
-  }
+		return (string)$response->getBody();
+	}
 
-  private static function determineExpectedClass($expectedClass, RequestInterface $request = null)
-  {
-    // "false" is used to explicitly prevent an expected class from being returned
-    if (false === $expectedClass) {
-      return null;
-    }
+	private static function determineExpectedClass($expectedClass, RequestInterface $request = NULL)
+	{
+		// "false" is used to explicitly prevent an expected class from being returned
+		if(false === $expectedClass)
+		{
+			return NULL;
+		}
 
-    // if we don't have a request, we just use what's passed in
-    if (null === $request) {
-      return $expectedClass;
-    }
+		// if we don't have a request, we just use what's passed in
+		if(NULL === $request)
+		{
+			return $expectedClass;
+		}
 
-    // return what we have in the request header if one was not supplied
-    return $expectedClass ?: $request->getHeaderLine('X-Php-Expected-Class');
-  }
+		// return what we have in the request header if one was not supplied
+		return $expectedClass ?: $request->getHeaderLine('X-Php-Expected-Class');
+	}
 
-  private static function getResponseErrors($body)
-  {
-    $json = json_decode($body, true);
+	private static function getResponseErrors($body)
+	{
+		$json = json_decode($body, true);
 
-    if (isset($json['error']['errors'])) {
-      return $json['error']['errors'];
-    }
+		if(isset($json['error']['errors']))
+		{
+			return $json['error']['errors'];
+		}
 
-    return null;
-  }
+		return NULL;
+	}
 
-  private static function isAltMedia(RequestInterface $request = null)
-  {
-    if ($request && $qs = $request->getUri()->getQuery()) {
-      parse_str($qs, $query);
-      if (isset($query['alt']) && $query['alt'] == 'media') {
-        return true;
-      }
-    }
+	private static function isAltMedia(RequestInterface $request = NULL)
+	{
+		if($request && $qs = $request->getUri()->getQuery())
+		{
+			parse_str($qs, $query);
+			if(isset($query['alt']) && $query['alt'] == 'media')
+			{
+				return true;
+			}
+		}
 
-    return false;
-  }
+		return false;
+	}
 }

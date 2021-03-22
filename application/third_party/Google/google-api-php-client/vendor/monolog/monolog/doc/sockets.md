@@ -4,8 +4,8 @@ Sockets Handler
 This handler allows you to write your logs to sockets using [fsockopen](http://php.net/fsockopen)
 or [pfsockopen](http://php.net/pfsockopen).
 
-Persistent sockets are mainly useful in web environments where you gain some performance not closing/opening
-the connections between requests.
+Persistent sockets are mainly useful in web environments where you gain some performance not closing/opening the
+connections between requests.
 
 You can use a `unix://` prefix to access unix sockets and `udp://` to open UDP sockets instead of the default TCP.
 

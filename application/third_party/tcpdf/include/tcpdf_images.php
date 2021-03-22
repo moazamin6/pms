@@ -49,16 +49,17 @@
  * @version 1.0.005
  * @author Nicola Asuni - info@tecnick.com
  */
-class TCPDF_IMAGES {
+class TCPDF_IMAGES
+{
 
 	/**
 	 * Array of hinheritable SVG properties.
 	 * @since 5.0.000 (2010-05-02)
 	 * @public static
 	 */
-	public static $svginheritprop = array('clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cursor', 'direction', 'display', 'fill', 'fill-opacity', 'fill-rule', 'font', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'glyph-orientation-horizontal', 'glyph-orientation-vertical', 'image-rendering', 'kerning', 'letter-spacing', 'marker', 'marker-end', 'marker-mid', 'marker-start', 'pointer-events', 'shape-rendering', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width', 'text-anchor', 'text-rendering', 'visibility', 'word-spacing', 'writing-mode');
+	public static $svginheritprop = ['clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cursor', 'direction', 'display', 'fill', 'fill-opacity', 'fill-rule', 'font', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'glyph-orientation-horizontal', 'glyph-orientation-vertical', 'image-rendering', 'kerning', 'letter-spacing', 'marker', 'marker-end', 'marker-mid', 'marker-start', 'pointer-events', 'shape-rendering', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width', 'text-anchor', 'text-rendering', 'visibility', 'word-spacing', 'writing-mode'];
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	/**
 	 * Return the image type given the file name or array returned by getimagesize() function.
@@ -68,21 +69,27 @@ class TCPDF_IMAGES {
 	 * @since 4.8.017 (2009-11-27)
 	 * @public static
 	 */
-	public static function getImageFileType($imgfile, $iminfo=array()) {
+	public static function getImageFileType($imgfile, $iminfo = [])
+	{
 		$type = '';
-		if (isset($iminfo['mime']) AND !empty($iminfo['mime'])) {
+		if(isset($iminfo['mime']) and !empty($iminfo['mime']))
+		{
 			$mime = explode('/', $iminfo['mime']);
-			if ((count($mime) > 1) AND ($mime[0] == 'image') AND (!empty($mime[1]))) {
+			if((count($mime) > 1) and ($mime[0] == 'image') and (!empty($mime[1])))
+			{
 				$type = strtolower(trim($mime[1]));
 			}
 		}
-		if (empty($type)) {
+		if(empty($type))
+		{
 			$fileinfo = pathinfo($imgfile);
-			if (isset($fileinfo['extension']) AND (!TCPDF_STATIC::empty_string($fileinfo['extension']))) {
+			if(isset($fileinfo['extension']) and (!TCPDF_STATIC::empty_string($fileinfo['extension'])))
+			{
 				$type = strtolower(trim($fileinfo['extension']));
 			}
 		}
-		if ($type == 'jpg') {
+		if($type == 'jpg')
+		{
 			$type = 'jpeg';
 		}
 		return $type;
@@ -96,13 +103,15 @@ class TCPDF_IMAGES {
 	 * @since 4.9.016 (2010-04-20)
 	 * @public static
 	 */
-	public static function setGDImageTransparency($new_image, $image) {
+	public static function setGDImageTransparency($new_image, $image)
+	{
 		// default transparency color (white)
-		$tcol = array('red' => 255, 'green' => 255, 'blue' => 255);
+		$tcol = ['red' => 255, 'green' => 255, 'blue' => 255];
 		// transparency index
 		$tid = imagecolortransparent($image);
 		$palletsize = imagecolorstotal($image);
-		if (($tid >= 0) AND ($tid < $palletsize)) {
+		if(($tid >= 0) and ($tid < $palletsize))
+		{
 			// get the colors for the transparency index
 			$tcol = imagecolorsforindex($image, $tid);
 		}
@@ -121,7 +130,8 @@ class TCPDF_IMAGES {
 	 * @since 4.9.016 (2010-04-20)
 	 * @public static
 	 */
-	public static function _toPNG($image, $tempfile) {
+	public static function _toPNG($image, $tempfile)
+	{
 		// turn off interlaced mode
 		imageinterlace($image, 0);
 		// create temporary PNG image
@@ -144,7 +154,8 @@ class TCPDF_IMAGES {
 	 * return image JPEG image object.
 	 * @public static
 	 */
-	public static function _toJPEG($image, $quality, $tempfile) {
+	public static function _toJPEG($image, $quality, $tempfile)
+	{
 		imagejpeg($image, $tempfile, $quality);
 		imagedestroy($image);
 		$retvars = self::_parsejpeg($tempfile);
@@ -159,47 +170,60 @@ class TCPDF_IMAGES {
 	 * @return array structure containing the image data
 	 * @public static
 	 */
-	public static function _parsejpeg($file) {
+	public static function _parsejpeg($file)
+	{
 		// check if is a local file
-		if (!@file_exists($file)) {
+		if(!@file_exists($file))
+		{
 			// try to encode spaces on filename
 			$tfile = str_replace(' ', '%20', $file);
-			if (@file_exists($tfile)) {
+			if(@file_exists($tfile))
+			{
 				$file = $tfile;
 			}
 		}
 		$a = getimagesize($file);
-		if (empty($a)) {
+		if(empty($a))
+		{
 			//Missing or incorrect image file
 			return false;
 		}
-		if ($a[2] != 2) {
+		if($a[2] != 2)
+		{
 			// Not a JPEG file
 			return false;
 		}
 		// bits per pixel
 		$bpc = isset($a['bits']) ? intval($a['bits']) : 8;
 		// number of image channels
-		if (!isset($a['channels'])) {
+		if(!isset($a['channels']))
+		{
 			$channels = 3;
-		} else {
+		}
+		else
+		{
 			$channels = intval($a['channels']);
 		}
 		// default colour space
-		switch ($channels) {
-			case 1: {
+		switch($channels)
+		{
+			case 1:
+			{
 				$colspace = 'DeviceGray';
 				break;
 			}
-			case 3: {
+			case 3:
+			{
 				$colspace = 'DeviceRGB';
 				break;
 			}
-			case 4: {
+			case 4:
+			{
 				$colspace = 'DeviceCMYK';
 				break;
 			}
-			default: {
+			default:
+			{
 				$channels = 3;
 				$colspace = 'DeviceRGB';
 				break;
@@ -208,9 +232,10 @@ class TCPDF_IMAGES {
 		// get file content
 		$data = file_get_contents($file);
 		// check for embedded ICC profile
-		$icc = array();
+		$icc = [];
 		$offset = 0;
-		while (($pos = strpos($data, "ICC_PROFILE\0", $offset)) !== false) {
+		while(($pos = strpos($data, "ICC_PROFILE\0", $offset)) !== false)
+		{
 			// get ICC sequence length
 			$length = (TCPDF_STATIC::_getUSHORT($data, ($pos - 2)) - 16);
 			// marker sequence number
@@ -223,17 +248,21 @@ class TCPDF_IMAGES {
 			$offset = ($pos + 14 + $length);
 		}
 		// order and compact ICC segments
-		if (count($icc) > 0) {
+		if(count($icc) > 0)
+		{
 			ksort($icc);
 			$icc = implode('', $icc);
-			if ((ord($icc[36]) != 0x61) OR (ord($icc[37]) != 0x63) OR (ord($icc[38]) != 0x73) OR (ord($icc[39]) != 0x70)) {
+			if((ord($icc[36]) != 0x61) or (ord($icc[37]) != 0x63) or (ord($icc[38]) != 0x73) or (ord($icc[39]) != 0x70))
+			{
 				// invalid ICC profile
 				$icc = false;
 			}
-		} else {
+		}
+		else
+		{
 			$icc = false;
 		}
-		return array('w' => $a[0], 'h' => $a[1], 'ch' => $channels, 'icc' => $icc, 'cs' => $colspace, 'bpc' => $bpc, 'f' => 'DCTDecode', 'data' => $data);
+		return ['w' => $a[0], 'h' => $a[1], 'ch' => $channels, 'icc' => $icc, 'cs' => $colspace, 'bpc' => $bpc, 'f' => 'DCTDecode', 'data' => $data];
 	}
 
 	/**
@@ -242,20 +271,24 @@ class TCPDF_IMAGES {
 	 * @return array structure containing the image data
 	 * @public static
 	 */
-	public static function _parsepng($file) {
+	public static function _parsepng($file)
+	{
 		$f = @fopen($file, 'rb');
-		if ($f === false) {
+		if($f === false)
+		{
 			// Can't open image file
 			return false;
 		}
 		//Check signature
-		if (fread($f, 8) != chr(137).'PNG'.chr(13).chr(10).chr(26).chr(10)) {
+		if(fread($f, 8) != chr(137) . 'PNG' . chr(13) . chr(10) . chr(26) . chr(10))
+		{
 			// Not a PNG file
 			return false;
 		}
 		//Read header chunk
 		fread($f, 4);
-		if (fread($f, 4) != 'IHDR') {
+		if(fread($f, 4) != 'IHDR')
+		{
 			//Incorrect PNG file
 			return false;
 		}
@@ -263,75 +296,102 @@ class TCPDF_IMAGES {
 		$h = TCPDF_STATIC::_freadint($f);
 		$bpc = ord(fread($f, 1));
 		$ct = ord(fread($f, 1));
-		if ($ct == 0) {
+		if($ct == 0)
+		{
 			$colspace = 'DeviceGray';
-		} elseif ($ct == 2) {
+		}
+		else if($ct == 2)
+		{
 			$colspace = 'DeviceRGB';
-		} elseif ($ct == 3) {
+		}
+		else if($ct == 3)
+		{
 			$colspace = 'Indexed';
-		} else {
+		}
+		else
+		{
 			// alpha channel
 			fclose($f);
 			return 'pngalpha';
 		}
-		if (ord(fread($f, 1)) != 0) {
+		if(ord(fread($f, 1)) != 0)
+		{
 			// Unknown compression method
 			fclose($f);
 			return false;
 		}
-		if (ord(fread($f, 1)) != 0) {
+		if(ord(fread($f, 1)) != 0)
+		{
 			// Unknown filter method
 			fclose($f);
 			return false;
 		}
-		if (ord(fread($f, 1)) != 0) {
+		if(ord(fread($f, 1)) != 0)
+		{
 			// Interlacing not supported
 			fclose($f);
 			return false;
 		}
 		fread($f, 4);
 		$channels = ($ct == 2 ? 3 : 1);
-		$parms = '/DecodeParms << /Predictor 15 /Colors '.$channels.' /BitsPerComponent '.$bpc.' /Columns '.$w.' >>';
+		$parms = '/DecodeParms << /Predictor 15 /Colors ' . $channels . ' /BitsPerComponent ' . $bpc . ' /Columns ' . $w . ' >>';
 		//Scan chunks looking for palette, transparency and image data
 		$pal = '';
 		$trns = '';
 		$data = '';
 		$icc = false;
 		$n = TCPDF_STATIC::_freadint($f);
-		do {
+		do
+		{
 			$type = fread($f, 4);
-			if ($type == 'PLTE') {
+			if($type == 'PLTE')
+			{
 				// read palette
 				$pal = TCPDF_STATIC::rfread($f, $n);
 				fread($f, 4);
-			} elseif ($type == 'tRNS') {
+			}
+			else if($type == 'tRNS')
+			{
 				// read transparency info
 				$t = TCPDF_STATIC::rfread($f, $n);
-				if ($ct == 0) { // DeviceGray
-					$trns = array(ord($t[1]));
-				} elseif ($ct == 2) { // DeviceRGB
-					$trns = array(ord($t[1]), ord($t[3]), ord($t[5]));
-				} else { // Indexed
-					if ($n > 0) {
-						$trns = array();
-						for ($i = 0; $i < $n; ++ $i) {
+				if($ct == 0)
+				{ // DeviceGray
+					$trns = [ord($t[1])];
+				}
+				else if($ct == 2)
+				{ // DeviceRGB
+					$trns = [ord($t[1]), ord($t[3]), ord($t[5])];
+				}
+				else
+				{ // Indexed
+					if($n > 0)
+					{
+						$trns = [];
+						for($i = 0; $i < $n; ++$i)
+						{
 							$trns[] = ord($t[$i]);
 						}
 					}
 				}
 				fread($f, 4);
-			} elseif ($type == 'IDAT') {
+			}
+			else if($type == 'IDAT')
+			{
 				// read image data block
 				$data .= TCPDF_STATIC::rfread($f, $n);
 				fread($f, 4);
-			} elseif ($type == 'iCCP') {
+			}
+			else if($type == 'iCCP')
+			{
 				// skip profile name
 				$len = 0;
-				while ((ord(fread($f, 1)) != 0) AND ($len < 80)) {
+				while((ord(fread($f, 1)) != 0) and ($len < 80))
+				{
 					++$len;
 				}
 				// get compression method
-				if (ord(fread($f, 1)) != 0) {
+				if(ord(fread($f, 1)) != 0)
+				{
 					// Unknown filter method
 					fclose($f);
 					return false;
@@ -341,20 +401,26 @@ class TCPDF_IMAGES {
 				// decompress profile
 				$icc = gzuncompress($icc);
 				fread($f, 4);
-			} elseif ($type == 'IEND') {
+			}
+			else if($type == 'IEND')
+			{
 				break;
-			} else {
+			}
+			else
+			{
 				TCPDF_STATIC::rfread($f, $n + 4);
 			}
 			$n = TCPDF_STATIC::_freadint($f);
-		} while ($n);
-		if (($colspace == 'Indexed') AND (empty($pal))) {
+		}
+		while($n);
+		if(($colspace == 'Indexed') and (empty($pal)))
+		{
 			// Missing palette
 			fclose($f);
 			return false;
 		}
 		fclose($f);
-		return array('w' => $w, 'h' => $h, 'ch' => $channels, 'icc' => $icc, 'cs' => $colspace, 'bpc' => $bpc, 'f' => 'FlateDecode', 'parms' => $parms, 'pal' => $pal, 'trns' => $trns, 'data' => $data);
+		return ['w' => $w, 'h' => $h, 'ch' => $channels, 'icc' => $icc, 'cs' => $colspace, 'bpc' => $bpc, 'f' => 'FlateDecode', 'parms' => $parms, 'pal' => $pal, 'trns' => $trns, 'data' => $data];
 	}
 
 } // END OF TCPDF_IMAGES CLASS

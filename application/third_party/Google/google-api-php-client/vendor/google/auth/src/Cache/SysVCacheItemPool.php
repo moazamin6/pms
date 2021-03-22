@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Auth\Cache;
 
 use Psr\Cache\CacheItemInterface;
@@ -66,7 +67,8 @@ class SysVCacheItemPool implements CacheItemPoolInterface
             $this->options['memsize'],
             $this->options['perm']
         );
-        if ($shmid !== false) {
+        if($shmid !== false)
+        {
             $ret = shm_put_var(
                 $shmid,
                 $this->options['variableKey'],
@@ -90,11 +92,15 @@ class SysVCacheItemPool implements CacheItemPoolInterface
             $this->options['memsize'],
             $this->options['perm']
         );
-        if ($shmid !== false) {
+        if($shmid !== false)
+        {
             $data = @shm_get_var($shmid, $this->options['variableKey']);
-            if (!empty($data)) {
+            if(!empty($data))
+            {
                 $this->items = $data;
-            } else {
+            }
+            else
+            {
                 $this->items = [];
             }
             shm_detach($shmid);
@@ -109,26 +115,27 @@ class SysVCacheItemPool implements CacheItemPoolInterface
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $variableKey The variable key for getting the data from
+     * @type int $variableKey The variable key for getting the data from
      *           the shared memory. **Defaults to** 1.
-     *     @type string $proj The project identifier for ftok. This needs to
+     * @type string $proj The project identifier for ftok. This needs to
      *           be a one character string. **Defaults to** 'A'.
-     *     @type int $memsize The memory size in bytes for shm_attach.
+     * @type int $memsize The memory size in bytes for shm_attach.
      *           **Defaults to** 10000.
-     *     @type int $perm The permission for shm_attach. **Defaults to** 0600.
+     * @type int $perm The permission for shm_attach. **Defaults to** 0600.
      */
     public function __construct($options = [])
     {
-        if (! extension_loaded('sysvshm')) {
+        if(!extension_loaded('sysvshm'))
+        {
             throw \RuntimeException(
                 'sysvshm extension is required to use this ItemPool');
         }
         $this->options = $options + [
-            'variableKey' => self::VAR_KEY,
-            'proj' => self::DEFAULT_PROJ,
-            'memsize' => self::DEFAULT_MEMSIZE,
-            'perm' => self::DEFAULT_PERM
-        ];
+                'variableKey' => self::VAR_KEY,
+                'proj'        => self::DEFAULT_PROJ,
+                'memsize'     => self::DEFAULT_MEMSIZE,
+                'perm'        => self::DEFAULT_PERM,
+            ];
         $this->items = [];
         $this->deferredItems = [];
         $this->sysvKey = ftok(__FILE__, $this->options['proj']);
@@ -151,7 +158,8 @@ class SysVCacheItemPool implements CacheItemPoolInterface
     {
         $this->loadItems();
         $items = [];
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             $items[$key] = $this->hasItem($key) ?
                 clone $this->items[$key] :
                 new Item($key);
@@ -191,7 +199,8 @@ class SysVCacheItemPool implements CacheItemPoolInterface
      */
     public function deleteItems(array $keys)
     {
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             unset($this->items[$key]);
         }
         return $this->saveCurrentItems();
@@ -220,8 +229,10 @@ class SysVCacheItemPool implements CacheItemPoolInterface
      */
     public function commit()
     {
-        foreach ($this->deferredItems as $item) {
-            if ($this->save($item) === false) {
+        foreach($this->deferredItems as $item)
+        {
+            if($this->save($item) === false)
+            {
                 return false;
             }
         }

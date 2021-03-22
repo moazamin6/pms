@@ -33,11 +33,11 @@ class ApplicationFee extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of fee refunds
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of fee refunds
      */
-    public static function allRefunds($id, $params = null, $opts = null)
+    public static function allRefunds($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_REFUNDS, $params, $opts);
     }
@@ -47,11 +47,11 @@ class ApplicationFee extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\ApplicationFeeRefund
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\ApplicationFeeRefund
      */
-    public static function createRefund($id, $params = null, $opts = null)
+    public static function createRefund($id, $params = NULL, $opts = NULL)
     {
         return self::_createNestedResource($id, static::PATH_REFUNDS, $params, $opts);
     }
@@ -62,11 +62,11 @@ class ApplicationFee extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\ApplicationFeeRefund
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\ApplicationFeeRefund
      */
-    public static function retrieveRefund($id, $refundId, $params = null, $opts = null)
+    public static function retrieveRefund($id, $refundId, $params = NULL, $opts = NULL)
     {
         return self::_retrieveNestedResource($id, static::PATH_REFUNDS, $refundId, $params, $opts);
     }
@@ -77,11 +77,11 @@ class ApplicationFee extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\ApplicationFeeRefund
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\ApplicationFeeRefund
      */
-    public static function updateRefund($id, $refundId, $params = null, $opts = null)
+    public static function updateRefund($id, $refundId, $params = NULL, $opts = NULL)
     {
         return self::_updateNestedResource($id, static::PATH_REFUNDS, $refundId, $params, $opts);
     }

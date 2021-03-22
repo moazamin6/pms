@@ -30,65 +30,65 @@
  */
 class Google_Service_Urlshortener extends Google_Service
 {
-  /** Manage your goo.gl short URLs. */
-  const URLSHORTENER =
-      "https://www.googleapis.com/auth/urlshortener";
+	/** Manage your goo.gl short URLs. */
+	const URLSHORTENER =
+		"https://www.googleapis.com/auth/urlshortener";
 
-  public $url;
-  
-  /**
-   * Constructs the internal representation of the Urlshortener service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'urlshortener/v1/';
-    $this->version = 'v1';
-    $this->serviceName = 'urlshortener';
+	public $url;
 
-    $this->url = new Google_Service_Urlshortener_Resource_Url(
-        $this,
-        $this->serviceName,
-        'url',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'url',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'shortUrl' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'projection' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'insert' => array(
-              'path' => 'url',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'list' => array(
-              'path' => 'url/history',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'projection' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'start-token' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Urlshortener service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'urlshortener/v1/';
+		$this->version = 'v1';
+		$this->serviceName = 'urlshortener';
+
+		$this->url = new Google_Service_Urlshortener_Resource_Url(
+			$this,
+			$this->serviceName,
+			'url',
+			[
+				'methods' => [
+					'get'       => [
+						'path'       => 'url',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'shortUrl'   => [
+								'location' => 'query',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'projection' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'insert' => [
+						'path'       => 'url',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'list'   => [
+						'path'       => 'url/history',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'projection'  => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'start-token' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -33,73 +33,73 @@ class Google_Service_Pagespeedonline extends Google_Service
 {
 
 
-  public $pagespeedapi;
-  
-  /**
-   * Constructs the internal representation of the Pagespeedonline service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'pagespeedonline/v4/';
-    $this->version = 'v4';
-    $this->serviceName = 'pagespeedonline';
+	public $pagespeedapi;
 
-    $this->pagespeedapi = new Google_Service_Pagespeedonline_Resource_Pagespeedapi(
-        $this,
-        $this->serviceName,
-        'pagespeedapi',
-        array(
-          'methods' => array(
-            'runpagespeed' => array(
-              'path' => 'runPagespeed',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'url' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'filter_third_party_resources' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'rule' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'screenshot' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'snapshots' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'strategy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'utm_campaign' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'utm_source' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Pagespeedonline service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'pagespeedonline/v4/';
+		$this->version = 'v4';
+		$this->serviceName = 'pagespeedonline';
+
+		$this->pagespeedapi = new Google_Service_Pagespeedonline_Resource_Pagespeedapi(
+			$this,
+			$this->serviceName,
+			'pagespeedapi',
+			[
+				'methods' => [
+					'runpagespeed' => [
+						'path'       => 'runPagespeed',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'url'                          => [
+								'location' => 'query',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'filter_third_party_resources' => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'locale'                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'rule'                         => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'screenshot'                   => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'snapshots'                    => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'strategy'                     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'utm_campaign'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'utm_source'                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

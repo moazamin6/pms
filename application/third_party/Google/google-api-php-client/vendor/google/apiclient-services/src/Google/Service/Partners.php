@@ -33,795 +33,795 @@ class Google_Service_Partners extends Google_Service
 {
 
 
-  public $analytics;
-  public $clientMessages;
-  public $companies;
-  public $companies_leads;
-  public $leads;
-  public $offers;
-  public $offers_history;
-  public $userEvents;
-  public $userStates;
-  public $users;
-  public $v2;
-  
-  /**
-   * Constructs the internal representation of the Partners service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://partners.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v2';
-    $this->serviceName = 'partners';
+	public $analytics;
+	public $clientMessages;
+	public $companies;
+	public $companies_leads;
+	public $leads;
+	public $offers;
+	public $offers_history;
+	public $userEvents;
+	public $userStates;
+	public $users;
+	public $v2;
 
-    $this->analytics = new Google_Service_Partners_Resource_Analytics(
-        $this,
-        $this->serviceName,
-        'analytics',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v2/analytics',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->clientMessages = new Google_Service_Partners_Resource_ClientMessages(
-        $this,
-        $this->serviceName,
-        'clientMessages',
-        array(
-          'methods' => array(
-            'log' => array(
-              'path' => 'v2/clientMessages:log',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-    $this->companies = new Google_Service_Partners_Resource_Companies(
-        $this,
-        $this->serviceName,
-        'companies',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v2/companies/{companyId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'companyId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'view' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'address' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'currencyCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v2/companies',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'industries' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'websiteUrl' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'gpsMotivations' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'languageCodes' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'specializations' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'maxMonthlyBudget.currencyCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'minMonthlyBudget.currencyCode' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'view' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'address' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'minMonthlyBudget.units' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxMonthlyBudget.nanos' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'services' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxMonthlyBudget.units' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'minMonthlyBudget.nanos' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'companyName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->companies_leads = new Google_Service_Partners_Resource_CompaniesLeads(
-        $this,
-        $this->serviceName,
-        'leads',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v2/companies/{companyId}/leads',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'companyId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->leads = new Google_Service_Partners_Resource_Leads(
-        $this,
-        $this->serviceName,
-        'leads',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v2/leads',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->offers = new Google_Service_Partners_Resource_Offers(
-        $this,
-        $this->serviceName,
-        'offers',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v2/offers',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->offers_history = new Google_Service_Partners_Resource_OffersHistory(
-        $this,
-        $this->serviceName,
-        'history',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v2/offers/history',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'entireCompany' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->userEvents = new Google_Service_Partners_Resource_UserEvents(
-        $this,
-        $this->serviceName,
-        'userEvents',
-        array(
-          'methods' => array(
-            'log' => array(
-              'path' => 'v2/userEvents:log',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-    $this->userStates = new Google_Service_Partners_Resource_UserStates(
-        $this,
-        $this->serviceName,
-        'userStates',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'v2/userStates',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->users = new Google_Service_Partners_Resource_Users(
-        $this,
-        $this->serviceName,
-        'users',
-        array(
-          'methods' => array(
-            'createCompanyRelation' => array(
-              'path' => 'v2/users/{userId}/companyRelation',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'userId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'deleteCompanyRelation' => array(
-              'path' => 'v2/users/{userId}/companyRelation',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'userId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v2/users/{userId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'userId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'userView' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'updateProfile' => array(
-              'path' => 'v2/users/profile',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->v2 = new Google_Service_Partners_Resource_V2(
-        $this,
-        $this->serviceName,
-        'v2',
-        array(
-          'methods' => array(
-            'getPartnersstatus' => array(
-              'path' => 'v2/partnersstatus',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'updateCompanies' => array(
-              'path' => 'v2/companies',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'updateLeads' => array(
-              'path' => 'v2/leads',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.experimentIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'requestMetadata.trafficSource.trafficSubId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.partnersSessionId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.trafficSource.trafficSourceId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.locale' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'requestMetadata.userOverrides.ipAddress' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Partners service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://partners.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v2';
+		$this->serviceName = 'partners';
+
+		$this->analytics = new Google_Service_Partners_Resource_Analytics(
+			$this,
+			$this->serviceName,
+			'analytics',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v2/analytics',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'                                     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'                                      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->clientMessages = new Google_Service_Partners_Resource_ClientMessages(
+			$this,
+			$this->serviceName,
+			'clientMessages',
+			[
+				'methods' => [
+					'log' => [
+						'path'       => 'v2/clientMessages:log',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+		$this->companies = new Google_Service_Partners_Resource_Companies(
+			$this,
+			$this->serviceName,
+			'companies',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v2/companies/{companyId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'companyId'                                     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'view'                                          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'address'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'currencyCode'                                  => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list' => [
+						'path'       => 'v2/companies',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'industries'                                    => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'websiteUrl'                                    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'gpsMotivations'                                => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'languageCodes'                                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'pageSize'                                      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'orderBy'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'specializations'                               => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'maxMonthlyBudget.currencyCode'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'minMonthlyBudget.currencyCode'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'view'                                          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'address'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'minMonthlyBudget.units'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'maxMonthlyBudget.nanos'                        => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'services'                                      => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'maxMonthlyBudget.units'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'minMonthlyBudget.nanos'                        => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'companyName'                                   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'                                     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->companies_leads = new Google_Service_Partners_Resource_CompaniesLeads(
+			$this,
+			$this->serviceName,
+			'leads',
+			[
+				'methods' => [
+					'create' => [
+						'path'       => 'v2/companies/{companyId}/leads',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'companyId' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->leads = new Google_Service_Partners_Resource_Leads(
+			$this,
+			$this->serviceName,
+			'leads',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v2/leads',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'pageSize'                                      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'                                     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->offers = new Google_Service_Partners_Resource_Offers(
+			$this,
+			$this->serviceName,
+			'offers',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v2/offers',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->offers_history = new Google_Service_Partners_Resource_OffersHistory(
+			$this,
+			$this->serviceName,
+			'history',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v2/offers/history',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'                                     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'                                      => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'entireCompany'                                 => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'                                       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->userEvents = new Google_Service_Partners_Resource_UserEvents(
+			$this,
+			$this->serviceName,
+			'userEvents',
+			[
+				'methods' => [
+					'log' => [
+						'path'       => 'v2/userEvents:log',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+		$this->userStates = new Google_Service_Partners_Resource_UserStates(
+			$this,
+			$this->serviceName,
+			'userStates',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'v2/userStates',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->users = new Google_Service_Partners_Resource_Users(
+			$this,
+			$this->serviceName,
+			'users',
+			[
+				'methods' => [
+					'createCompanyRelation'    => [
+						'path'       => 'v2/users/{userId}/companyRelation',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'userId'                                        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'deleteCompanyRelation' => [
+						'path'       => 'v2/users/{userId}/companyRelation',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'userId'                                        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'get'                   => [
+						'path'       => 'v2/users/{userId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'userId'                                        => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'userView'                                      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'updateProfile'         => [
+						'path'       => 'v2/users/profile',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->v2 = new Google_Service_Partners_Resource_V2(
+			$this,
+			$this->serviceName,
+			'v2',
+			[
+				'methods' => [
+					'getPartnersstatus'  => [
+						'path'       => 'v2/partnersstatus',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'updateCompanies' => [
+						'path'       => 'v2/companies',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'updateMask'                                    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'updateLeads'     => [
+						'path'       => 'v2/leads',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'updateMask'                                    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.experimentIds'                 => [
+								'location' => 'query',
+								'type'     => 'string',
+								'repeated' => true,
+							],
+							'requestMetadata.trafficSource.trafficSubId'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.partnersSessionId'             => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.userId'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.trafficSource.trafficSourceId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.locale'                        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'requestMetadata.userOverrides.ipAddress'       => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -13,16 +13,16 @@ trait Delete
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return static the deleted resource
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return static the deleted resource
      */
-    public function delete($params = null, $opts = null)
+    public function delete($params = NULL, $opts = NULL)
     {
         self::_validateParams($params);
 
         $url = $this->instanceUrl();
-        list($response, $opts) = $this->_request('delete', $url, $params, $opts);
+        [$response, $opts] = $this->_request('delete', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

@@ -6,15 +6,15 @@ namespace Ddeboer\Imap;
 
 interface ImapResourceInterface
 {
-    /**
-     * Get IMAP resource stream.
-     *
-     * @return resource
-     */
-    public function getStream();
+	/**
+	 * Get IMAP resource stream.
+	 *
+	 * @return resource
+	 */
+	public function getStream();
 
-    /**
-     * Clear last mailbox used cache.
-     */
-    public function clearLastMailboxUsedCache(): void;
+	/**
+	 * Clear last mailbox used cache.
+	 */
+	public function clearLastMailboxUsedCache(): void;
 }

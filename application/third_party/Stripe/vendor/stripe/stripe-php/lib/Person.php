@@ -55,11 +55,12 @@ class Person extends ApiResource
     {
         $id = $this['id'];
         $account = $this['account'];
-        if (!$id) {
+        if(!$id)
+        {
             throw new Exception\UnexpectedValueException(
                 'Could not determine which URL to request: ' .
                 "class instance has invalid ID: {$id}",
-                null
+                NULL
             );
         }
         $id = Util\Util::utf8($id);
@@ -78,11 +79,11 @@ class Person extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function retrieve($_id, $_opts = null)
+    public static function retrieve($_id, $_opts = NULL)
     {
         $msg = 'Persons cannot be retrieved without an account ID. Retrieve ' .
-               "a person using `Account::retrievePerson('account_id', " .
-               "'person_id')`.";
+            "a person using `Account::retrievePerson('account_id', " .
+            "'person_id')`.";
 
         throw new Exception\BadMethodCallException($msg);
     }
@@ -94,11 +95,11 @@ class Person extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function update($_id, $_params = null, $_options = null)
+    public static function update($_id, $_params = NULL, $_options = NULL)
     {
         $msg = 'Persons cannot be updated without an account ID. Update ' .
-               "a person using `Account::updatePerson('account_id', " .
-               "'person_id', \$updateParams)`.";
+            "a person using `Account::updatePerson('account_id', " .
+            "'person_id', \$updateParams)`.";
 
         throw new Exception\BadMethodCallException($msg);
     }

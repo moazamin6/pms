@@ -30,67 +30,67 @@
  */
 class Google_Service_Appsactivity extends Google_Service
 {
-  /** View the activity history of your Google apps. */
-  const ACTIVITY =
-      "https://www.googleapis.com/auth/activity";
+	/** View the activity history of your Google apps. */
+	const ACTIVITY =
+		"https://www.googleapis.com/auth/activity";
 
-  public $activities;
-  
-  /**
-   * Constructs the internal representation of the Appsactivity service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'appsactivity/v1/';
-    $this->version = 'v1';
-    $this->serviceName = 'appsactivity';
+	public $activities;
 
-    $this->activities = new Google_Service_Appsactivity_Resource_Activities(
-        $this,
-        $this->serviceName,
-        'activities',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => 'activities',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'drive.ancestorId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'drive.fileId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'groupingStrategy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'source' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'userId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Appsactivity service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'appsactivity/v1/';
+		$this->version = 'v1';
+		$this->serviceName = 'appsactivity';
+
+		$this->activities = new Google_Service_Appsactivity_Resource_Activities(
+			$this,
+			$this->serviceName,
+			'activities',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => 'activities',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'drive.ancestorId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'drive.fileId'     => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'groupingStrategy' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'         => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'source'           => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'userId'           => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

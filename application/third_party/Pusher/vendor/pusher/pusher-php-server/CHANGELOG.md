@@ -42,14 +42,14 @@ No functional change, previous release was only partially successful
 
 ## 3.2.0 (2018-08-13)
 
-[ADDED] This release adds support for end to end encrypted channels, a new feature for Channels. Read more [in our docs](https://pusher.com/docs/client_api_guide/client_encrypted_channels).
+[ADDED] This release adds support for end to end encrypted channels, a new feature for Channels. Read
+more [in our docs](https://pusher.com/docs/client_api_guide/client_encrypted_channels).
 
 [DEPRECATED] Renamed `encrypted` option to `useTLS` - `encrypted` will still work!
 
 ## 3.1.0 (2018-08-13)
 
 [ADDED] This release adds Webhook validation as well as a data structure to store Webhook payloads.
-
 
 ## 3.0.4 (2018-05-21)
 
@@ -131,13 +131,13 @@ No functional change, previous release was only partially successful
 
 ## 2.2.0 (2015-01-20)
 
-[CHANGED] `new Pusher($app_key, $app_secret, $app_id, $options)` - The `$options` parameter
-has been added as the forth parameter to the constructor and other additional
-parameters are now deprecated.
+[CHANGED] `new Pusher($app_key, $app_secret, $app_id, $options)` - The `$options` parameter has been added as the forth
+parameter to the constructor and other additional parameters are now deprecated.
 
 ## 2.1.3 (2012-12-22)
 
-[NEW] `$pusher->trigger` can now take an `array` of channel names as a first parameter to allow the same event to be published on multiple channels.
+[NEW] `$pusher->trigger` can now take an `array` of channel names as a first parameter to allow the same event to be
+published on multiple channels.
 
 [NEW] `$pusher->get` generic function can be used to make `GET` calls to the REST API
 
@@ -145,7 +145,8 @@ parameters are now deprecated.
 
 ## 2.1.2 (2012-11-18)
 
-[CHANGED] Debug response from `$pusher->trigger` call is now an associative array in the form `array( 'body' => '{String} body text of response', 'status' => '{Number} http status of the response' )`
+[CHANGED] Debug response from `$pusher->trigger` call is now an associative array in the
+form `array( 'body' => '{String} body text of response', 'status' => '{Number} http status of the response' )`
 
 ## 2.1.1 (2012-10-07)
 
@@ -169,6 +170,8 @@ parameters are now deprecated.
 
 [NEW] Added composer.json for submission to http://packagist.org/
 
-[CHANGED] `get_channels()` now returns an object which has a `channels` property. This must be accessed to get the Array of channels in an application.
+[CHANGED] `get_channels()` now returns an object which has a `channels` property. This must be accessed to get the Array
+of channels in an application.
 
-[CHANGED] `get_presence_channels()` now returns an object which has a `channels` property. This must be accessed to get the Array of channels in an application.
+[CHANGED] `get_presence_channels()` now returns an object which has a `channels` property. This must be accessed to get
+the Array of channels in an application.

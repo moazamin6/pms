@@ -40,18 +40,21 @@ class FetchAuthTokenTest extends BaseTest
         $mockFetcher
             ->expects($this->once())
             ->method('fetchAuthToken')
-            ->will($this->returnCallback(function ($httpHandler) {
+            ->will($this->returnCallback(function($httpHandler)
+            {
                 return $httpHandler();
             }));
 
         $httpHandlerCalled = false;
-        $httpHandler = function () use (&$httpHandlerCalled) {
+        $httpHandler = function() use (&$httpHandlerCalled)
+        {
             $httpHandlerCalled = true;
             return ['access_token' => 'xyz'];
         };
 
         $tokenCallbackCalled = false;
-        $tokenCallback = function ($cacheKey, $accessToken) use (&$tokenCallbackCalled) {
+        $tokenCallback = function($cacheKey, $accessToken) use (&$tokenCallbackCalled)
+        {
             $tokenCallbackCalled = true;
             $this->assertEquals('xyz', $accessToken);
         };
@@ -59,10 +62,10 @@ class FetchAuthTokenTest extends BaseTest
         $client = CredentialsLoader::makeHttpClient(
             $mockFetcher,
             [
-                'base_url' => 'https://www.googleapis.com/books/v1/',
-                'base_uri' => 'https://www.googleapis.com/books/v1/',
+                'base_url'   => 'https://www.googleapis.com/books/v1/',
+                'base_uri'   => 'https://www.googleapis.com/books/v1/',
                 'exceptions' => false,
-                'defaults' => ['exceptions' => false]
+                'defaults'   => ['exceptions' => false],
             ],
             $httpHandler,
             $tokenCallback
@@ -99,7 +102,7 @@ class FetchAuthTokenTest extends BaseTest
 
         $credentials = new AppIdentityCredentials();
         $property->setValue($credentials, [
-            'access_token' => 'xyz',
+            'access_token'    => 'xyz',
             'expiration_time' => strtotime('2001'),
         ]);
 
@@ -117,7 +120,7 @@ class FetchAuthTokenTest extends BaseTest
         $credentials = new GCECredentials();
         $property->setValue($credentials, [
             'access_token' => 'xyz',
-            'expires_at' => strtotime('2001'),
+            'expires_at'   => strtotime('2001'),
         ]);
 
         $this->assertGetLastReceivedToken($credentials);
@@ -187,7 +190,7 @@ class FetchAuthTokenTest extends BaseTest
     {
         $oauth = new OAuth2([
             'access_token' => 'xyz',
-            'expires_at' => strtotime('2001'),
+            'expires_at'   => strtotime('2001'),
         ]);
 
         $this->assertGetLastReceivedToken($oauth);
@@ -204,7 +207,7 @@ class FetchAuthTokenTest extends BaseTest
             ->method('getLastReceivedToken')
             ->will($this->returnValue([
                 'access_token' => 'xyz',
-                'expires_at' => strtotime('2001'),
+                'expires_at'   => strtotime('2001'),
             ]));
 
         return $mock;

@@ -31,324 +31,324 @@
  */
 class Google_Service_CloudTasks extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $projects_locations;
-  public $projects_locations_queues;
-  public $projects_locations_queues_tasks;
-  
-  /**
-   * Constructs the internal representation of the CloudTasks service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://cloudtasks.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v2beta2';
-    $this->serviceName = 'cloudtasks';
+	public $projects_locations;
+	public $projects_locations_queues;
+	public $projects_locations_queues_tasks;
 
-    $this->projects_locations = new Google_Service_CloudTasks_Resource_ProjectsLocations(
-        $this,
-        $this->serviceName,
-        'locations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v2beta2/{+name}/locations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_queues = new Google_Service_CloudTasks_Resource_ProjectsLocationsQueues(
-        $this,
-        $this->serviceName,
-        'queues',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v2beta2/{+parent}/queues',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => 'v2beta2/{+resource}:getIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v2beta2/{+parent}/queues',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'pause' => array(
-              'path' => 'v2beta2/{+name}:pause',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'purge' => array(
-              'path' => 'v2beta2/{+name}:purge',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'resume' => array(
-              'path' => 'v2beta2/{+name}:resume',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => 'v2beta2/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v2beta2/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects_locations_queues_tasks = new Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks(
-        $this,
-        $this->serviceName,
-        'tasks',
-        array(
-          'methods' => array(
-            'acknowledge' => array(
-              'path' => 'v2beta2/{+name}:acknowledge',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'cancelLease' => array(
-              'path' => 'v2beta2/{+name}:cancelLease',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'create' => array(
-              'path' => 'v2beta2/{+parent}/tasks',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v2beta2/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'responseView' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'lease' => array(
-              'path' => 'v2beta2/{+parent}/tasks:lease',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v2beta2/{+parent}/tasks',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'responseView' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),'renewLease' => array(
-              'path' => 'v2beta2/{+name}:renewLease',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'run' => array(
-              'path' => 'v2beta2/{+name}:run',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudTasks service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://cloudtasks.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v2beta2';
+		$this->serviceName = 'cloudtasks';
+
+		$this->projects_locations = new Google_Service_CloudTasks_Resource_ProjectsLocations(
+			$this,
+			$this->serviceName,
+			'locations',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v2beta2/{+name}/locations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'      => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_queues = new Google_Service_CloudTasks_Resource_ProjectsLocationsQueues(
+			$this,
+			$this->serviceName,
+			'queues',
+			[
+				'methods' => [
+					'create'                => [
+						'path'       => 'v2beta2/{+parent}/queues',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete'             => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'                => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getIamPolicy'       => [
+						'path'       => 'v2beta2/{+resource}:getIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'               => [
+						'path'       => 'v2beta2/{+parent}/queues',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'filter'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'patch'              => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'pause'              => [
+						'path'       => 'v2beta2/{+name}:pause',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'purge'              => [
+						'path'       => 'v2beta2/{+name}:purge',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'resume'             => [
+						'path'       => 'v2beta2/{+name}:resume',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'setIamPolicy'       => [
+						'path'       => 'v2beta2/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions' => [
+						'path'       => 'v2beta2/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects_locations_queues_tasks = new Google_Service_CloudTasks_Resource_ProjectsLocationsQueuesTasks(
+			$this,
+			$this->serviceName,
+			'tasks',
+			[
+				'methods' => [
+					'acknowledge'    => [
+						'path'       => 'v2beta2/{+name}:acknowledge',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'cancelLease' => [
+						'path'       => 'v2beta2/{+name}:cancelLease',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'create'      => [
+						'path'       => 'v2beta2/{+parent}/tasks',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'delete'      => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'         => [
+						'path'       => 'v2beta2/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name'         => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'responseView' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'lease'       => [
+						'path'       => 'v2beta2/{+parent}/tasks:lease',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'        => [
+						'path'       => 'v2beta2/{+parent}/tasks',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'responseView' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'orderBy'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'     => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					], 'renewLease'  => [
+						'path'       => 'v2beta2/{+name}:renewLease',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'run'         => [
+						'path'       => 'v2beta2/{+name}:run',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

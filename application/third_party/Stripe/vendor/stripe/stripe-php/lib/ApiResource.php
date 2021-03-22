@@ -18,8 +18,9 @@ abstract class ApiResource extends StripeObject
      */
     public static function getSavedNestedResources()
     {
-        static $savedNestedResources = null;
-        if (null === $savedNestedResources) {
+        static $savedNestedResources = NULL;
+        if(NULL === $savedNestedResources)
+        {
             $savedNestedResources = new Util\Set();
         }
 
@@ -39,23 +40,24 @@ abstract class ApiResource extends StripeObject
     {
         parent::__set($k, $v);
         $v = $this->{$k};
-        if ((static::getSavedNestedResources()->includes($k)) &&
-            ($v instanceof ApiResource)) {
+        if((static::getSavedNestedResources()->includes($k)) &&
+            ($v instanceof ApiResource))
+        {
             $v->saveWithParent = true;
         }
     }
 
     /**
+     * @return ApiResource the refreshed resource
      * @throws Exception\ApiErrorException
      *
-     * @return ApiResource the refreshed resource
      */
     public function refresh()
     {
         $requestor = new ApiRequestor($this->_opts->apiKey, static::baseUrl());
         $url = $this->instanceUrl();
 
-        list($response, $this->_opts->apiKey) = $requestor->request(
+        [$response, $this->_opts->apiKey] = $requestor->request(
             'get',
             $url,
             $this->_retrieveOptions,
@@ -90,16 +92,17 @@ abstract class ApiResource extends StripeObject
     /**
      * @param null|string $id the ID of the resource
      *
+     * @return string the instance endpoint URL for the given class
      * @throws Exception\UnexpectedValueException if $id is null
      *
-     * @return string the instance endpoint URL for the given class
      */
     public static function resourceUrl($id)
     {
-        if (null === $id) {
+        if(NULL === $id)
+        {
             $class = static::class;
             $message = 'Could not determine which URL to request: '
-               . "{$class} instance has invalid ID: {$id}";
+                . "{$class} instance has invalid ID: {$id}";
 
             throw new Exception\UnexpectedValueException($message);
         }

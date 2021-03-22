@@ -53,7 +53,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
      */
     public function testRequiresScopeAsAStringOrArray()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
         new ScopedAccessTokenMiddleware($fakeAuthFunc, new \stdClass());
@@ -62,7 +63,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
     public function testAddsTheTokenAsAnAuthorizationHeader()
     {
         $token = '1/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) use ($token) {
+        $fakeAuthFunc = function($unused_scopes) use ($token)
+        {
             return $token;
         };
         $this->mockRequest
@@ -81,7 +83,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
     public function testUsesCachedAuthToken()
     {
         $cachedValue = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '';
         };
         $this->mockCacheItem
@@ -119,7 +122,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
     {
         $prefix = 'test_prefix_';
         $cachedValue = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '';
         };
         $this->mockCacheItem
@@ -156,7 +160,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
     public function testShouldSaveValueInCache()
     {
         $token = '2/abcdef1234567890';
-        $fakeAuthFunc = function ($unused_scopes) use ($token) {
+        $fakeAuthFunc = function($unused_scopes) use ($token)
+        {
             return $token;
         };
         $this->mockCacheItem
@@ -196,7 +201,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
         $token = '2/abcdef1234567890';
         $prefix = 'test_prefix_';
         $lifetime = '70707';
-        $fakeAuthFunc = function ($unused_scopes) use ($token) {
+        $fakeAuthFunc = function($unused_scopes) use ($token)
+        {
             return $token;
         };
         $this->mockCacheItem
@@ -237,7 +243,8 @@ class ScopedAccessTokenMiddlewareTest extends BaseTest
 
     public function testOnlyTouchesWhenAuthConfigScoped()
     {
-        $fakeAuthFunc = function ($unused_scopes) {
+        $fakeAuthFunc = function($unused_scopes)
+        {
             return '1/abcdef1234567890';
         };
         $this->mockRequest

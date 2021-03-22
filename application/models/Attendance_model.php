@@ -1,159 +1,189 @@
 <?php
 
-class Attendance_model extends Crud_model {
+class Attendance_model extends Crud_model
+{
 
-    private $table = null;
+	private $table = NULL;
 
-    function __construct() {
-        $this->table = 'attendance';
-        parent::__construct($this->table);
-    }
+	function __construct()
+	{
+		$this->table = 'attendance';
+		parent::__construct($this->table);
+	}
 
-    function current_clock_in_record($user_id) {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $sql = "SELECT $attendnace_table.*
+	function current_clock_in_record($user_id)
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$sql = "SELECT $attendnace_table.*
         FROM $attendnace_table
         WHERE $attendnace_table.deleted=0 AND $attendnace_table.user_id=$user_id AND $attendnace_table.status='incomplete'";
-        $result = $this->db->query($sql);
-        if ($result->num_rows()) {
-            return $result->row();
-        } else {
-            return false;
-        }
-    }
+		$result = $this->db->query($sql);
+		if($result->num_rows())
+		{
+			return $result->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
 
-    function log_time($user_id, $note = "") {
+	function log_time($user_id, $note = "")
+	{
 
-        $current_clock_record = $this->current_clock_in_record($user_id);
+		$current_clock_record = $this->current_clock_in_record($user_id);
 
-        $now = get_current_utc_time();
+		$now = get_current_utc_time();
 
-        if ($current_clock_record && $current_clock_record->id) {
-            $data = array(
-                "out_time" => $now,
-                "status" => "pending",
-                "note" => $note
-            );
-            return $this->save($data, $current_clock_record->id);
-        } else {
-            $data = array(
-                "in_time" => $now,
-                "status" => "incomplete",
-                "user_id" => $user_id
-            );
-            return $this->save($data);
-        }
-    }
+		if($current_clock_record && $current_clock_record->id)
+		{
+			$data = [
+				"out_time" => $now,
+				"status"   => "pending",
+				"note"     => $note,
+			];
+			return $this->save($data, $current_clock_record->id);
+		}
+		else
+		{
+			$data = [
+				"in_time" => $now,
+				"status"  => "incomplete",
+				"user_id" => $user_id,
+			];
+			return $this->save($data);
+		}
+	}
 
-    function get_details($options = array()) {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $users_table = $this->db->dbprefix('users');
+	function get_details($options = [])
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$users_table = $this->db->dbprefix('users');
 
-        $where = "";
-        $id = get_array_value($options, "id");
-        if ($id) {
-            $where .= " AND $attendnace_table.id=$id";
-        }
-        $offset = convert_seconds_to_time_format(get_timezone_offset());
+		$where = "";
+		$id = get_array_value($options, "id");
+		if($id)
+		{
+			$where .= " AND $attendnace_table.id=$id";
+		}
+		$offset = convert_seconds_to_time_format(get_timezone_offset());
 
-        $start_date = get_array_value($options, "start_date");
-        if ($start_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
-        }
-        $end_date = get_array_value($options, "end_date");
-        if ($end_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
-        }
+		$start_date = get_array_value($options, "start_date");
+		if($start_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
+		}
+		$end_date = get_array_value($options, "end_date");
+		if($end_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
+		}
 
-        $user_id = get_array_value($options, "user_id");
-        if ($user_id) {
-            $where .= " AND $attendnace_table.user_id=$user_id";
-        }
+		$user_id = get_array_value($options, "user_id");
+		if($user_id)
+		{
+			$where .= " AND $attendnace_table.user_id=$user_id";
+		}
 
-        $access_type = get_array_value($options, "access_type");
+		$access_type = get_array_value($options, "access_type");
 
-        if (!$id && $access_type !== "all") {
+		if(!$id && $access_type !== "all")
+		{
 
-            $allowed_members = get_array_value($options, "allowed_members");
-            if (is_array($allowed_members) && count($allowed_members)) {
-                $allowed_members = join(",", $allowed_members);
-            } else {
-                $allowed_members = '0';
-            }
-            $login_user_id = get_array_value($options, "login_user_id");
-            if ($login_user_id) {
-                $allowed_members .= "," . $login_user_id;
-            }
-            $where .= " AND $attendnace_table.user_id IN($allowed_members)";
-        }
+			$allowed_members = get_array_value($options, "allowed_members");
+			if(is_array($allowed_members) && count($allowed_members))
+			{
+				$allowed_members = join(",", $allowed_members);
+			}
+			else
+			{
+				$allowed_members = '0';
+			}
+			$login_user_id = get_array_value($options, "login_user_id");
+			if($login_user_id)
+			{
+				$allowed_members .= "," . $login_user_id;
+			}
+			$where .= " AND $attendnace_table.user_id IN($allowed_members)";
+		}
 
-        $only_clocked_in_members = get_array_value($options, "only_clocked_in_members");
-        if ($only_clocked_in_members) {
-            $where .= " AND $attendnace_table.status = 'incomplete'";
-        }
+		$only_clocked_in_members = get_array_value($options, "only_clocked_in_members");
+		if($only_clocked_in_members)
+		{
+			$where .= " AND $attendnace_table.status = 'incomplete'";
+		}
 
-        $sql = "SELECT $attendnace_table.*,  CONCAT($users_table.first_name, ' ',$users_table.last_name) AS created_by_user, $users_table.image as created_by_avatar, $users_table.id as user_id, $users_table.job_title as user_job_title
+		$sql = "SELECT $attendnace_table.*,  CONCAT($users_table.first_name, ' ',$users_table.last_name) AS created_by_user, $users_table.image as created_by_avatar, $users_table.id as user_id, $users_table.job_title as user_job_title
         FROM $attendnace_table
         LEFT JOIN $users_table ON $users_table.id = $attendnace_table.user_id
         WHERE $attendnace_table.deleted=0 $where
         ORDER BY $attendnace_table.in_time DESC";
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql);
+	}
 
-    function get_summary_details($options = array()) {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $users_table = $this->db->dbprefix('users');
+	function get_summary_details($options = [])
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$users_table = $this->db->dbprefix('users');
 
-        $where = "";
-        $offset = convert_seconds_to_time_format(get_timezone_offset());
+		$where = "";
+		$offset = convert_seconds_to_time_format(get_timezone_offset());
 
-        $start_date = get_array_value($options, "start_date");
-        if ($start_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
-        }
-        $end_date = get_array_value($options, "end_date");
-        if ($end_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
-        }
+		$start_date = get_array_value($options, "start_date");
+		if($start_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
+		}
+		$end_date = get_array_value($options, "end_date");
+		if($end_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
+		}
 
-        $user_id = get_array_value($options, "user_id");
-        if ($user_id) {
-            $where .= " AND $attendnace_table.user_id=$user_id";
-        }
+		$user_id = get_array_value($options, "user_id");
+		if($user_id)
+		{
+			$where .= " AND $attendnace_table.user_id=$user_id";
+		}
 
-        $access_type = get_array_value($options, "access_type");
+		$access_type = get_array_value($options, "access_type");
 
-        if ($access_type !== "all") {
+		if($access_type !== "all")
+		{
 
-            $allowed_members = get_array_value($options, "allowed_members");
-            if (is_array($allowed_members) && count($allowed_members)) {
-                $allowed_members = join(",", $allowed_members);
-            } else {
-                $allowed_members = '0';
-            }
-            $login_user_id = get_array_value($options, "login_user_id");
-            if ($login_user_id) {
-                $allowed_members .= "," . $login_user_id;
-            }
-            $where .= " AND $attendnace_table.user_id IN($allowed_members)";
-        }
-
-
-
-        //we'll show the details deport in summary_detials view         
-        $extra_inner_select = "";
-        $extra_group_by = "";
-        $extra_select = "";
-        $sort_by = "";
-        if (get_array_value($options, "summary_details")) {
-            $extra_select = ", start_date ";
-            $extra_inner_select = ", MAX(DATE(ADDTIME($attendnace_table.in_time,'$offset'))) AS start_date ";
-            $extra_group_by = ", DATE(ADDTIME($attendnace_table.in_time,'$offset')) ";
-            $sort_by = "ORDER BY user_id, start_date ASC"; //order by must be with user_id 
-        }
+			$allowed_members = get_array_value($options, "allowed_members");
+			if(is_array($allowed_members) && count($allowed_members))
+			{
+				$allowed_members = join(",", $allowed_members);
+			}
+			else
+			{
+				$allowed_members = '0';
+			}
+			$login_user_id = get_array_value($options, "login_user_id");
+			if($login_user_id)
+			{
+				$allowed_members .= "," . $login_user_id;
+			}
+			$where .= " AND $attendnace_table.user_id IN($allowed_members)";
+		}
 
 
-        $sql = "SELECT user_id, total_duration, CONCAT($users_table.first_name, ' ',$users_table.last_name) AS created_by_user, $users_table.image as created_by_avatar $extra_select
+		//we'll show the details deport in summary_detials view
+		$extra_inner_select = "";
+		$extra_group_by = "";
+		$extra_select = "";
+		$sort_by = "";
+		if(get_array_value($options, "summary_details"))
+		{
+			$extra_select = ", start_date ";
+			$extra_inner_select = ", MAX(DATE(ADDTIME($attendnace_table.in_time,'$offset'))) AS start_date ";
+			$extra_group_by = ", DATE(ADDTIME($attendnace_table.in_time,'$offset')) ";
+			$sort_by = "ORDER BY user_id, start_date ASC"; //order by must be with user_id
+		}
+
+
+		$sql = "SELECT user_id, total_duration, CONCAT($users_table.first_name, ' ',$users_table.last_name) AS created_by_user, $users_table.image as created_by_avatar $extra_select
                  FROM (SELECT $attendnace_table.user_id, SUM(TIMESTAMPDIFF(SECOND, $attendnace_table.in_time, $attendnace_table.out_time)) AS total_duration $extra_inner_select
                     FROM $attendnace_table
                     WHERE $attendnace_table.deleted=0 $where 
@@ -162,110 +192,124 @@ class Attendance_model extends Crud_model {
                 $sort_by    
                ";
 
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql);
+	}
 
-    function count_clock_status() {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $users_table = $this->db->dbprefix('users');
+	function count_clock_status()
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$users_table = $this->db->dbprefix('users');
 
-        $clocked_in = "SELECT $attendnace_table.user_id
+		$clocked_in = "SELECT $attendnace_table.user_id
         FROM $attendnace_table
         WHERE $attendnace_table.deleted=0 AND $attendnace_table.status='incomplete'
         GROUP BY $attendnace_table.user_id";
-        $clocked_in_result = $this->db->query($clocked_in);
+		$clocked_in_result = $this->db->query($clocked_in);
 
-        $total_members = "SELECT COUNT(id) AS total_members
+		$total_members = "SELECT COUNT(id) AS total_members
         FROM $users_table
         WHERE $users_table.deleted=0 AND $users_table.user_type='staff' AND $users_table.status='active'";
-        $total_members_result = $this->db->query($total_members)->row()->total_members;
+		$total_members_result = $this->db->query($total_members)->row()->total_members;
 
 
-        $info = new stdClass();
-        $info->members_clocked_in = $clocked_in_result->num_rows();
-        $info->total_members = $total_members_result ? $total_members_result : 0;
-        $info->members_clocked_out = $total_members_result - $info->members_clocked_in;
+		$info = new stdClass();
+		$info->members_clocked_in = $clocked_in_result->num_rows();
+		$info->total_members = $total_members_result ? $total_members_result : 0;
+		$info->members_clocked_out = $total_members_result - $info->members_clocked_in;
 
-        return $info;
-    }
+		return $info;
+	}
 
-    function get_timecard_statistics($options = array()) {
-        $attendnace_table = $this->db->dbprefix('attendance');
+	function get_timecard_statistics($options = [])
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
 
-        $where = "";
-        $offset = convert_seconds_to_time_format(get_timezone_offset());
+		$where = "";
+		$offset = convert_seconds_to_time_format(get_timezone_offset());
 
-        $start_date = get_array_value($options, "start_date");
-        if ($start_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
-        }
-        $end_date = get_array_value($options, "end_date");
-        if ($end_date) {
-            $where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
-        }
+		$start_date = get_array_value($options, "start_date");
+		if($start_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))>='$start_date'";
+		}
+		$end_date = get_array_value($options, "end_date");
+		if($end_date)
+		{
+			$where .= " AND DATE(ADDTIME($attendnace_table.in_time,'$offset'))<='$end_date'";
+		}
 
-        $user_id = get_array_value($options, "user_id");
-        if ($user_id) {
-            $where .= " AND $attendnace_table.user_id=$user_id";
-        }
+		$user_id = get_array_value($options, "user_id");
+		if($user_id)
+		{
+			$where .= " AND $attendnace_table.user_id=$user_id";
+		}
 
-        $sql = "SELECT DATE_FORMAT($attendnace_table.in_time,'%d') AS day, SUM(TIME_TO_SEC(TIMEDIFF($attendnace_table.out_time,$attendnace_table.in_time))) total_sec
+		$sql = "SELECT DATE_FORMAT($attendnace_table.in_time,'%d') AS day, SUM(TIME_TO_SEC(TIMEDIFF($attendnace_table.out_time,$attendnace_table.in_time))) total_sec
                 FROM $attendnace_table 
                 WHERE $attendnace_table.deleted=0 AND $attendnace_table.status!='incomplete' $where
                 GROUP BY DATE($attendnace_table.in_time)";
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql);
+	}
 
-    function get_clocked_out_members($options = array()) {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $users_table = $this->db->dbprefix('users');
+	function get_clocked_out_members($options = [])
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$users_table = $this->db->dbprefix('users');
 
-        $where = "";
-        $access_type = get_array_value($options, "access_type");
-        if ($access_type !== "all") {
+		$where = "";
+		$access_type = get_array_value($options, "access_type");
+		if($access_type !== "all")
+		{
 
-            $allowed_members = get_array_value($options, "allowed_members");
-            if (is_array($allowed_members) && count($allowed_members)) {
-                $allowed_members = join(",", $allowed_members);
-            } else {
-                $allowed_members = '0';
-            }
-            $login_user_id = get_array_value($options, "login_user_id");
-            if ($login_user_id) {
-                $allowed_members .= "," . $login_user_id;
-            }
-            $where .= " AND $users_table.id IN ($allowed_members)";
-        }
+			$allowed_members = get_array_value($options, "allowed_members");
+			if(is_array($allowed_members) && count($allowed_members))
+			{
+				$allowed_members = join(",", $allowed_members);
+			}
+			else
+			{
+				$allowed_members = '0';
+			}
+			$login_user_id = get_array_value($options, "login_user_id");
+			if($login_user_id)
+			{
+				$allowed_members .= "," . $login_user_id;
+			}
+			$where .= " AND $users_table.id IN ($allowed_members)";
+		}
 
-        $sql = "SELECT CONCAT($users_table.first_name, ' ',$users_table.last_name) AS member_name, $users_table.last_online, $users_table.image, $users_table.id, $users_table.job_title
+		$sql = "SELECT CONCAT($users_table.first_name, ' ',$users_table.last_name) AS member_name, $users_table.last_online, $users_table.image, $users_table.id, $users_table.job_title
         FROM $users_table
         WHERE $users_table.deleted=0 AND $users_table.status='active' AND $users_table.user_type='staff' AND $users_table.id NOT IN (SELECT user_id from $attendnace_table WHERE $attendnace_table.deleted=0 AND $attendnace_table.status='incomplete') $where
         ORDER BY $users_table.first_name DESC";
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql);
+	}
 
-    function get_clock_in_out_details_of_all_users($options = array()) {
-        $attendnace_table = $this->db->dbprefix('attendance');
-        $users_table = $this->db->dbprefix('users');
+	function get_clock_in_out_details_of_all_users($options = [])
+	{
+		$attendnace_table = $this->db->dbprefix('attendance');
+		$users_table = $this->db->dbprefix('users');
 
-        $where = "";
+		$where = "";
 
-        $id = get_array_value($options, "id");
-        if ($id) {
-            $where .= " AND $users_table.id=$id";
-        }
+		$id = get_array_value($options, "id");
+		if($id)
+		{
+			$where .= " AND $users_table.id=$id";
+		}
 
-        $where_in = get_array_value($options, "where_in");
-        if ($where_in) {
-            $where_in_implode = implode(',', $where_in);
-            $where .= " AND $users_table.id IN($where_in_implode)";
-        }
+		$where_in = get_array_value($options, "where_in");
+		if($where_in)
+		{
+			$where_in_implode = implode(',', $where_in);
+			$where .= " AND $users_table.id IN($where_in_implode)";
+		}
 
-        $sql = "SELECT CONCAT($users_table.first_name, ' ',$users_table.last_name) AS member_name, $users_table.image, $users_table.id, attendance_table.id AS attendance_id, attendance_table.in_time
+		$sql = "SELECT CONCAT($users_table.first_name, ' ',$users_table.last_name) AS member_name, $users_table.image, $users_table.id, attendance_table.id AS attendance_id, attendance_table.in_time
         FROM $users_table
         LEFT JOIN (SELECT user_id, id, in_time FROM $attendnace_table WHERE $attendnace_table.deleted=0 AND $attendnace_table.status='incomplete') AS attendance_table ON attendance_table.user_id=$users_table.id
         WHERE $users_table.deleted=0 AND $users_table.status='active' AND $users_table.user_type='staff' $where";
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql);
+	}
 
 }

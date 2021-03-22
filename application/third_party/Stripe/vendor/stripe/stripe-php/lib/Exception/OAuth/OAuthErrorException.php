@@ -10,8 +10,9 @@ abstract class OAuthErrorException extends \Stripe\Exception\ApiErrorException
 {
     protected function constructErrorObject()
     {
-        if (null === $this->jsonBody) {
-            return null;
+        if(NULL === $this->jsonBody)
+        {
+            return NULL;
         }
 
         return \Stripe\OAuthErrorObject::constructFrom($this->jsonBody);

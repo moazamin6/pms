@@ -25,7 +25,7 @@ class CacheTraitTest extends TestCase
     private $mockFetcher;
     private $mockCacheItem;
     private $mockCache;
-
+    
     public function setUp()
     {
         $this->mockFetcher =
@@ -41,7 +41,7 @@ class CacheTraitTest extends TestCase
                 ->getMockBuilder('Psr\Cache\CacheItemPoolInterface')
                 ->getMock();
     }
-
+    
     public function testSuccessfullyPullsFromCache()
     {
         $expectedValue = '1234';
@@ -57,15 +57,15 @@ class CacheTraitTest extends TestCase
             ->expects($this->once())
             ->method('getItem')
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
         ]);
-
+        
         $cachedValue = $implementation->gCachedValue();
         $this->assertEquals($expectedValue, $cachedValue);
     }
-
+    
     public function testSuccessfullyPullsFromCacheWithInvalidKey()
     {
         $key = 'this-key-has-@-illegal-characters';
@@ -84,16 +84,16 @@ class CacheTraitTest extends TestCase
             ->method('getItem')
             ->with($expectedKey)
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
-            'key' => $key,
+            'key'   => $key,
         ]);
-
+        
         $cachedValue = $implementation->gCachedValue();
         $this->assertEquals($expectedValue, $cachedValue);
     }
-
+    
     public function testSuccessfullyPullsFromCacheWithLongKey()
     {
         $key = 'this-key-is-over-64-characters-and-it-will-still-work'
@@ -114,34 +114,34 @@ class CacheTraitTest extends TestCase
             ->method('getItem')
             ->with($expectedKey)
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
-            'key' => $key
+            'key'   => $key,
         ]);
-
+        
         $cachedValue = $implementation->gCachedValue();
         $this->assertEquals($expectedValue, $cachedValue);
     }
-
+    
     public function testFailsPullFromCacheWithNoCache()
     {
         $implementation = new CacheTraitImplementation();
-
+        
         $cachedValue = $implementation->gCachedValue();
-        $this->assertEquals(null, $cachedValue);
+        $this->assertEquals(NULL, $cachedValue);
     }
-
+    
     public function testFailsPullFromCacheWithoutKey()
     {
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
-            'key'   => null,
+            'key'   => NULL,
         ]);
-
+        
         $cachedValue = $implementation->gCachedValue();
     }
-
+    
     public function testSuccessfullySetsToCache()
     {
         $value = '1234';
@@ -154,31 +154,31 @@ class CacheTraitTest extends TestCase
             ->method('getItem')
             ->with($this->equalTo('key'))
             ->will($this->returnValue($this->mockCacheItem));
-
+        
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
         ]);
-
+        
         $implementation->sCachedValue($value);
     }
-
+    
     public function testFailsSetToCacheWithNoCache()
     {
         $implementation = new CacheTraitImplementation();
-
+        
         $implementation->sCachedValue('1234');
-
+        
         $cachedValue = $implementation->sCachedValue('1234');
         $this->assertNull($cachedValue);
     }
-
+    
     public function testFailsSetToCacheWithoutKey()
     {
         $implementation = new CacheTraitImplementation([
             'cache' => $this->mockCache,
-            'key'   => null,
+            'key'   => NULL,
         ]);
-
+        
         $cachedValue = $implementation->sCachedValue('1234');
         $this->assertNull($cachedValue);
     }
@@ -187,26 +187,26 @@ class CacheTraitTest extends TestCase
 class CacheTraitImplementation
 {
     use CacheTrait;
-
+    
     private $cache;
     private $cacheConfig;
-
+    
     public function __construct(array $config = [])
     {
         $this->key = array_key_exists('key', $config) ? $config['key'] : 'key';
-        $this->cache = isset($config['cache']) ? $config['cache'] : null;
+        $this->cache = isset($config['cache']) ? $config['cache'] : NULL;
         $this->cacheConfig = [
-            'prefix' => '',
+            'prefix'   => '',
             'lifetime' => 1000,
         ];
     }
-
+    
     // allows us to keep trait methods private
     public function gCachedValue()
     {
         return $this->getCachedValue($this->key);
     }
-
+    
     public function sCachedValue($v)
     {
         $this->setCachedValue($this->key, $v);

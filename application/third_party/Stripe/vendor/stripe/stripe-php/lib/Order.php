@@ -48,14 +48,14 @@ class Order extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\OrderReturn the newly created return
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\OrderReturn the newly created return
      */
-    public function returnOrder($params = null, $opts = null)
+    public function returnOrder($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/returns';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
 
         return Util\Util::convertToStripeObject($response, $opts);
     }
@@ -64,14 +64,14 @@ class Order extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Order the paid order
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Order the paid order
      */
-    public function pay($params = null, $opts = null)
+    public function pay($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/pay';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

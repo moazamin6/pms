@@ -65,10 +65,12 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
     public static function fromEnv()
     {
         $path = getenv(self::ENV_VAR);
-        if (empty($path)) {
+        if(empty($path))
+        {
             return;
         }
-        if (!file_exists($path)) {
+        if(!file_exists($path))
+        {
             $cause = 'file ' . $path . ' does not exist';
             throw new \DomainException(self::unableToReadEnv($cause));
         }
@@ -91,12 +93,14 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
     {
         $rootEnv = self::isOnWindows() ? 'APPDATA' : 'HOME';
         $path = [getenv($rootEnv)];
-        if (!self::isOnWindows()) {
+        if(!self::isOnWindows())
+        {
             $path[] = self::NON_WINDOWS_WELL_KNOWN_PATH_BASE;
         }
         $path[] = self::WELL_KNOWN_PATH;
         $path = implode(DIRECTORY_SEPARATOR, $path);
-        if (!file_exists($path)) {
+        if(!file_exists($path))
+        {
             return;
         }
         $jsonKey = file_get_contents($path);
@@ -114,15 +118,21 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
      */
     public static function makeCredentials($scope, array $jsonKey)
     {
-        if (!array_key_exists('type', $jsonKey)) {
+        if(!array_key_exists('type', $jsonKey))
+        {
             throw new \InvalidArgumentException('json key is missing the type field');
         }
 
-        if ($jsonKey['type'] == 'service_account') {
+        if($jsonKey['type'] == 'service_account')
+        {
             return new ServiceAccountCredentials($scope, $jsonKey);
-        } elseif ($jsonKey['type'] == 'authorized_user') {
+        }
+        else if($jsonKey['type'] == 'authorized_user')
+        {
             return new UserRefreshCredentials($scope, $jsonKey);
-        } else {
+        }
+        else
+        {
             throw new \InvalidArgumentException('invalid value in the type field');
         }
     }
@@ -140,12 +150,14 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
     public static function makeHttpClient(
         FetchAuthTokenInterface $fetcher,
         array $httpClientOptions = [],
-        callable $httpHandler = null,
-        callable $tokenCallback = null
-    ) {
+        callable $httpHandler = NULL,
+        callable $tokenCallback = NULL
+    )
+    {
         $version = \GuzzleHttp\ClientInterface::VERSION;
 
-        switch ($version[0]) {
+        switch($version[0])
+        {
             case '5':
                 $client = new \GuzzleHttp\Client($httpClientOptions);
                 $client->setDefaultOption('auth', 'google_auth');
@@ -166,9 +178,9 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
                 $stack->push($middleware);
 
                 return new \GuzzleHttp\Client([
-                   'handler' => $stack,
-                   'auth' => 'google_auth',
-                ] + $httpClientOptions);
+                        'handler' => $stack,
+                        'auth'    => 'google_auth',
+                    ] + $httpClientOptions);
             default:
                 throw new \Exception('Version not supported');
         }
@@ -181,7 +193,7 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
      */
     public function getUpdateMetadataFunc()
     {
-        return array($this, 'updateMetadata');
+        return [$this, 'updateMetadata'];
     }
 
     /**
@@ -195,15 +207,17 @@ abstract class CredentialsLoader implements FetchAuthTokenInterface
      */
     public function updateMetadata(
         $metadata,
-        $authUri = null,
-        callable $httpHandler = null
-    ) {
+        $authUri = NULL,
+        callable $httpHandler = NULL
+    )
+    {
         $result = $this->fetchAuthToken($httpHandler);
-        if (!isset($result['access_token'])) {
+        if(!isset($result['access_token']))
+        {
             return $metadata;
         }
         $metadata_copy = $metadata;
-        $metadata_copy[self::AUTH_METADATA_KEY] = array('Bearer ' . $result['access_token']);
+        $metadata_copy[self::AUTH_METADATA_KEY] = ['Bearer ' . $result['access_token']];
 
         return $metadata_copy;
     }

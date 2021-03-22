@@ -32,64 +32,64 @@
  */
 class Google_Service_ServiceBroker extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $v1;
-  
-  /**
-   * Constructs the internal representation of the ServiceBroker service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://servicebroker.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'servicebroker';
+	public $v1;
 
-    $this->v1 = new Google_Service_ServiceBroker_Resource_V1(
-        $this,
-        $this->serviceName,
-        'v1',
-        array(
-          'methods' => array(
-            'getIamPolicy' => array(
-              'path' => 'v1/{+resource}:getIamPolicy',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setIamPolicy' => array(
-              'path' => 'v1/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v1/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the ServiceBroker service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://servicebroker.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'servicebroker';
+
+		$this->v1 = new Google_Service_ServiceBroker_Resource_V1(
+			$this,
+			$this->serviceName,
+			'v1',
+			[
+				'methods' => [
+					'getIamPolicy'          => [
+						'path'       => 'v1/{+resource}:getIamPolicy',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'setIamPolicy'       => [
+						'path'       => 'v1/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions' => [
+						'path'       => 'v1/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -120,13 +120,15 @@ class GCECredentials extends CredentialsLoader
      *
      * @return true if this a GCEInstance false otherwise
      */
-    public static function onGce(callable $httpHandler = null)
+    public static function onGce(callable $httpHandler = NULL)
     {
-        if (is_null($httpHandler)) {
+        if(is_null($httpHandler))
+        {
             $httpHandler = HttpHandlerFactory::build();
         }
         $checkUri = 'http://' . self::METADATA_IP;
-        try {
+        try
+        {
             // Comment from: oauth2client/client.py
             //
             // Note: the explicit `timeout` below is a workaround. The underlying
@@ -141,11 +143,17 @@ class GCECredentials extends CredentialsLoader
             );
 
             return $resp->getHeaderLine(self::FLAVOR_HEADER) == 'Google';
-        } catch (ClientException $e) {
+        }
+        catch(ClientException $e)
+        {
             return false;
-        } catch (ServerException $e) {
+        }
+        catch(ServerException $e)
+        {
             return false;
-        } catch (RequestException $e) {
+        }
+        catch(RequestException $e)
+        {
             return false;
         }
     }
@@ -162,16 +170,19 @@ class GCECredentials extends CredentialsLoader
      *
      * @throws \Exception
      */
-    public function fetchAuthToken(callable $httpHandler = null)
+    public function fetchAuthToken(callable $httpHandler = NULL)
     {
-        if (is_null($httpHandler)) {
+        if(is_null($httpHandler))
+        {
             $httpHandler = HttpHandlerFactory::build();
         }
-        if (!$this->hasCheckedOnGce) {
+        if(!$this->hasCheckedOnGce)
+        {
             $this->isOnGce = self::onGce($httpHandler);
         }
-        if (!$this->isOnGce) {
-            return array();  // return an empty array with no access token
+        if(!$this->isOnGce)
+        {
+            return [];  // return an empty array with no access token
         }
         $resp = $httpHandler(
             new Request(
@@ -183,7 +194,8 @@ class GCECredentials extends CredentialsLoader
         $body = (string)$resp->getBody();
 
         // Assume it's JSON; if it's not throw an exception
-        if (null === $json = json_decode($body, true)) {
+        if(NULL === $json = json_decode($body, true))
+        {
             throw new \Exception('Invalid JSON response');
         }
 
@@ -207,13 +219,14 @@ class GCECredentials extends CredentialsLoader
      */
     public function getLastReceivedToken()
     {
-        if ($this->lastReceivedToken) {
+        if($this->lastReceivedToken)
+        {
             return [
                 'access_token' => $this->lastReceivedToken['access_token'],
-                'expires_at' => $this->lastReceivedToken['expires_at'],
+                'expires_at'   => $this->lastReceivedToken['expires_at'],
             ];
         }
 
-        return null;
+        return NULL;
     }
 }

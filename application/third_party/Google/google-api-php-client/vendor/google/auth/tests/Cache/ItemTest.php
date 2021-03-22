@@ -26,31 +26,31 @@ class ItemTest extends TestCase
     {
         return new Item($key);
     }
-
+    
     public function testGetsKey()
     {
         $key = 'item';
-
+        
         $this->assertEquals($key, $this->getItem($key)->getKey());
     }
-
+    
     public function testGetsNull()
     {
         $item = $this->getItem('item');
-
+        
         $this->assertNull($item->get());
         $this->assertFalse($item->isHit());
     }
-
+    
     public function testGetsValue()
     {
         $value = 'value';
         $item = $this->getItem('item');
         $item->set($value);
-
+        
         $this->assertEquals('value', $item->get());
     }
-
+    
     /**
      * @dataProvider values
      */
@@ -58,69 +58,69 @@ class ItemTest extends TestCase
     {
         $item = $this->getItem('item');
         $item->set($value);
-
+        
         $this->assertEquals($value, $item->get());
     }
-
+    
     public function values()
     {
         return [
             [1],
             [1.5],
             [true],
-            [null],
+            [NULL],
             [new \DateTime()],
             [['test']],
-            ['value']
+            ['value'],
         ];
     }
-
+    
     public function testIsHit()
     {
         $item = $this->getItem('item');
-
+        
         $this->assertFalse($item->isHit());
-
+        
         $item->set('value');
-
+        
         $this->assertTrue($item->isHit());
     }
-
+    
     public function testExpiresAt()
     {
         $item = $this->getItem('item');
         $item->set('value');
         $item->expiresAt(new \DateTime('now + 1 hour'));
-
+        
         $this->assertTrue($item->isHit());
-
-        $item->expiresAt(null);
-
+        
+        $item->expiresAt(NULL);
+        
         $this->assertTrue($item->isHit());
-
+        
         $item->expiresAt(new \DateTime('yesterday'));
-
+        
         $this->assertFalse($item->isHit());
     }
-
+    
     public function testExpiresAfter()
     {
         $item = $this->getItem('item');
         $item->set('value');
         $item->expiresAfter(30);
-
+        
         $this->assertTrue($item->isHit());
-
+        
         $item->expiresAfter(0);
-
+        
         $this->assertFalse($item->isHit());
-
+        
         $item->expiresAfter(new \DateInterval('PT30S'));
-
+        
         $this->assertTrue($item->isHit());
-
-        $item->expiresAfter(null);
-
+        
+        $item->expiresAfter(NULL);
+        
         $this->assertTrue($item->isHit());
     }
 }

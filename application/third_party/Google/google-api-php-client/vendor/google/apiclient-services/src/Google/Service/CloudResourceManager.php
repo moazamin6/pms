@@ -31,155 +31,155 @@
  */
 class Google_Service_CloudResourceManager extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** View your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM_READ_ONLY =
-      "https://www.googleapis.com/auth/cloud-platform.read-only";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** View your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM_READ_ONLY =
+		"https://www.googleapis.com/auth/cloud-platform.read-only";
 
-  public $folders;
-  
-  /**
-   * Constructs the internal representation of the CloudResourceManager service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://cloudresourcemanager.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v2';
-    $this->serviceName = 'cloudresourcemanager';
+	public $folders;
 
-    $this->folders = new Google_Service_CloudResourceManager_Resource_Folders(
-        $this,
-        $this->serviceName,
-        'folders',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v2/folders',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getIamPolicy' => array(
-              'path' => 'v2/{+resource}:getIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v2/folders',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'parent' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'showDeleted' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'move' => array(
-              'path' => 'v2/{+name}:move',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'patch' => array(
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'search' => array(
-              'path' => 'v2/folders:search',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'setIamPolicy' => array(
-              'path' => 'v2/{+resource}:setIamPolicy',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'testIamPermissions' => array(
-              'path' => 'v2/{+resource}:testIamPermissions',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'resource' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'undelete' => array(
-              'path' => 'v2/{+name}:undelete',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the CloudResourceManager service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://cloudresourcemanager.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v2';
+		$this->serviceName = 'cloudresourcemanager';
+
+		$this->folders = new Google_Service_CloudResourceManager_Resource_Folders(
+			$this,
+			$this->serviceName,
+			'folders',
+			[
+				'methods' => [
+					'create'                => [
+						'path'       => 'v2/folders',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'delete'             => [
+						'path'       => 'v2/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'                => [
+						'path'       => 'v2/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getIamPolicy'       => [
+						'path'       => 'v2/{+resource}:getIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'               => [
+						'path'       => 'v2/folders',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'pageSize'    => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'parent'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'showDeleted' => [
+								'location' => 'query',
+								'type'     => 'boolean',
+							],
+							'pageToken'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'move'               => [
+						'path'       => 'v2/{+name}:move',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'patch'              => [
+						'path'       => 'v2/{+name}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'search'             => [
+						'path'       => 'v2/folders:search',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'setIamPolicy'       => [
+						'path'       => 'v2/{+resource}:setIamPolicy',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'testIamPermissions' => [
+						'path'       => 'v2/{+resource}:testIamPermissions',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'resource' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'undelete'           => [
+						'path'       => 'v2/{+name}:undelete',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

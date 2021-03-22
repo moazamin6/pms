@@ -12,96 +12,101 @@ use Ddeboer\Imap\Exception\ReopenMailboxException;
  */
 final class ImapResource implements ImapResourceInterface
 {
-    /**
-     * @var resource
-     */
-    private $resource;
+	/**
+	 * @var resource
+	 */
+	private $resource;
 
-    /**
-     * @var null|MailboxInterface
-     */
-    private $mailbox;
+	/**
+	 * @var null|MailboxInterface
+	 */
+	private $mailbox;
 
-    /**
-     * @var null|string
-     */
-    private static $lastMailboxUsedCache;
+	/**
+	 * @var null|string
+	 */
+	private static $lastMailboxUsedCache;
 
-    /**
-     * Constructor.
-     *
-     * @param resource $resource
-     */
-    public function __construct($resource, MailboxInterface $mailbox = null)
-    {
-        $this->resource = $resource;
-        $this->mailbox = $mailbox;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param resource $resource
+	 */
+	public function __construct($resource, MailboxInterface $mailbox = NULL)
+	{
+		$this->resource = $resource;
+		$this->mailbox = $mailbox;
+	}
 
-    /**
-     * Get IMAP resource stream.
-     *
-     * @throws InvalidResourceException
-     *
-     * @return resource
-     */
-    public function getStream()
-    {
-        if (false === \is_resource($this->resource) || 'imap' !== \get_resource_type($this->resource)) {
-            throw new InvalidResourceException('Supplied resource is not a valid imap resource');
-        }
+	/**
+	 * Get IMAP resource stream.
+	 *
+	 * @return resource
+	 * @throws InvalidResourceException
+	 *
+	 */
+	public function getStream()
+	{
+		if(false === \is_resource($this->resource) || 'imap' !== \get_resource_type($this->resource))
+		{
+			throw new InvalidResourceException('Supplied resource is not a valid imap resource');
+		}
 
-        $this->initMailbox();
+		$this->initMailbox();
 
-        return $this->resource;
-    }
+		return $this->resource;
+	}
 
-    /**
-     * Clear last mailbox used cache.
-     */
-    public function clearLastMailboxUsedCache(): void
-    {
-        self::$lastMailboxUsedCache = null;
-    }
+	/**
+	 * Clear last mailbox used cache.
+	 */
+	public function clearLastMailboxUsedCache(): void
+	{
+		self::$lastMailboxUsedCache = NULL;
+	}
 
-    /**
-     * If connection is not currently in this mailbox, switch it to this mailbox.
-     */
-    private function initMailbox(): void
-    {
-        if (null === $this->mailbox || $this->isMailboxOpen()) {
-            return;
-        }
+	/**
+	 * If connection is not currently in this mailbox, switch it to this mailbox.
+	 */
+	private function initMailbox(): void
+	{
+		if(NULL === $this->mailbox || $this->isMailboxOpen())
+		{
+			return;
+		}
 
-        \imap_reopen($this->resource, $this->mailbox->getFullEncodedName());
+		\imap_reopen($this->resource, $this->mailbox->getFullEncodedName());
 
-        if ($this->isMailboxOpen()) {
-            return;
-        }
+		if($this->isMailboxOpen())
+		{
+			return;
+		}
 
-        throw new ReopenMailboxException(\sprintf('Cannot reopen mailbox "%s"', $this->mailbox->getName()));
-    }
+		throw new ReopenMailboxException(\sprintf('Cannot reopen mailbox "%s"', $this->mailbox->getName()));
+	}
 
-    /**
-     * Check whether the current mailbox is open.
-     *
-     * @return bool
-     */
-    private function isMailboxOpen(): bool
-    {
-        $currentMailboxName = $this->mailbox->getFullEncodedName();
-        if ($currentMailboxName === self::$lastMailboxUsedCache) {
-            return true;
-        }
+	/**
+	 * Check whether the current mailbox is open.
+	 *
+	 * @return bool
+	 */
+	private function isMailboxOpen(): bool
+	{
+		$currentMailboxName = $this->mailbox->getFullEncodedName();
+		if($currentMailboxName === self::$lastMailboxUsedCache)
+		{
+			return true;
+		}
 
-        self::$lastMailboxUsedCache = null;
-        $check = \imap_check($this->resource);
-        $return = false !== $check && $check->Mailbox === $currentMailboxName;
+		self::$lastMailboxUsedCache = NULL;
+		$check = \imap_check($this->resource);
+		$return = false !== $check && $check->Mailbox === $currentMailboxName;
 
-        if (true === $return) {
-            self::$lastMailboxUsedCache = $currentMailboxName;
-        }
+		if(true === $return)
+		{
+			self::$lastMailboxUsedCache = $currentMailboxName;
+		}
 
-        return $return;
-    }
+		return $return;
+	}
 }

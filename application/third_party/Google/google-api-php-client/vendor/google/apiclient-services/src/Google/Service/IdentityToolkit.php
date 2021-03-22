@@ -30,126 +30,126 @@
  */
 class Google_Service_IdentityToolkit extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** View and administer all your Firebase data and settings. */
-  const FIREBASE =
-      "https://www.googleapis.com/auth/firebase";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** View and administer all your Firebase data and settings. */
+	const FIREBASE =
+		"https://www.googleapis.com/auth/firebase";
 
-  public $relyingparty;
-  
-  /**
-   * Constructs the internal representation of the IdentityToolkit service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'identitytoolkit/v3/relyingparty/';
-    $this->version = 'v3';
-    $this->serviceName = 'identitytoolkit';
+	public $relyingparty;
 
-    $this->relyingparty = new Google_Service_IdentityToolkit_Resource_Relyingparty(
-        $this,
-        $this->serviceName,
-        'relyingparty',
-        array(
-          'methods' => array(
-            'createAuthUri' => array(
-              'path' => 'createAuthUri',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'deleteAccount' => array(
-              'path' => 'deleteAccount',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'downloadAccount' => array(
-              'path' => 'downloadAccount',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'emailLinkSignin' => array(
-              'path' => 'emailLinkSignin',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'getAccountInfo' => array(
-              'path' => 'getAccountInfo',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'getOobConfirmationCode' => array(
-              'path' => 'getOobConfirmationCode',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'getProjectConfig' => array(
-              'path' => 'getProjectConfig',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'delegatedProjectNumber' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectNumber' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'getPublicKeys' => array(
-              'path' => 'publicKeys',
-              'httpMethod' => 'GET',
-              'parameters' => array(),
-            ),'getRecaptchaParam' => array(
-              'path' => 'getRecaptchaParam',
-              'httpMethod' => 'GET',
-              'parameters' => array(),
-            ),'resetPassword' => array(
-              'path' => 'resetPassword',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'sendVerificationCode' => array(
-              'path' => 'sendVerificationCode',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'setAccountInfo' => array(
-              'path' => 'setAccountInfo',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'setProjectConfig' => array(
-              'path' => 'setProjectConfig',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'signOutUser' => array(
-              'path' => 'signOutUser',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'signupNewUser' => array(
-              'path' => 'signupNewUser',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'uploadAccount' => array(
-              'path' => 'uploadAccount',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'verifyAssertion' => array(
-              'path' => 'verifyAssertion',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'verifyCustomToken' => array(
-              'path' => 'verifyCustomToken',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'verifyPassword' => array(
-              'path' => 'verifyPassword',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'verifyPhoneNumber' => array(
-              'path' => 'verifyPhoneNumber',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the IdentityToolkit service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'identitytoolkit/v3/relyingparty/';
+		$this->version = 'v3';
+		$this->serviceName = 'identitytoolkit';
+
+		$this->relyingparty = new Google_Service_IdentityToolkit_Resource_Relyingparty(
+			$this,
+			$this->serviceName,
+			'relyingparty',
+			[
+				'methods' => [
+					'createAuthUri'             => [
+						'path'       => 'createAuthUri',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'deleteAccount'          => [
+						'path'       => 'deleteAccount',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'downloadAccount'        => [
+						'path'       => 'downloadAccount',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'emailLinkSignin'        => [
+						'path'       => 'emailLinkSignin',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'getAccountInfo'         => [
+						'path'       => 'getAccountInfo',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'getOobConfirmationCode' => [
+						'path'       => 'getOobConfirmationCode',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'getProjectConfig'       => [
+						'path'       => 'getProjectConfig',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'delegatedProjectNumber' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'projectNumber'          => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'getPublicKeys'          => [
+						'path'       => 'publicKeys',
+						'httpMethod' => 'GET',
+						'parameters' => [],
+					], 'getRecaptchaParam'      => [
+						'path'       => 'getRecaptchaParam',
+						'httpMethod' => 'GET',
+						'parameters' => [],
+					], 'resetPassword'          => [
+						'path'       => 'resetPassword',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'sendVerificationCode'   => [
+						'path'       => 'sendVerificationCode',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'setAccountInfo'         => [
+						'path'       => 'setAccountInfo',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'setProjectConfig'       => [
+						'path'       => 'setProjectConfig',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'signOutUser'            => [
+						'path'       => 'signOutUser',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'signupNewUser'          => [
+						'path'       => 'signupNewUser',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'uploadAccount'          => [
+						'path'       => 'uploadAccount',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'verifyAssertion'        => [
+						'path'       => 'verifyAssertion',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'verifyCustomToken'      => [
+						'path'       => 'verifyCustomToken',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'verifyPassword'         => [
+						'path'       => 'verifyPassword',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'verifyPhoneNumber'      => [
+						'path'       => 'verifyPhoneNumber',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+	}
 }

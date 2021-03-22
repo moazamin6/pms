@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Header\Consumer;
 
 /**
@@ -14,33 +15,33 @@ namespace ZBateson\MailMimeParser\Header\Consumer;
  */
 class IdConsumer extends GenericConsumer
 {
-    /**
-     * Overridden to return patterns matching the beginning part of an ID ('<'
-     * and '>' chars).
-     * 
-     * @return string[] the patterns
-     */
-    public function getTokenSeparators()
-    {
-        return ['\s+', '<', '>'];
-    }
-    
-    /**
-     * Returns true for '>'.
-     */
-    protected function isEndToken($token)
-    {
-        return ($token === '>');
-    }
-    
-    /**
-     * Returns true for '<'.
-     * 
-     * @param string $token
-     * @return boolean false
-     */
-    protected function isStartToken($token)
-    {
-        return ($token === '<');
-    }
+	/**
+	 * Overridden to return patterns matching the beginning part of an ID ('<'
+	 * and '>' chars).
+	 *
+	 * @return string[] the patterns
+	 */
+	public function getTokenSeparators()
+	{
+		return ['\s+', '<', '>'];
+	}
+
+	/**
+	 * Returns true for '>'.
+	 */
+	protected function isEndToken($token)
+	{
+		return ($token === '>');
+	}
+
+	/**
+	 * Returns true for '<'.
+	 *
+	 * @param string $token
+	 * @return boolean false
+	 */
+	protected function isStartToken($token)
+	{
+		return ($token === '<');
+	}
 }

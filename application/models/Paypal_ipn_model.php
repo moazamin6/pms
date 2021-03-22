@@ -1,12 +1,14 @@
 <?php
 
-class Paypal_ipn_model extends Crud_model {
+class Paypal_ipn_model extends Crud_model
+{
 
-    private $table = null;
+	private $table = NULL;
 
-    function __construct() {
-        $this->table = 'paypal_ipn';
-        parent::__construct($this->table);
-    }
+	function __construct()
+	{
+		$this->table = 'paypal_ipn';
+		parent::__construct($this->table);
+	}
 
 }

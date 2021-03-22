@@ -30,435 +30,435 @@
  */
 class Google_Service_Dns extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
-  /** View your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM_READ_ONLY =
-      "https://www.googleapis.com/auth/cloud-platform.read-only";
-  /** View your DNS records hosted by Google Cloud DNS. */
-  const NDEV_CLOUDDNS_READONLY =
-      "https://www.googleapis.com/auth/ndev.clouddns.readonly";
-  /** View and manage your DNS records hosted by Google Cloud DNS. */
-  const NDEV_CLOUDDNS_READWRITE =
-      "https://www.googleapis.com/auth/ndev.clouddns.readwrite";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
+	/** View your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM_READ_ONLY =
+		"https://www.googleapis.com/auth/cloud-platform.read-only";
+	/** View your DNS records hosted by Google Cloud DNS. */
+	const NDEV_CLOUDDNS_READONLY =
+		"https://www.googleapis.com/auth/ndev.clouddns.readonly";
+	/** View and manage your DNS records hosted by Google Cloud DNS. */
+	const NDEV_CLOUDDNS_READWRITE =
+		"https://www.googleapis.com/auth/ndev.clouddns.readwrite";
 
-  public $changes;
-  public $dnsKeys;
-  public $managedZoneOperations;
-  public $managedZones;
-  public $projects;
-  public $resourceRecordSets;
-  
-  /**
-   * Constructs the internal representation of the Dns service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'dns/v1/projects/';
-    $this->version = 'v1';
-    $this->serviceName = 'dns';
+	public $changes;
+	public $dnsKeys;
+	public $managedZoneOperations;
+	public $managedZones;
+	public $projects;
+	public $resourceRecordSets;
 
-    $this->changes = new Google_Service_Dns_Resource_Changes(
-        $this,
-        $this->serviceName,
-        'changes',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => '{project}/managedZones/{managedZone}/changes',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/managedZones/{managedZone}/changes/{changeId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'changeId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/managedZones/{managedZone}/changes',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'sortBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'sortOrder' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->dnsKeys = new Google_Service_Dns_Resource_DnsKeys(
-        $this,
-        $this->serviceName,
-        'dnsKeys',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'dnsKeyId' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'digestType' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/managedZones/{managedZone}/dnsKeys',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'digestType' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->managedZoneOperations = new Google_Service_Dns_Resource_ManagedZoneOperations(
-        $this,
-        $this->serviceName,
-        'managedZoneOperations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}/managedZones/{managedZone}/operations/{operation}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'operation' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/managedZones/{managedZone}/operations',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'sortBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->managedZones = new Google_Service_Dns_Resource_ManagedZones(
-        $this,
-        $this->serviceName,
-        'managedZones',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => '{project}/managedZones',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => '{project}/managedZones/{managedZone}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{project}/managedZones/{managedZone}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'list' => array(
-              'path' => '{project}/managedZones',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'dnsName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'patch' => array(
-              'path' => '{project}/managedZones/{managedZone}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'update' => array(
-              'path' => '{project}/managedZones/{managedZone}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->projects = new Google_Service_Dns_Resource_Projects(
-        $this,
-        $this->serviceName,
-        'projects',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => '{project}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'clientOperationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->resourceRecordSets = new Google_Service_Dns_Resource_ResourceRecordSets(
-        $this,
-        $this->serviceName,
-        'resourceRecordSets',
-        array(
-          'methods' => array(
-            'list' => array(
-              'path' => '{project}/managedZones/{managedZone}/rrsets',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'project' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'managedZone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'maxResults' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'name' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'type' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Dns service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'dns/v1/projects/';
+		$this->version = 'v1';
+		$this->serviceName = 'dns';
+
+		$this->changes = new Google_Service_Dns_Resource_Changes(
+			$this,
+			$this->serviceName,
+			'changes',
+			[
+				'methods' => [
+					'create'  => [
+						'path'       => '{project}/managedZones/{managedZone}/changes',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'get'  => [
+						'path'       => '{project}/managedZones/{managedZone}/changes/{changeId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'changeId'          => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list' => [
+						'path'       => '{project}/managedZones/{managedZone}/changes',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'maxResults'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'sortBy'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'sortOrder'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->dnsKeys = new Google_Service_Dns_Resource_DnsKeys(
+			$this,
+			$this->serviceName,
+			'dnsKeys',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => '{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'dnsKeyId'          => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'digestType'        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list' => [
+						'path'       => '{project}/managedZones/{managedZone}/dnsKeys',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'digestType'  => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'maxResults'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->managedZoneOperations = new Google_Service_Dns_Resource_ManagedZoneOperations(
+			$this,
+			$this->serviceName,
+			'managedZoneOperations',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => '{project}/managedZones/{managedZone}/operations/{operation}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'operation'         => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list' => [
+						'path'       => '{project}/managedZones/{managedZone}/operations',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'maxResults'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'sortBy'      => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->managedZones = new Google_Service_Dns_Resource_ManagedZones(
+			$this,
+			$this->serviceName,
+			'managedZones',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => '{project}/managedZones',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'delete' => [
+						'path'       => '{project}/managedZones/{managedZone}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'get'    => [
+						'path'       => '{project}/managedZones/{managedZone}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'list'   => [
+						'path'       => '{project}/managedZones',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'dnsName'    => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'maxResults' => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken'  => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'patch'  => [
+						'path'       => '{project}/managedZones/{managedZone}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'update' => [
+						'path'       => '{project}/managedZones/{managedZone}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->projects = new Google_Service_Dns_Resource_Projects(
+			$this,
+			$this->serviceName,
+			'projects',
+			[
+				'methods' => [
+					'get' => [
+						'path'       => '{project}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'           => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'clientOperationId' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->resourceRecordSets = new Google_Service_Dns_Resource_ResourceRecordSets(
+			$this,
+			$this->serviceName,
+			'resourceRecordSets',
+			[
+				'methods' => [
+					'list' => [
+						'path'       => '{project}/managedZones/{managedZone}/rrsets',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'project'     => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'managedZone' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'maxResults'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'name'        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageToken'   => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'type'        => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

@@ -32,151 +32,151 @@ class Google_Service_HangoutsChat extends Google_Service
 {
 
 
-  public $spaces;
-  public $spaces_members;
-  public $spaces_messages;
-  
-  /**
-   * Constructs the internal representation of the HangoutsChat service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://chat.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'chat';
+	public $spaces;
+	public $spaces_members;
+	public $spaces_messages;
 
-    $this->spaces = new Google_Service_HangoutsChat_Resource_Spaces(
-        $this,
-        $this->serviceName,
-        'spaces',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/spaces',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->spaces_members = new Google_Service_HangoutsChat_Resource_SpacesMembers(
-        $this,
-        $this->serviceName,
-        'members',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'v1/{+parent}/members',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->spaces_messages = new Google_Service_HangoutsChat_Resource_SpacesMessages(
-        $this,
-        $this->serviceName,
-        'messages',
-        array(
-          'methods' => array(
-            'create' => array(
-              'path' => 'v1/{+parent}/messages',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'parent' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'threadKey' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),'delete' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'update' => array(
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'updateMask' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the HangoutsChat service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://chat.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'chat';
+
+		$this->spaces = new Google_Service_HangoutsChat_Resource_Spaces(
+			$this,
+			$this->serviceName,
+			'spaces',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1/spaces',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->spaces_members = new Google_Service_HangoutsChat_Resource_SpacesMembers(
+			$this,
+			$this->serviceName,
+			'members',
+			[
+				'methods' => [
+					'get'     => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list' => [
+						'path'       => 'v1/{+parent}/members',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'pageToken' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+							'pageSize'  => [
+								'location' => 'query',
+								'type'     => 'integer',
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->spaces_messages = new Google_Service_HangoutsChat_Resource_SpacesMessages(
+			$this,
+			$this->serviceName,
+			'messages',
+			[
+				'methods' => [
+					'create'    => [
+						'path'       => 'v1/{+parent}/messages',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'parent'    => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'threadKey' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					], 'delete' => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'    => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'update' => [
+						'path'       => 'v1/{+name}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'name'       => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+							'updateMask' => [
+								'location' => 'query',
+								'type'     => 'string',
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

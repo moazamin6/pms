@@ -29,12 +29,13 @@ abstract class ApiErrorException extends \Exception implements ExceptionInterfac
      */
     public static function factory(
         $message,
-        $httpStatus = null,
-        $httpBody = null,
-        $jsonBody = null,
-        $httpHeaders = null,
-        $stripeCode = null
-    ) {
+        $httpStatus = NULL,
+        $httpBody = NULL,
+        $jsonBody = NULL,
+        $httpHeaders = NULL,
+        $stripeCode = NULL
+    )
+    {
         $instance = new static($message);
         $instance->setHttpStatus($httpStatus);
         $instance->setHttpBody($httpBody);
@@ -42,8 +43,9 @@ abstract class ApiErrorException extends \Exception implements ExceptionInterfac
         $instance->setHttpHeaders($httpHeaders);
         $instance->setStripeCode($stripeCode);
 
-        $instance->setRequestId(null);
-        if ($httpHeaders && isset($httpHeaders['Request-Id'])) {
+        $instance->setRequestId(NULL);
+        if($httpHeaders && isset($httpHeaders['Request-Id']))
+        {
             $instance->setRequestId($httpHeaders['Request-Id']);
         }
 
@@ -202,16 +204,17 @@ abstract class ApiErrorException extends \Exception implements ExceptionInterfac
      */
     public function __toString()
     {
-        $statusStr = (null === $this->getHttpStatus()) ? '' : "(Status {$this->getHttpStatus()}) ";
-        $idStr = (null === $this->getRequestId()) ? '' : "(Request {$this->getRequestId()}) ";
+        $statusStr = (NULL === $this->getHttpStatus()) ? '' : "(Status {$this->getHttpStatus()}) ";
+        $idStr = (NULL === $this->getRequestId()) ? '' : "(Request {$this->getRequestId()}) ";
 
         return "{$statusStr}{$idStr}{$this->getMessage()}";
     }
 
     protected function constructErrorObject()
     {
-        if (null === $this->jsonBody || !\array_key_exists('error', $this->jsonBody)) {
-            return null;
+        if(NULL === $this->jsonBody || !\array_key_exists('error', $this->jsonBody))
+        {
+            return NULL;
         }
 
         return \Stripe\ErrorObject::constructFrom($this->jsonBody['error']);

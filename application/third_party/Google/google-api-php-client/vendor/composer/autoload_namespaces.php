@@ -5,7 +5,7 @@
 $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
-return array(
-    'Google_Service_' => array($vendorDir . '/google/apiclient-services/src'),
-    'Google_' => array($baseDir . '/src'),
-);
+return [
+	'Google_Service_' => [$vendorDir . '/google/apiclient-services/src'],
+	'Google_'         => [$baseDir . '/src'],
+];

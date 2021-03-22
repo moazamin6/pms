@@ -11,13 +11,13 @@ use Ddeboer\Imap\Search\ConditionInterface;
  */
 final class Old implements ConditionInterface
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return 'OLD';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	public function toString(): string
+	{
+		return 'OLD';
+	}
 }

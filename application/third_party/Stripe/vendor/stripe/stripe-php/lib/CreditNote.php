@@ -59,14 +59,14 @@ class CreditNote extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\CreditNote the previewed credit note
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\CreditNote the previewed credit note
      */
-    public static function preview($params = null, $opts = null)
+    public static function preview($params = NULL, $opts = NULL)
     {
         $url = static::classUrl() . '/preview';
-        list($response, $opts) = static::_staticRequest('get', $url, $params, $opts);
+        [$response, $opts] = static::_staticRequest('get', $url, $params, $opts);
         $obj = Util\Util::convertToStripeObject($response->json, $opts);
         $obj->setLastResponse($response);
 
@@ -77,14 +77,14 @@ class CreditNote extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return CreditNote the voided credit note
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return CreditNote the voided credit note
      */
-    public function voidCreditNote($params = null, $opts = null)
+    public function voidCreditNote($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/void';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -97,11 +97,11 @@ class CreditNote extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of credit note line items
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of credit note line items
      */
-    public static function allLines($id, $params = null, $opts = null)
+    public static function allLines($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_LINES, $params, $opts);
     }

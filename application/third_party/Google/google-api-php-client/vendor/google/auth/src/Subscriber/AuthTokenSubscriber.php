@@ -39,17 +39,17 @@ class AuthTokenSubscriber implements SubscriberInterface
      * @var callable
      */
     private $httpHandler;
-
+    
     /**
      * @var FetchAuthTokenInterface
      */
     private $fetcher;
-
+    
     /**
      * @var callable
      */
     private $tokenCallback;
-
+    
     /**
      * Creates a new AuthTokenSubscriber.
      *
@@ -59,14 +59,15 @@ class AuthTokenSubscriber implements SubscriberInterface
      */
     public function __construct(
         FetchAuthTokenInterface $fetcher,
-        callable $httpHandler = null,
-        callable $tokenCallback = null
-    ) {
+        callable $httpHandler = NULL,
+        callable $tokenCallback = NULL
+    )
+    {
         $this->fetcher = $fetcher;
         $this->httpHandler = $httpHandler;
         $this->tokenCallback = $tokenCallback;
     }
-
+    
     /**
      * @return array
      */
@@ -74,7 +75,7 @@ class AuthTokenSubscriber implements SubscriberInterface
     {
         return ['before' => ['onBefore', RequestEvents::SIGN_REQUEST]];
     }
-
+    
     /**
      * Updates the request with an Authorization header when auth is 'fetched_auth_token'.
      *
@@ -100,17 +101,20 @@ class AuthTokenSubscriber implements SubscriberInterface
     {
         // Requests using "auth"="google_auth" will be authorized.
         $request = $event->getRequest();
-        if ($request->getConfig()['auth'] != 'google_auth') {
+        if($request->getConfig()['auth'] != 'google_auth')
+        {
             return;
         }
-
+        
         // Fetch the auth token.
         $auth_tokens = $this->fetcher->fetchAuthToken($this->httpHandler);
-        if (array_key_exists('access_token', $auth_tokens)) {
+        if(array_key_exists('access_token', $auth_tokens))
+        {
             $request->setHeader('authorization', 'Bearer ' . $auth_tokens['access_token']);
-
+            
             // notify the callback if applicable
-            if ($this->tokenCallback) {
+            if($this->tokenCallback)
+            {
                 call_user_func($this->tokenCallback, $this->fetcher->getCacheKey(), $auth_tokens['access_token']);
             }
         }

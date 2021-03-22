@@ -12,13 +12,13 @@ use Ddeboer\Imap\Search\AbstractText;
  */
 final class Text extends AbstractText
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    protected function getKeyword(): string
-    {
-        return 'TEXT';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	protected function getKeyword(): string
+	{
+		return 'TEXT';
+	}
 }

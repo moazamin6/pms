@@ -57,9 +57,10 @@ class AuthTokenMiddleware
      */
     public function __construct(
         FetchAuthTokenInterface $fetcher,
-        callable $httpHandler = null,
-        callable $tokenCallback = null
-    ) {
+        callable $httpHandler = NULL,
+        callable $tokenCallback = NULL
+    )
+    {
         $this->fetcher = $fetcher;
         $this->httpHandler = $httpHandler;
         $this->tokenCallback = $tokenCallback;
@@ -93,9 +94,11 @@ class AuthTokenMiddleware
      */
     public function __invoke(callable $handler)
     {
-        return function (RequestInterface $request, array $options) use ($handler) {
+        return function(RequestInterface $request, array $options) use ($handler)
+        {
             // Requests using "auth"="google_auth" will be authorized.
-            if (!isset($options['auth']) || $options['auth'] !== 'google_auth') {
+            if(!isset($options['auth']) || $options['auth'] !== 'google_auth')
+            {
                 return $handler($request, $options);
             }
 
@@ -114,9 +117,11 @@ class AuthTokenMiddleware
     {
         $auth_tokens = $this->fetcher->fetchAuthToken($this->httpHandler);
 
-        if (array_key_exists('access_token', $auth_tokens)) {
+        if(array_key_exists('access_token', $auth_tokens))
+        {
             // notify the callback if applicable
-            if ($this->tokenCallback) {
+            if($this->tokenCallback)
+            {
                 call_user_func($this->tokenCallback, $this->fetcher->getCacheKey(), $auth_tokens['access_token']);
             }
 

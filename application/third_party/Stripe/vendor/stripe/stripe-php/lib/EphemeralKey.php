@@ -17,7 +17,8 @@ class EphemeralKey extends ApiResource
 
     use ApiOperations\Delete;
 
-    use ApiOperations\Create {
+    use ApiOperations\Create
+    {
         create as protected _create;
     }
 
@@ -25,14 +26,15 @@ class EphemeralKey extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
-     * @throws \Stripe\Exception\InvalidArgumentException if stripe_version is missing
+     * @return \Stripe\EphemeralKey the created key
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\EphemeralKey the created key
+     * @throws \Stripe\Exception\InvalidArgumentException if stripe_version is missing
      */
-    public static function create($params = null, $opts = null)
+    public static function create($params = NULL, $opts = NULL)
     {
-        if (!$opts || !isset($opts['stripe_version'])) {
+        if(!$opts || !isset($opts['stripe_version']))
+        {
             throw new Exception\InvalidArgumentException('stripe_version must be specified to create an ephemeral key');
         }
 

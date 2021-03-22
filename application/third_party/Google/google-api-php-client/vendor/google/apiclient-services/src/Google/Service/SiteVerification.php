@@ -30,95 +30,95 @@
  */
 class Google_Service_SiteVerification extends Google_Service
 {
-  /** Manage the list of sites and domains you control. */
-  const SITEVERIFICATION =
-      "https://www.googleapis.com/auth/siteverification";
-  /** Manage your new site verifications with Google. */
-  const SITEVERIFICATION_VERIFY_ONLY =
-      "https://www.googleapis.com/auth/siteverification.verify_only";
+	/** Manage the list of sites and domains you control. */
+	const SITEVERIFICATION =
+		"https://www.googleapis.com/auth/siteverification";
+	/** Manage your new site verifications with Google. */
+	const SITEVERIFICATION_VERIFY_ONLY =
+		"https://www.googleapis.com/auth/siteverification.verify_only";
 
-  public $webResource;
-  
-  /**
-   * Constructs the internal representation of the SiteVerification service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://www.googleapis.com/';
-    $this->servicePath = 'siteVerification/v1/';
-    $this->version = 'v1';
-    $this->serviceName = 'siteVerification';
+	public $webResource;
 
-    $this->webResource = new Google_Service_SiteVerification_Resource_WebResource(
-        $this,
-        $this->serviceName,
-        'webResource',
-        array(
-          'methods' => array(
-            'delete' => array(
-              'path' => 'webResource/{id}',
-              'httpMethod' => 'DELETE',
-              'parameters' => array(
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => 'webResource/{id}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'getToken' => array(
-              'path' => 'token',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'insert' => array(
-              'path' => 'webResource',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'verificationMethod' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'list' => array(
-              'path' => 'webResource',
-              'httpMethod' => 'GET',
-              'parameters' => array(),
-            ),'patch' => array(
-              'path' => 'webResource/{id}',
-              'httpMethod' => 'PATCH',
-              'parameters' => array(
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'update' => array(
-              'path' => 'webResource/{id}',
-              'httpMethod' => 'PUT',
-              'parameters' => array(
-                'id' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the SiteVerification service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://www.googleapis.com/';
+		$this->servicePath = 'siteVerification/v1/';
+		$this->version = 'v1';
+		$this->serviceName = 'siteVerification';
+
+		$this->webResource = new Google_Service_SiteVerification_Resource_WebResource(
+			$this,
+			$this->serviceName,
+			'webResource',
+			[
+				'methods' => [
+					'delete'      => [
+						'path'       => 'webResource/{id}',
+						'httpMethod' => 'DELETE',
+						'parameters' => [
+							'id' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'get'      => [
+						'path'       => 'webResource/{id}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'id' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'getToken' => [
+						'path'       => 'token',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'insert'   => [
+						'path'       => 'webResource',
+						'httpMethod' => 'POST',
+						'parameters' => [
+							'verificationMethod' => [
+								'location' => 'query',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'list'     => [
+						'path'       => 'webResource',
+						'httpMethod' => 'GET',
+						'parameters' => [],
+					], 'patch'    => [
+						'path'       => 'webResource/{id}',
+						'httpMethod' => 'PATCH',
+						'parameters' => [
+							'id' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					], 'update'   => [
+						'path'       => 'webResource/{id}',
+						'httpMethod' => 'PUT',
+						'parameters' => [
+							'id' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+	}
 }

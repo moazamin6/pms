@@ -23,25 +23,25 @@ class Stripe
     public static $apiUploadBase = 'https://files.stripe.com';
 
     /** @var null|string The version of the Stripe API to use for requests. */
-    public static $apiVersion = null;
+    public static $apiVersion = NULL;
 
     /** @var null|string The account ID for connected accounts requests. */
-    public static $accountId = null;
+    public static $accountId = NULL;
 
     /** @var string Path to the CA bundle used to verify SSL certificates */
-    public static $caBundlePath = null;
+    public static $caBundlePath = NULL;
 
     /** @var bool Defaults to true. */
     public static $verifySslCerts = true;
 
     /** @var array The application's information (name, version, URL) */
-    public static $appInfo = null;
+    public static $appInfo = NULL;
 
     /**
      * @var null|Util\LoggerInterface the logger to which the library will
      *   produce messages
      */
-    public static $logger = null;
+    public static $logger = NULL;
 
     /** @var int Maximum number of request retries */
     public static $maxNetworkRetries = 0;
@@ -82,7 +82,8 @@ class Stripe
      */
     public static function getLogger()
     {
-        if (null === self::$logger) {
+        if(NULL === self::$logger)
+        {
             return new Util\DefaultLogger();
         }
 
@@ -207,7 +208,7 @@ class Stripe
      * @param null|string $appUrl The application's URL
      * @param null|string $appPartnerId The application's partner ID
      */
-    public static function setAppInfo($appName, $appVersion = null, $appUrl = null, $appPartnerId = null)
+    public static function setAppInfo($appName, $appVersion = NULL, $appUrl = NULL, $appPartnerId = NULL)
     {
         self::$appInfo = self::$appInfo ?: [];
         self::$appInfo['name'] = $appName;

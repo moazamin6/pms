@@ -1,7 +1,8 @@
 <?php
 
-if (class_exists('ParagonIE_Sodium_Core32_Util', false)) {
-    return;
+if(class_exists('ParagonIE_Sodium_Core32_Util', false))
+{
+	return;
 }
 
 /**

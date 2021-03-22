@@ -22,9 +22,10 @@ class SignatureVerificationException extends \Exception implements ExceptionInte
      */
     public static function factory(
         $message,
-        $httpBody = null,
-        $sigHeader = null
-    ) {
+        $httpBody = NULL,
+        $sigHeader = NULL
+    )
+    {
         $instance = new static($message);
         $instance->setHttpBody($httpBody);
         $instance->setSigHeader($sigHeader);

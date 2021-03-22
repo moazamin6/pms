@@ -1313,7 +1313,7 @@ $lang["the_estimates_id_must_be_larger_then_last_estimate_id"] = "El ID de Estim
 $lang["send_to_client"] = "Enviar al cliente";
 $lang["estimate_sent_message"] = "El estimado ha sido enviado!";
 $lang["send_estimate_bcc_to"] = "Cuando se envíe el estimado al cliente, enviar BCC a";
-        
+
 $lang["task_settings"] = "Configuración de Tareas";
 $lang["enable_recurring_option_for_tasks"] = "Activar opción recurrente para tareas";
 $lang["past_recurring_date_error_message_title_for_tasks"] = "La fecha seleccionada de comienzo y tipo de repetición regresa a fecha pasada.";

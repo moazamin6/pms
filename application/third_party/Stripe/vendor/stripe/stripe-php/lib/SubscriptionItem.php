@@ -34,29 +34,29 @@ class SubscriptionItem extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\UsageRecord
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\UsageRecord
      */
-    public static function createUsageRecord($id, $params = null, $opts = null)
+    public static function createUsageRecord($id, $params = NULL, $opts = NULL)
     {
         return self::_createNestedResource($id, static::PATH_USAGE_RECORDS, $params, $opts);
     }
 
     /**
-     * @deprecated usageRecordSummaries is deprecated. Please use SubscriptionItem::allUsageRecordSummaries instead.
-     *
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of usage record summaries
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of usage record summaries
+     * @deprecated usageRecordSummaries is deprecated. Please use SubscriptionItem::allUsageRecordSummaries instead.
+     *
      */
-    public function usageRecordSummaries($params = null, $opts = null)
+    public function usageRecordSummaries($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/usage_record_summaries';
-        list($response, $opts) = $this->_request('get', $url, $params, $opts);
+        [$response, $opts] = $this->_request('get', $url, $params, $opts);
         $obj = \Stripe\Util\Util::convertToStripeObject($response, $opts);
         $obj->setLastResponse($response);
 
@@ -70,11 +70,11 @@ class SubscriptionItem extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return \Stripe\Collection the list of usage record summaries
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Collection the list of usage record summaries
      */
-    public static function allUsageRecordSummaries($id, $params = null, $opts = null)
+    public static function allUsageRecordSummaries($id, $params = NULL, $opts = NULL)
     {
         return self::_allNestedResources($id, static::PATH_USAGE_RECORD_SUMMARIES, $params, $opts);
     }

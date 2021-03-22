@@ -75,32 +75,38 @@ class ServiceAccountCredentials extends CredentialsLoader
     public function __construct(
         $scope,
         $jsonKey,
-        $sub = null
-    ) {
-        if (is_string($jsonKey)) {
-            if (!file_exists($jsonKey)) {
+        $sub = NULL
+    )
+    {
+        if(is_string($jsonKey))
+        {
+            if(!file_exists($jsonKey))
+            {
                 throw new \InvalidArgumentException('file does not exist');
             }
             $jsonKeyStream = file_get_contents($jsonKey);
-            if (!$jsonKey = json_decode($jsonKeyStream, true)) {
+            if(!$jsonKey = json_decode($jsonKeyStream, true))
+            {
                 throw new \LogicException('invalid json for auth config');
             }
         }
-        if (!array_key_exists('client_email', $jsonKey)) {
+        if(!array_key_exists('client_email', $jsonKey))
+        {
             throw new \InvalidArgumentException(
                 'json key is missing the client_email field');
         }
-        if (!array_key_exists('private_key', $jsonKey)) {
+        if(!array_key_exists('private_key', $jsonKey))
+        {
             throw new \InvalidArgumentException(
                 'json key is missing the private_key field');
         }
         $this->auth = new OAuth2([
-            'audience' => self::TOKEN_CREDENTIAL_URI,
-            'issuer' => $jsonKey['client_email'],
-            'scope' => $scope,
-            'signingAlgorithm' => 'RS256',
-            'signingKey' => $jsonKey['private_key'],
-            'sub' => $sub,
+            'audience'           => self::TOKEN_CREDENTIAL_URI,
+            'issuer'             => $jsonKey['client_email'],
+            'scope'              => $scope,
+            'signingAlgorithm'   => 'RS256',
+            'signingKey'         => $jsonKey['private_key'],
+            'sub'                => $sub,
             'tokenCredentialUri' => self::TOKEN_CREDENTIAL_URI,
         ]);
     }
@@ -110,7 +116,7 @@ class ServiceAccountCredentials extends CredentialsLoader
      *
      * @return array
      */
-    public function fetchAuthToken(callable $httpHandler = null)
+    public function fetchAuthToken(callable $httpHandler = NULL)
     {
         return $this->auth->fetchAuthToken($httpHandler);
     }
@@ -121,7 +127,8 @@ class ServiceAccountCredentials extends CredentialsLoader
     public function getCacheKey()
     {
         $key = $this->auth->getIssuer() . ':' . $this->auth->getCacheKey();
-        if ($sub = $this->auth->getSub()) {
+        if($sub = $this->auth->getSub())
+        {
             $key .= ':' . $sub;
         }
 
@@ -147,20 +154,22 @@ class ServiceAccountCredentials extends CredentialsLoader
      */
     public function updateMetadata(
         $metadata,
-        $authUri = null,
-        callable $httpHandler = null
-    ) {
+        $authUri = NULL,
+        callable $httpHandler = NULL
+    )
+    {
         // scope exists. use oauth implementation
         $scope = $this->auth->getScope();
-        if (!is_null($scope)) {
+        if(!is_null($scope))
+        {
             return parent::updateMetadata($metadata, $authUri, $httpHandler);
         }
 
         // no scope found. create jwt with the auth uri
-        $credJson = array(
-            'private_key' => $this->auth->getSigningKey(),
+        $credJson = [
+            'private_key'  => $this->auth->getSigningKey(),
             'client_email' => $this->auth->getIssuer(),
-        );
+        ];
         $jwtCreds = new ServiceAccountJwtAccessCredentials($credJson);
 
         return $jwtCreds->updateMetadata($metadata, $authUri, $httpHandler);

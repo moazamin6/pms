@@ -4,10 +4,12 @@
  * We'll remove this in future update.
  */
 
-class Pre_loader extends MY_Controller {
+class Pre_loader extends MY_Controller
+{
 
-    function __construct() {
-        parent::__construct();
-    }
+	function __construct()
+	{
+		parent::__construct();
+	}
 
 }

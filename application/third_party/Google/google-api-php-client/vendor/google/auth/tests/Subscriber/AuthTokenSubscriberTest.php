@@ -129,7 +129,7 @@ class AuthTokenSubscriberTest extends BaseTest
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
-            null,
+            NULL,
             $this->mockCache
         );
         $a = new AuthTokenSubscriber($cachedFetcher);
@@ -194,7 +194,7 @@ class AuthTokenSubscriberTest extends BaseTest
         $this->mockCacheItem
             ->expects($this->any())
             ->method('get')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue(NULL));
         $this->mockCacheItem
             ->expects($this->once())
             ->method('set')
@@ -244,7 +244,7 @@ class AuthTokenSubscriberTest extends BaseTest
         $this->mockCacheItem
             ->expects($this->any())
             ->method('get')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue(NULL));
         $this->mockCache
             ->expects($this->any())
             ->method('getItem')
@@ -271,7 +271,7 @@ class AuthTokenSubscriberTest extends BaseTest
         );
         $a = new AuthTokenSubscriber(
             $cachedFetcher,
-            null,
+            NULL,
             $tokenCallback
         );
 
@@ -286,7 +286,8 @@ class AuthTokenSubscriberTest extends BaseTest
     public function provideShouldNotifyTokenCallback()
     {
         SubscriberCallback::$phpunit = $this;
-        $anonymousFunc = function ($key, $value) {
+        $anonymousFunc = function($key, $value)
+        {
             SubscriberCallback::staticInvoke($key, $value);
         };
         return [

@@ -11,13 +11,13 @@ use Ddeboer\Imap\Search\ConditionInterface;
  */
 final class NewMessage implements ConditionInterface
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return 'NEW';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	public function toString(): string
+	{
+		return 'NEW';
+	}
 }

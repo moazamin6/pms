@@ -1,5 +1,5 @@
 {
-    "require": {
-        "zbateson/mail-mime-parser": "^1.2"
-    }
+  "require": {
+    "zbateson/mail-mime-parser": "^1.2"
+  }
 }

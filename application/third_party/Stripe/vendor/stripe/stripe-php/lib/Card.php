@@ -81,19 +81,26 @@ class Card extends ApiResource
      */
     public function instanceUrl()
     {
-        if ($this['customer']) {
+        if($this['customer'])
+        {
             $base = Customer::classUrl();
             $parent = $this['customer'];
             $path = 'sources';
-        } elseif ($this['account']) {
+        }
+        else if($this['account'])
+        {
             $base = Account::classUrl();
             $parent = $this['account'];
             $path = 'external_accounts';
-        } elseif ($this['recipient']) {
+        }
+        else if($this['recipient'])
+        {
             $base = Recipient::classUrl();
             $parent = $this['recipient'];
             $path = 'cards';
-        } else {
+        }
+        else
+        {
             $msg = 'Cards cannot be accessed without a customer ID, account ID or recipient ID.';
 
             throw new Exception\UnexpectedValueException($msg);
@@ -110,12 +117,12 @@ class Card extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function retrieve($_id, $_opts = null)
+    public static function retrieve($_id, $_opts = NULL)
     {
         $msg = 'Cards cannot be retrieved without a customer ID or an ' .
-               'account ID. Retrieve a card using ' .
-               "`Customer::retrieveSource('customer_id', 'card_id')` or " .
-               "`Account::retrieveExternalAccount('account_id', 'card_id')`.";
+            'account ID. Retrieve a card using ' .
+            "`Customer::retrieveSource('customer_id', 'card_id')` or " .
+            "`Account::retrieveExternalAccount('account_id', 'card_id')`.";
 
         throw new Exception\BadMethodCallException($msg);
     }
@@ -127,13 +134,13 @@ class Card extends ApiResource
      *
      * @throws \Stripe\Exception\BadMethodCallException
      */
-    public static function update($_id, $_params = null, $_options = null)
+    public static function update($_id, $_params = NULL, $_options = NULL)
     {
         $msg = 'Cards cannot be updated without a customer ID or an ' .
-               'account ID. Update a card using ' .
-               "`Customer::updateSource('customer_id', 'card_id', " .
-               '$updateParams)` or `Account::updateExternalAccount(' .
-               "'account_id', 'card_id', \$updateParams)`.";
+            'account ID. Update a card using ' .
+            "`Customer::updateSource('customer_id', 'card_id', " .
+            '$updateParams)` or `Account::updateExternalAccount(' .
+            "'account_id', 'card_id', \$updateParams)`.";
 
         throw new Exception\BadMethodCallException($msg);
     }

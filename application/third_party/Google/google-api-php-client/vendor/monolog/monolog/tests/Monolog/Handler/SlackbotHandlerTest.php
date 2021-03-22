@@ -21,27 +21,27 @@ use Monolog\Logger;
  */
 class SlackbotHandlerTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     */
-    public function testConstructorMinimal()
-    {
-        $handler = new SlackbotHandler('test-team', 'test-token', 'test-channel');
-        $this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
-    }
+	/**
+	 * @covers ::__construct
+	 */
+	public function testConstructorMinimal()
+	{
+		$handler = new SlackbotHandler('test-team', 'test-token', 'test-channel');
+		$this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
+	}
 
-    /**
-     * @covers ::__construct
-     */
-    public function testConstructorFull()
-    {
-        $handler = new SlackbotHandler(
-            'test-team',
-            'test-token',
-            'test-channel',
-            Logger::DEBUG,
-            false
-        );
-        $this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
-    }
+	/**
+	 * @covers ::__construct
+	 */
+	public function testConstructorFull()
+	{
+		$handler = new SlackbotHandler(
+			'test-team',
+			'test-token',
+			'test-channel',
+			Logger::DEBUG,
+			false
+		);
+		$this->assertInstanceOf('Monolog\Handler\AbstractProcessingHandler', $handler);
+	}
 }

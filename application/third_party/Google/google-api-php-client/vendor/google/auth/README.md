@@ -12,8 +12,8 @@
 
 ## Description
 
-This is Google's officially supported PHP client library for using OAuth 2.0
-authorization and authentication with Google APIs.
+This is Google's officially supported PHP client library for using OAuth 2.0 authorization and authentication with
+Google APIs.
 
 ### Installing via Composer
 
@@ -36,19 +36,17 @@ composer.phar require google/auth
 This library provides an implementation of
 [application default credentials][application default credentials] for PHP.
 
-The Application Default Credentials provide a simple way to get authorization
-credentials for use in calling Google APIs.
+The Application Default Credentials provide a simple way to get authorization credentials for use in calling Google
+APIs.
 
-They are best suited for cases when the call needs to have the same identity
-and authorization level for the application independent of the user. This is
-the recommended approach to authorize calls to Cloud APIs, particularly when
-you're building an application that uses Google Compute Engine.
+They are best suited for cases when the call needs to have the same identity and authorization level for the application
+independent of the user. This is the recommended approach to authorize calls to Cloud APIs, particularly when you're
+building an application that uses Google Compute Engine.
 
 #### Download your Service Account Credentials JSON file
 
-To use `Application Default Credentials`, You first need to download a set of
-JSON credentials for your project. Go to **APIs & Auth** > **Credentials** in
-the [Google Developers Console][developer console] and select
+To use `Application Default Credentials`, You first need to download a set of JSON credentials for your project. Go
+to **APIs & Auth** > **Credentials** in the [Google Developers Console][developer console] and select
 **Service account** from the **Add credentials** dropdown.
 
 > This file is your *only copy* of these credentials. It should never be
@@ -66,15 +64,15 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/my/credentials.json');
 
 #### Enable the API you want to use
 
-Before making your API call, you must be sure the API you're calling has been
-enabled. Go to **APIs & Auth** > **APIs** in the
-[Google Developers Console][developer console] and enable the APIs you'd like to
-call. For the example below, you must enable the `Drive API`.
+Before making your API call, you must be sure the API you're calling has been enabled. Go to **APIs & Auth** > **APIs**
+in the
+[Google Developers Console][developer console] and enable the APIs you'd like to call. For the example below, you must
+enable the `Drive API`.
 
 #### Call the APIs
 
-As long as you update the environment variable below to point to *your* JSON
-credentials file, the following code should output a list of your Drive files.
+As long as you update the environment variable below to point to *your* JSON credentials file, the following code should
+output a list of your Drive files.
 
 ```php
 use Google\Auth\ApplicationDefaultCredentials;
@@ -126,8 +124,7 @@ $client->getEmitter()->attach($subscriber);
 
 ## License
 
-This library is licensed under Apache 2.0. Full license text is
-available in [COPYING][copying].
+This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
 
 ## Contributing
 
@@ -136,15 +133,20 @@ See [CONTRIBUTING][contributing].
 ## Support
 
 Please
-[report bugs at the project on Github](https://github.com/google/google-auth-library-php/issues). Don't
-hesitate to
+[report bugs at the project on Github](https://github.com/google/google-auth-library-php/issues). Don't hesitate to
 [ask questions](http://stackoverflow.com/questions/tagged/google-auth-library-php)
 about the client or APIs on [StackOverflow](http://stackoverflow.com).
 
 [google-apis-php-client]: https://github.com/google/google-api-php-client
+
 [application default credentials]: https://developers.google.com/accounts/docs/application-default-credentials
+
 [contributing]: https://github.com/google/google-auth-library-php/tree/master/CONTRIBUTING.md
+
 [copying]: https://github.com/google/google-auth-library-php/tree/master/COPYING
+
 [Guzzle]: https://github.com/guzzle/guzzle
+
 [Guzzle 5]: http://docs.guzzlephp.org/en/5.3
+
 [developer console]: https://console.developers.google.com

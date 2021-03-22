@@ -37,8 +37,8 @@ The recommended way to install the IMAP library is through [Composer](https://ge
 $ composer require ddeboer/imap
 ```
 
-This command requires you to have Composer installed globally, as explained
-in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
+This command requires you to have Composer installed globally, as explained in
+the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
 ## Usage
@@ -68,8 +68,7 @@ $server = new Server(
 
 ### Mailboxes
 
-Retrieve mailboxes (also known as mail folders) from the mail server and iterate
-over them:
+Retrieve mailboxes (also known as mail folders) from the mail server and iterate over them:
 
 ```php
 $mailboxes = $connection->getMailboxes();
@@ -98,7 +97,8 @@ Delete a mailbox:
 $connection->deleteMailbox($mailbox);
 ```
 
-You can bulk set, or clear, any [flag](https://secure.php.net/manual/en/function.imap-setflag-full.php) of mailbox messages (by UIDs):
+You can bulk set, or clear, any [flag](https://secure.php.net/manual/en/function.imap-setflag-full.php) of mailbox
+messages (by UIDs):
 
 ```php
 $mailbox->setFlag('\\Seen \\Flagged', ['1:5', '7', '9']);
@@ -128,7 +128,8 @@ $mailbox = $connection->getMailbox('Sent');
 $mailbox->addMessage($messageMIME, '\\Seen');
 ```
 
-Note that the message should be a string at MIME format (as described in the [RFC2045](https://tools.ietf.org/html/rfc2045)).
+Note that the message should be a string at MIME format (as described in
+the [RFC2045](https://tools.ietf.org/html/rfc2045)).
 
 #### Searching for Messages
 
@@ -144,10 +145,8 @@ $search->addCondition(new Body('contents'));
 $messages = $mailbox->getMessages($search);
 ```
 
-**WARNING** We are currently unable to have both spaces _and_ double-quotes
-escaped together. Only spaces are currently escaped correctly.
-You can use `Ddeboer\Imap\Search\RawExpression` to write the complete search
-condition by yourself.
+**WARNING** We are currently unable to have both spaces _and_ double-quotes escaped together. Only spaces are currently
+escaped correctly. You can use `Ddeboer\Imap\Search\RawExpression` to write the complete search condition by yourself.
 
 Messages can also be retrieved sorted as per [imap_sort](https://secure.php.net/manual/en/function.imap-sort.php)
 function:
@@ -166,8 +165,8 @@ $messages = $mailbox->getMessages(
 #### Unknown search criterion: OR
 
 Note that PHP imap library relies on the `c-client` library available at https://www.washington.edu/imap/
-which doesn't fully support some IMAP4 search criteria like `OR`. If you want those unsupported criteria,
-you need to manually patch the latest version (`imap-2007f` of 23-Jul-2011 at the time of this commit)
+which doesn't fully support some IMAP4 search criteria like `OR`. If you want those unsupported criteria, you need to
+manually patch the latest version (`imap-2007f` of 23-Jul-2011 at the time of this commit)
 and recompile PHP onto your patched `c-client` library.
 
 By the way most of the common search criteria are available and functioning, browse them in `./src/Search`.
@@ -213,8 +212,7 @@ $message->getBodyHtml();    // Content of text/html part, if present
 $message->getBodyText();    // Content of text/plain part, if present
 ```
 
-Reading the message body keeps the message as unseen.
-If you want to mark the message as seen:
+Reading the message body keeps the message as unseen. If you want to mark the message as seen:
 
 ```php
 $message->markAsSeen();
@@ -280,44 +278,38 @@ foreach ($attachments as $attachment) {
 }
 ```
 
-An EmbeddedMessage has the same API as a normal Message, apart from flags
-and operations like copy, move or delete.
+An EmbeddedMessage has the same API as a normal Message, apart from flags and operations like copy, move or delete.
 
 ### Timeouts
 
 The IMAP extension provides the [imap_timeout](https://secure.php.net/manual/en/function.imap-timeout.php)
 function to adjust the timeout seconds for various operations.
 
-However the extension's implementation doesn't link the functionality to a
-specific context or connection, instead they are global. So in order to not
-affect functionalities outside this library, we had to choose whether wrap
-every `imap_*` call around an optional user-provided timeout or leave this
-task to the user.
+However the extension's implementation doesn't link the functionality to a specific context or connection, instead they
+are global. So in order to not affect functionalities outside this library, we had to choose whether wrap every `imap_*`
+call around an optional user-provided timeout or leave this task to the user.
 
-Because of the heterogeneous world of IMAP servers and the high complexity
-burden cost for such a little gain of the former, we chose the latter.
+Because of the heterogeneous world of IMAP servers and the high complexity burden cost for such a little gain of the
+former, we chose the latter.
 
 ## Mock the library
 
-Mockability is granted by interfaces present for each API.
-Dig into [MockabilityTest](tests/MockabilityTest.php) for an example of a
-mocked workflow.
+Mockability is granted by interfaces present for each API. Dig into [MockabilityTest](tests/MockabilityTest.php) for an
+example of a mocked workflow.
 
 ## Running the Tests
 
 This library is functionally tested on [Travis CI](https://travis-ci.org/ddeboer/imap)
 against a local Dovecot server.
 
-If you have your own IMAP (test) account, you can run the tests locally by
-providing your IMAP credentials:
+If you have your own IMAP (test) account, you can run the tests locally by providing your IMAP credentials:
 
 ```bash
 $ composer install
 $ IMAP_SERVER_NAME="my.imap.server.com" IMAP_SERVER_PORT="60993" IMAP_USERNAME="johndoe" IMAP_PASSWORD="p4ssword" vendor/bin/phpunit
 ```
 
-You can also copy `phpunit.xml.dist` file to a custom `phpunit.xml` and put
-these environment variables in it:
+You can also copy `phpunit.xml.dist` file to a custom `phpunit.xml` and put these environment variables in it:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

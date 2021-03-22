@@ -12,13 +12,13 @@ use Ddeboer\Imap\Search\ConditionInterface;
  */
 final class Answered implements ConditionInterface
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return 'ANSWERED';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	public function toString(): string
+	{
+		return 'ANSWERED';
+	}
 }

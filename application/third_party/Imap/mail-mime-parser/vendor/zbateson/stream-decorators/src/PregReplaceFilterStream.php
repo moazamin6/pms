@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\StreamDecorators;
 
 use Psr\Http\Message\StreamInterface;
@@ -21,91 +22,93 @@ use RuntimeException;
  */
 class PregReplaceFilterStream implements StreamInterface
 {
-    use StreamDecoratorTrait;
+	use StreamDecoratorTrait;
 
-    /**
-     * @var string The regex pattern
-     */
-    private $pattern;
+	/**
+	 * @var string The regex pattern
+	 */
+	private $pattern;
 
-    /**
-     * @var string The replacement
-     */
-    private $replacement;
+	/**
+	 * @var string The replacement
+	 */
+	private $replacement;
 
-    /**
-     * @var BufferStream Buffered stream of input from the underlying stream
-     */
-    private $buffer;
+	/**
+	 * @var BufferStream Buffered stream of input from the underlying stream
+	 */
+	private $buffer;
 
-    public function __construct(StreamInterface $stream, $pattern, $replacement)
-    {
-        $this->stream = $stream;
-        $this->pattern = $pattern;
-        $this->replacement = $replacement;
-        $this->buffer = new BufferStream();
-    }
+	public function __construct(StreamInterface $stream, $pattern, $replacement)
+	{
+		$this->stream = $stream;
+		$this->pattern = $pattern;
+		$this->replacement = $replacement;
+		$this->buffer = new BufferStream();
+	}
 
-    /**
-     * Returns true if the end of stream has been reached.
-     *
-     * @return boolean
-     */
-    public function eof()
-    {
-        return ($this->buffer->eof() && $this->stream->eof());
-    }
+	/**
+	 * Returns true if the end of stream has been reached.
+	 *
+	 * @return boolean
+	 */
+	public function eof()
+	{
+		return ($this->buffer->eof() && $this->stream->eof());
+	}
 
-    /**
-     * Not supported by PregReplaceFilterStream
-     *
-     * @param int $offset
-     * @param int $whence
-     * @throws RuntimeException
-     */
-    public function seek($offset, $whence = SEEK_SET)
-    {
-        throw new RuntimeException('Cannot seek a PregReplaceFilterStream');
-    }
+	/**
+	 * Not supported by PregReplaceFilterStream
+	 *
+	 * @param int $offset
+	 * @param int $whence
+	 * @throws RuntimeException
+	 */
+	public function seek($offset, $whence = SEEK_SET)
+	{
+		throw new RuntimeException('Cannot seek a PregReplaceFilterStream');
+	}
 
-    /**
-     * Overridden to return false
-     *
-     * @return boolean
-     */
-    public function isSeekable()
-    {
-        return false;
-    }
+	/**
+	 * Overridden to return false
+	 *
+	 * @return boolean
+	 */
+	public function isSeekable()
+	{
+		return false;
+	}
 
-    /**
-     * Fills the BufferStream with at least 8192 characters of input for future
-     * read operations.
-     *
-     * @param int $length
-     */
-    private function fillBuffer($length)
-    {
-        $fill = intval(max([$length, 8192]));
-        while ($this->buffer->getSize() < $length) {
-            $read = $this->stream->read($fill);
-            if ($read === false || $read === '') {
-                break;
-            }
-            $this->buffer->write(preg_replace($this->pattern, $this->replacement, $read));
-        }
-    }
+	/**
+	 * Fills the BufferStream with at least 8192 characters of input for future
+	 * read operations.
+	 *
+	 * @param int $length
+	 */
+	private function fillBuffer($length)
+	{
+		$fill = intval(max([$length, 8192]));
+		while($this->buffer->getSize() < $length)
+		{
+			$read = $this->stream->read($fill);
+			if($read === false || $read === '')
+			{
+				break;
+			}
+			$this->buffer->write(preg_replace($this->pattern, $this->replacement, $read));
+		}
+	}
 
-    /**
-     * Reads from the underlying stream, filters it and returns up to $length
-     * bytes.
-     *
-     * @param int $length
-     * @return string
-     */
-    public function read($length)
-    {
-        $this->fillBuffer($length);
-        return $this->buffer->read($length);
-    }
+	/**
+	 * Reads from the underlying stream, filters it and returns up to $length
+	 * bytes.
+	 *
+	 * @param int $length
+	 * @return string
+	 */
+	public function read($length)
+	{
+		$this->fillBuffer($length);
+		return $this->buffer->read($length);
+	}
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Auth\HttpHandler;
 
 use GuzzleHttp\Client;
@@ -30,12 +31,13 @@ class HttpHandlerFactory
      *
      * @throws \Exception
      */
-    public static function build(ClientInterface $client = null)
+    public static function build(ClientInterface $client = NULL)
     {
         $version = ClientInterface::VERSION;
         $client = $client ?: new Client();
 
-        switch ($version[0]) {
+        switch($version[0])
+        {
             case '5':
                 return new Guzzle5HttpHandler($client);
             case '6':

@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Header;
 
 use ZBateson\MailMimeParser\Header\Consumer\ConsumerService;
@@ -13,7 +14,7 @@ use ZBateson\MailMimeParser\Header\Part\DatePart;
 
 /**
  * Represents a Received header.
- * 
+ *
  * The returned header value (as returned by a call to {@see
  * ReceivedHeader::getValue()}) for a
  * ReceivedHeader is the same as the raw value (as returned by a call to
@@ -78,170 +79,174 @@ use ZBateson\MailMimeParser\Header\Part\DatePart;
  */
 class ReceivedHeader extends ParameterHeader
 {
-    /**
-     * @var string[] an array of comments in the header.
-     */
-    protected $comments = [];
+	/**
+	 * @var string[] an array of comments in the header.
+	 */
+	protected $comments = [];
 
-    /**
-     * @var DateTime the date/time stamp in the header.
-     */
-    protected $date;
+	/**
+	 * @var DateTime the date/time stamp in the header.
+	 */
+	protected $date;
 
-    /**
-     * Returns a ReceivedConsumer.
-     * 
-     * @param ConsumerService $consumerService
-     * @return \ZBateson\MailMimeParser\Header\Consumer\AbstractConsumer
-     */
-    protected function getConsumer(ConsumerService $consumerService)
-    {
-        return $consumerService->getReceivedConsumer();
-    }
-    
-    /**
-     * Overridden to assign comments to $this->comments, and the DateTime to
-     * $this->date.
-     * 
-     * @param AbstractConsumer $consumer
-     */
-    protected function setParseHeaderValue(AbstractConsumer $consumer)
-    {
-        parent::setParseHeaderValue($consumer);
-        foreach ($this->parts as $part) {
-            if ($part instanceof CommentPart) {
-                $this->comments[] = $part->getComment();
-            } elseif ($part instanceof DatePart) {
-                $this->date = $part->getDateTime();
-            }
-        }
-    }
+	/**
+	 * Returns a ReceivedConsumer.
+	 *
+	 * @param ConsumerService $consumerService
+	 * @return \ZBateson\MailMimeParser\Header\Consumer\AbstractConsumer
+	 */
+	protected function getConsumer(ConsumerService $consumerService)
+	{
+		return $consumerService->getReceivedConsumer();
+	}
 
-    /**
-     * Returns the raw, unparsed header value, same as {@see
-     * ReceivedHeader::getRawValue()}.
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->rawValue;
-    }
+	/**
+	 * Overridden to assign comments to $this->comments, and the DateTime to
+	 * $this->date.
+	 *
+	 * @param AbstractConsumer $consumer
+	 */
+	protected function setParseHeaderValue(AbstractConsumer $consumer)
+	{
+		parent::setParseHeaderValue($consumer);
+		foreach($this->parts as $part)
+		{
+			if($part instanceof CommentPart)
+			{
+				$this->comments[] = $part->getComment();
+			}
+			else if($part instanceof DatePart)
+			{
+				$this->date = $part->getDateTime();
+			}
+		}
+	}
 
-    /**
-     * Returns the name identified in the FROM part of the header.
-     *
-     * The returned value may either be a name or an address in the form
-     * "[1.2.3.4]".  Validation is not performed on this value, and so whatever
-     * exists in this position is returned -- be it contains spaces, or invalid
-     * characters, etc...
-     *
-     * @return string
-     */
-    public function getFromName()
-    {
-        return (isset($this->parameters['from'])) ?
-            $this->parameters['from']->getEhloName() : null;
-    }
+	/**
+	 * Returns the raw, unparsed header value, same as {@see
+	 * ReceivedHeader::getRawValue()}.
+	 *
+	 * @return string
+	 */
+	public function getValue()
+	{
+		return $this->rawValue;
+	}
 
-    /**
-     * Returns the hostname part of a parenthesized FROM part.
-     *
-     * For example, "FROM name (host.name)" would return the string "host.name".
-     * Validation of the hostname is not performed, and the returned value may
-     * not be valid.  More details on how the value is parsed and extracted can
-     * be found in the class description for {@see ReceivedHeader}.
-     *
-     * @return string
-     */
-    public function getFromHostname()
-    {
-        return (isset($this->parameters['from'])) ?
-            $this->parameters['from']->getHostname() : null;
-    }
+	/**
+	 * Returns the name identified in the FROM part of the header.
+	 *
+	 * The returned value may either be a name or an address in the form
+	 * "[1.2.3.4]".  Validation is not performed on this value, and so whatever
+	 * exists in this position is returned -- be it contains spaces, or invalid
+	 * characters, etc...
+	 *
+	 * @return string
+	 */
+	public function getFromName()
+	{
+		return (isset($this->parameters['from'])) ?
+			$this->parameters['from']->getEhloName() : NULL;
+	}
 
-    /**
-     * Returns the address part of a parenthesized FROM part.
-     *
-     * For example, "FROM name ([1.2.3.4])" would return the string "1.2.3.4".
-     * Validation of the address is not performed, and the returned value may
-     * not be valid.  More details on how the value is parsed and extracted can
-     * be found in the class description for {@see ReceivedHeader}.
-     *
-     * @return string
-     */
-    public function getFromAddress()
-    {
-        return (isset($this->parameters['from'])) ?
-            $this->parameters['from']->getAddress() : null;
-    }
+	/**
+	 * Returns the hostname part of a parenthesized FROM part.
+	 *
+	 * For example, "FROM name (host.name)" would return the string "host.name".
+	 * Validation of the hostname is not performed, and the returned value may
+	 * not be valid.  More details on how the value is parsed and extracted can
+	 * be found in the class description for {@see ReceivedHeader}.
+	 *
+	 * @return string
+	 */
+	public function getFromHostname()
+	{
+		return (isset($this->parameters['from'])) ?
+			$this->parameters['from']->getHostname() : NULL;
+	}
 
-    /**
-     * Returns the name identified in the BY part of the header.
-     *
-     * The returned value may either be a name or an address in the form
-     * "[1.2.3.4]".  Validation is not performed on this value, and so whatever
-     * exists in this position is returned -- be it contains spaces, or invalid
-     * characters, etc...
-     *
-     * @return string
-     */
-    public function getByName()
-    {
-        return (isset($this->parameters['by'])) ?
-            $this->parameters['by']->getEhloName() : null;
-    }
+	/**
+	 * Returns the address part of a parenthesized FROM part.
+	 *
+	 * For example, "FROM name ([1.2.3.4])" would return the string "1.2.3.4".
+	 * Validation of the address is not performed, and the returned value may
+	 * not be valid.  More details on how the value is parsed and extracted can
+	 * be found in the class description for {@see ReceivedHeader}.
+	 *
+	 * @return string
+	 */
+	public function getFromAddress()
+	{
+		return (isset($this->parameters['from'])) ?
+			$this->parameters['from']->getAddress() : NULL;
+	}
 
-    /**
-     * Returns the hostname part of a parenthesized BY part.
-     *
-     * For example, "BY name (host.name)" would return the string "host.name".
-     * Validation of the hostname is not performed, and the returned value may
-     * not be valid.  More details on how the value is parsed and extracted can
-     * be found in the class description for {@see ReceivedHeader}.
-     *
-     * @return string
-     */
-    public function getByHostname()
-    {
-        return (isset($this->parameters['by'])) ?
-            $this->parameters['by']->getHostname() : null;
-    }
+	/**
+	 * Returns the name identified in the BY part of the header.
+	 *
+	 * The returned value may either be a name or an address in the form
+	 * "[1.2.3.4]".  Validation is not performed on this value, and so whatever
+	 * exists in this position is returned -- be it contains spaces, or invalid
+	 * characters, etc...
+	 *
+	 * @return string
+	 */
+	public function getByName()
+	{
+		return (isset($this->parameters['by'])) ?
+			$this->parameters['by']->getEhloName() : NULL;
+	}
 
-    /**
-     * Returns the address part of a parenthesized BY part.
-     *
-     * For example, "BY name ([1.2.3.4])" would return the string "1.2.3.4".
-     * Validation of the address is not performed, and the returned value may
-     * not be valid.  More details on how the value is parsed and extracted can
-     * be found in the class description for {@see ReceivedHeader}.
-     *
-     * @return string
-     */
-    public function getByAddress()
-    {
-        return (isset($this->parameters['by'])) ?
-            $this->parameters['by']->getAddress() : null;
-    }
+	/**
+	 * Returns the hostname part of a parenthesized BY part.
+	 *
+	 * For example, "BY name (host.name)" would return the string "host.name".
+	 * Validation of the hostname is not performed, and the returned value may
+	 * not be valid.  More details on how the value is parsed and extracted can
+	 * be found in the class description for {@see ReceivedHeader}.
+	 *
+	 * @return string
+	 */
+	public function getByHostname()
+	{
+		return (isset($this->parameters['by'])) ?
+			$this->parameters['by']->getHostname() : NULL;
+	}
 
-    /**
-     * Returns an array of comments parsed from the header.  If there are no
-     * comments in the header, an empty array is returned.
-     *
-     * @return string[]
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
+	/**
+	 * Returns the address part of a parenthesized BY part.
+	 *
+	 * For example, "BY name ([1.2.3.4])" would return the string "1.2.3.4".
+	 * Validation of the address is not performed, and the returned value may
+	 * not be valid.  More details on how the value is parsed and extracted can
+	 * be found in the class description for {@see ReceivedHeader}.
+	 *
+	 * @return string
+	 */
+	public function getByAddress()
+	{
+		return (isset($this->parameters['by'])) ?
+			$this->parameters['by']->getAddress() : NULL;
+	}
 
-    /**
-     * Returns the date/time stamp for the received header.
-     *
-     * @return \DateTime
-     */
-    public function getDateTime()
-    {
-        return $this->date;
-    }
+	/**
+	 * Returns an array of comments parsed from the header.  If there are no
+	 * comments in the header, an empty array is returned.
+	 *
+	 * @return string[]
+	 */
+	public function getComments()
+	{
+		return $this->comments;
+	}
+
+	/**
+	 * Returns the date/time stamp for the received header.
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateTime()
+	{
+		return $this->date;
+	}
 }

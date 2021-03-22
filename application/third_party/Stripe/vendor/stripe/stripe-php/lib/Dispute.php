@@ -64,15 +64,15 @@ class Dispute extends ApiResource
     /**
      * @param null|array|string $opts
      *
+     * @return \Stripe\Dispute the closed dispute
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return \Stripe\Dispute the closed dispute
      */
     // TODO: add $params to standardize signature
-    public function close($opts = null)
+    public function close($opts = NULL)
     {
         $url = $this->instanceUrl() . '/close';
-        list($response, $opts) = $this->_request('post', $url, null, $opts);
+        [$response, $opts] = $this->_request('post', $url, NULL, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

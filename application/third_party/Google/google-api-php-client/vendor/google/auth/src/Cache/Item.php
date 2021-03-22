@@ -28,22 +28,22 @@ final class Item implements CacheItemInterface
      * @var string
      */
     private $key;
-
+    
     /**
      * @var mixed
      */
     private $value;
-
+    
     /**
      * @var \DateTime
      */
     private $expiration;
-
+    
     /**
      * @var bool
      */
     private $isHit = false;
-
+    
     /**
      * @param string $key
      */
@@ -51,7 +51,7 @@ final class Item implements CacheItemInterface
     {
         $this->key = $key;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -59,31 +59,33 @@ final class Item implements CacheItemInterface
     {
         return $this->key;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function get()
     {
-        return $this->isHit() ? $this->value : null;
+        return $this->isHit() ? $this->value : NULL;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function isHit()
     {
-        if (!$this->isHit) {
+        if(!$this->isHit)
+        {
             return false;
         }
-
-        if ($this->expiration === null) {
+        
+        if($this->expiration === NULL)
+        {
             return true;
         }
-
+        
         return new \DateTime() < $this->expiration;
     }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -91,57 +93,65 @@ final class Item implements CacheItemInterface
     {
         $this->isHit = true;
         $this->value = $value;
-
+        
         return $this;
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function expiresAt($expiration)
     {
-        if ($this->isValidExpiration($expiration)) {
+        if($this->isValidExpiration($expiration))
+        {
             $this->expiration = $expiration;
-
+            
             return $this;
         }
-
+        
         $implementationMessage = interface_exists('DateTimeInterface')
             ? 'implement interface DateTimeInterface'
             : 'be an instance of DateTime';
-
+        
         $error = sprintf(
             'Argument 1 passed to %s::expiresAt() must %s, %s given',
             get_class($this),
             $implementationMessage,
             gettype($expiration)
         );
-
+        
         $this->handleError($error);
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function expiresAfter($time)
     {
-        if (is_int($time)) {
+        if(is_int($time))
+        {
             $this->expiration = new \DateTime("now + $time seconds");
-        } elseif ($time instanceof \DateInterval) {
+        }
+        else if($time instanceof \DateInterval)
+        {
             $this->expiration = (new \DateTime())->add($time);
-        } elseif ($time === null) {
+        }
+        else if($time === NULL)
+        {
             $this->expiration = $time;
-        } else {
+        }
+        else
+        {
             $message = 'Argument 1 passed to %s::expiresAfter() must be an ' .
-                       'instance of DateInterval or of the type integer, %s given';
+                'instance of DateInterval or of the type integer, %s given';
             $error = sprintf($message, get_class($this), gettype($time));
-
+            
             $this->handleError($error);
         }
-
+        
         return $this;
     }
-
+    
     /**
      * Handles an error.
      *
@@ -150,13 +160,14 @@ final class Item implements CacheItemInterface
      */
     private function handleError($error)
     {
-        if (class_exists('TypeError')) {
+        if(class_exists('TypeError'))
+        {
             throw new \TypeError($error);
         }
-
+        
         trigger_error($error, E_USER_ERROR);
     }
-
+    
     /**
      * Determines if an expiration is valid based on the rules defined by PSR6.
      *
@@ -165,21 +176,24 @@ final class Item implements CacheItemInterface
      */
     private function isValidExpiration($expiration)
     {
-        if ($expiration === null) {
+        if($expiration === NULL)
+        {
             return true;
         }
-
+        
         // We test for two types here due to the fact the DateTimeInterface
         // was not introduced until PHP 5.5. Checking for the DateTime type as
         // well allows us to support 5.4.
-        if ($expiration instanceof \DateTimeInterface) {
+        if($expiration instanceof \DateTimeInterface)
+        {
             return true;
         }
-
-        if ($expiration instanceof \DateTime) {
+        
+        if($expiration instanceof \DateTime)
+        {
             return true;
         }
-
+        
         return false;
     }
 }

@@ -10,19 +10,21 @@ abstract class BaseTest extends TestCase
     public function onlyGuzzle6()
     {
         $version = ClientInterface::VERSION;
-        if ('6' !== $version[0]) {
+        if('6' !== $version[0])
+        {
             $this->markTestSkipped('Guzzle 6 only');
         }
     }
-
+    
     public function onlyGuzzle5()
     {
         $version = ClientInterface::VERSION;
-        if ('5' !== $version[0]) {
+        if('5' !== $version[0])
+        {
             $this->markTestSkipped('Guzzle 5 only');
         }
     }
-
+    
     /**
      * @see Google\Auth\$this->getValidKeyName
      */

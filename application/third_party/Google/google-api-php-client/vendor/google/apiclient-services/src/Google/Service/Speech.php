@@ -30,63 +30,63 @@
  */
 class Google_Service_Speech extends Google_Service
 {
-  /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM =
-      "https://www.googleapis.com/auth/cloud-platform";
+	/** View and manage your data across Google Cloud Platform services. */
+	const CLOUD_PLATFORM =
+		"https://www.googleapis.com/auth/cloud-platform";
 
-  public $operations;
-  public $speech;
-  
-  /**
-   * Constructs the internal representation of the Speech service.
-   *
-   * @param Google_Client $client
-   */
-  public function __construct(Google_Client $client)
-  {
-    parent::__construct($client);
-    $this->rootUrl = 'https://speech.googleapis.com/';
-    $this->servicePath = '';
-    $this->version = 'v1';
-    $this->serviceName = 'speech';
+	public $operations;
+	public $speech;
 
-    $this->operations = new Google_Service_Speech_Resource_Operations(
-        $this,
-        $this->serviceName,
-        'operations',
-        array(
-          'methods' => array(
-            'get' => array(
-              'path' => 'v1/operations/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
-    $this->speech = new Google_Service_Speech_Resource_Speech(
-        $this,
-        $this->serviceName,
-        'speech',
-        array(
-          'methods' => array(
-            'longrunningrecognize' => array(
-              'path' => 'v1/speech:longrunningrecognize',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),'recognize' => array(
-              'path' => 'v1/speech:recognize',
-              'httpMethod' => 'POST',
-              'parameters' => array(),
-            ),
-          )
-        )
-    );
-  }
+	/**
+	 * Constructs the internal representation of the Speech service.
+	 *
+	 * @param Google_Client $client
+	 */
+	public function __construct(Google_Client $client)
+	{
+		parent::__construct($client);
+		$this->rootUrl = 'https://speech.googleapis.com/';
+		$this->servicePath = '';
+		$this->version = 'v1';
+		$this->serviceName = 'speech';
+
+		$this->operations = new Google_Service_Speech_Resource_Operations(
+			$this,
+			$this->serviceName,
+			'operations',
+			[
+				'methods' => [
+					'get' => [
+						'path'       => 'v1/operations/{+name}',
+						'httpMethod' => 'GET',
+						'parameters' => [
+							'name' => [
+								'location' => 'path',
+								'type'     => 'string',
+								'required' => true,
+							],
+						],
+					],
+				],
+			]
+		);
+		$this->speech = new Google_Service_Speech_Resource_Speech(
+			$this,
+			$this->serviceName,
+			'speech',
+			[
+				'methods' => [
+					'longrunningrecognize' => [
+						'path'       => 'v1/speech:longrunningrecognize',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					], 'recognize'         => [
+						'path'       => 'v1/speech:recognize',
+						'httpMethod' => 'POST',
+						'parameters' => [],
+					],
+				],
+			]
+		);
+	}
 }

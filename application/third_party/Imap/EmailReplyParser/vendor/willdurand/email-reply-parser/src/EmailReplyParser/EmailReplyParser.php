@@ -17,25 +17,25 @@ use EmailReplyParser\Parser\EmailParser;
  */
 class EmailReplyParser
 {
-    /**
-     * @param string $text An email as text.
-     *
-     * @return Email
-     */
-    public static function read($text)
-    {
-        $parser = new EmailParser();
+	/**
+	 * @param string $text An email as text.
+	 *
+	 * @return Email
+	 */
+	public static function read($text)
+	{
+		$parser = new EmailParser();
 
-        return $parser->parse($text);
-    }
+		return $parser->parse($text);
+	}
 
-    /**
-     * @param string $text An email as text.
-     *
-     * @return string
-     */
-    public static function parseReply($text)
-    {
-        return static::read($text)->getVisibleText();
-    }
+	/**
+	 * @param string $text An email as text.
+	 *
+	 * @return string
+	 */
+	public static function parseReply($text)
+	{
+		return static::read($text)->getVisibleText();
+	}
 }

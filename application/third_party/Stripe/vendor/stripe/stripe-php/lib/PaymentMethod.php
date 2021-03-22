@@ -42,14 +42,14 @@ class PaymentMethod extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return PaymentMethod the attached payment method
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return PaymentMethod the attached payment method
      */
-    public function attach($params = null, $opts = null)
+    public function attach($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/attach';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;
@@ -59,14 +59,14 @@ class PaymentMethod extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return PaymentMethod the detached payment method
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return PaymentMethod the detached payment method
      */
-    public function detach($params = null, $opts = null)
+    public function detach($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/detach';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

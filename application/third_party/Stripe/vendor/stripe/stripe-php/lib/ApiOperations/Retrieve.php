@@ -15,11 +15,11 @@ trait Retrieve
      *     or an options array containing an `id` key
      * @param null|array|string $opts
      *
+     * @return static
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return static
      */
-    public static function retrieve($id, $opts = null)
+    public static function retrieve($id, $opts = NULL)
     {
         $opts = \Stripe\Util\RequestOptions::parse($opts);
         $instance = new static($id, $opts);

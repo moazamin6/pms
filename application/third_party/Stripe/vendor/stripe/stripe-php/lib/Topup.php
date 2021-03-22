@@ -46,14 +46,14 @@ class Topup extends ApiResource
      * @param null|array $params
      * @param null|array|string $opts
      *
+     * @return Topup the canceled topup
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Topup the canceled topup
      */
-    public function cancel($params = null, $opts = null)
+    public function cancel($params = NULL, $opts = NULL)
     {
         $url = $this->instanceUrl() . '/cancel';
-        list($response, $opts) = $this->_request('post', $url, $params, $opts);
+        [$response, $opts] = $this->_request('post', $url, $params, $opts);
         $this->refreshFrom($response, $opts);
 
         return $this;

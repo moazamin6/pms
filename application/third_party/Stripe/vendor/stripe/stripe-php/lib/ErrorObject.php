@@ -144,17 +144,17 @@ class ErrorObject extends StripeObject
         // error objects when they have a null value. We manually set default
         // values here to facilitate generic error handling.
         $values = \array_merge([
-            'charge' => null,
-            'code' => null,
-            'decline_code' => null,
-            'doc_url' => null,
-            'message' => null,
-            'param' => null,
-            'payment_intent' => null,
-            'payment_method' => null,
-            'setup_intent' => null,
-            'source' => null,
-            'type' => null,
+            'charge'         => NULL,
+            'code'           => NULL,
+            'decline_code'   => NULL,
+            'doc_url'        => NULL,
+            'message'        => NULL,
+            'param'          => NULL,
+            'payment_intent' => NULL,
+            'payment_method' => NULL,
+            'setup_intent'   => NULL,
+            'source'         => NULL,
+            'type'           => NULL,
         ], $values);
         parent::refreshFrom($values, $opts, $partial);
     }

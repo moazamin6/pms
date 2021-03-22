@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\MailMimeParser\Header\Consumer\Received;
 
 use ZBateson\MailMimeParser\Header\Part\CommentPart;
@@ -43,83 +44,91 @@ use ZBateson\MailMimeParser\Header\Part\CommentPart;
  */
 class DomainConsumer extends GenericReceivedConsumer
 {
-    /**
-     * Overridden to return true if the passed token is a closing parenthesis.
-     *
-     * @param string $token
-     * @return bool
-     */
-    protected function isEndToken($token)
-    {
-        if ($token === ')') {
-            return true;
-        }
-        return parent::isEndToken($token);
-    }
+	/**
+	 * Overridden to return true if the passed token is a closing parenthesis.
+	 *
+	 * @param string $token
+	 * @return bool
+	 */
+	protected function isEndToken($token)
+	{
+		if($token === ')')
+		{
+			return true;
+		}
+		return parent::isEndToken($token);
+	}
 
-    /**
-     * Attempts to match a parenthesized expression to find a hostname and an
-     * address.  Returns true if the expression matched, and either hostname or
-     * address were found.
-     *
-     * @param string $value
-     * @param string $hostname
-     * @param string $address
-     * @return boolean
-     */
-    private function matchHostPart($value, &$hostname, &$address) {
-        $matches = [];
-        $pattern = '~^(?P<name>[a-z0-9\-]+\.[a-z0-9\-\.]+)?\s*(\[(IPv[64])?(?P<addr>[a-f\d\.\:]+)\])?$~i';
-        if (preg_match($pattern, $value, $matches)) {
-            if (!empty($matches['name'])) {
-                $hostname = $matches['name'];
-            }
-            if (!empty($matches['addr'])) {
-                $address = $matches['addr'];
-            }
-            return true;
-        }
-        return false;
-    }
+	/**
+	 * Attempts to match a parenthesized expression to find a hostname and an
+	 * address.  Returns true if the expression matched, and either hostname or
+	 * address were found.
+	 *
+	 * @param string $value
+	 * @param string $hostname
+	 * @param string $address
+	 * @return boolean
+	 */
+	private function matchHostPart($value, &$hostname, &$address)
+	{
+		$matches = [];
+		$pattern = '~^(?P<name>[a-z0-9\-]+\.[a-z0-9\-\.]+)?\s*(\[(IPv[64])?(?P<addr>[a-f\d\.\:]+)\])?$~i';
+		if(preg_match($pattern, $value, $matches))
+		{
+			if(!empty($matches['name']))
+			{
+				$hostname = $matches['name'];
+			}
+			if(!empty($matches['addr']))
+			{
+				$address = $matches['addr'];
+			}
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * Creates a single ReceivedDomainPart out of matched parts.  If an
-     * unmatched parenthesized expression was found, it's returned as a
-     * CommentPart.
-     *
-     * @param \ZBateson\MailMimeParser\Header\Part\HeaderPart[] $parts
-     * @return \ZBateson\MailMimeParser\Header\Part\ReceivedDomainPart[]|
-     *         \ZBateson\MailMimeParser\Header\Part\CommentPart[]array
-     */
-    protected function processParts(array $parts)
-    {
-        $ehloName = null;
-        $hostname = null;
-        $address = null;
-        $commentPart = null;
+	/**
+	 * Creates a single ReceivedDomainPart out of matched parts.  If an
+	 * unmatched parenthesized expression was found, it's returned as a
+	 * CommentPart.
+	 *
+	 * @param \ZBateson\MailMimeParser\Header\Part\HeaderPart[] $parts
+	 * @return \ZBateson\MailMimeParser\Header\Part\ReceivedDomainPart[]|
+	 *         \ZBateson\MailMimeParser\Header\Part\CommentPart[]array
+	 */
+	protected function processParts(array $parts)
+	{
+		$ehloName = NULL;
+		$hostname = NULL;
+		$address = NULL;
+		$commentPart = NULL;
 
-        $filtered = $this->filterIgnoredSpaces($parts);
-        foreach ($filtered as $part) {
-            if ($part instanceof CommentPart) {
-                $commentPart = $part;
-                continue;
-            }
-            $ehloName .= $part->getValue();
-        }
+		$filtered = $this->filterIgnoredSpaces($parts);
+		foreach($filtered as $part)
+		{
+			if($part instanceof CommentPart)
+			{
+				$commentPart = $part;
+				continue;
+			}
+			$ehloName .= $part->getValue();
+		}
 
-        $strValue = $ehloName;
-        if ($commentPart !== null && $this->matchHostPart($commentPart->getComment(), $hostname, $address)) {
-            $strValue .= ' (' . $commentPart->getComment() . ')';
-            $commentPart = null;
-        }
+		$strValue = $ehloName;
+		if($commentPart !== NULL && $this->matchHostPart($commentPart->getComment(), $hostname, $address))
+		{
+			$strValue .= ' (' . $commentPart->getComment() . ')';
+			$commentPart = NULL;
+		}
 
-        $domainPart = $this->partFactory->newReceivedDomainPart(
-            $this->getPartName(),
-            $strValue,
-            $ehloName,
-            $hostname,
-            $address
-        );
-        return array_filter([ $domainPart, $commentPart ]);
-    }
+		$domainPart = $this->partFactory->newReceivedDomainPart(
+			$this->getPartName(),
+			$strValue,
+			$ehloName,
+			$hostname,
+			$address
+		);
+		return array_filter([$domainPart, $commentPart]);
+	}
 }

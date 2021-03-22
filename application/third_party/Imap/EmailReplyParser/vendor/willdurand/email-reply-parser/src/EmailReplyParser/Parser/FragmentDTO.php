@@ -15,23 +15,23 @@ namespace EmailReplyParser\Parser;
  */
 class FragmentDTO
 {
-    /**
-     * @var string[]
-     */
-    public $lines = array();
+	/**
+	 * @var string[]
+	 */
+	public $lines = [];
 
-    /**
-     * @var boolean
-     */
-    public $isHidden = false;
+	/**
+	 * @var boolean
+	 */
+	public $isHidden = false;
 
-    /**
-     * @var boolean
-     */
-    public $isSignature = false;
+	/**
+	 * @var boolean
+	 */
+	public $isSignature = false;
 
-    /**
-     * @var boolean
-     */
-    public $isQuoted = false;
+	/**
+	 * @var boolean
+	 */
+	public $isQuoted = false;
 }

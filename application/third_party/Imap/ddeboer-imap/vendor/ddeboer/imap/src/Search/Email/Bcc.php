@@ -13,13 +13,13 @@ use Ddeboer\Imap\Search\AbstractText;
  */
 final class Bcc extends AbstractText
 {
-    /**
-     * Returns the keyword that the condition represents.
-     *
-     * @return string
-     */
-    protected function getKeyword(): string
-    {
-        return 'BCC';
-    }
+	/**
+	 * Returns the keyword that the condition represents.
+	 *
+	 * @return string
+	 */
+	protected function getKeyword(): string
+	{
+		return 'BCC';
+	}
 }

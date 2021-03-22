@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Auth\HttpHandler;
 
 use Exception;
@@ -67,7 +68,8 @@ class Guzzle5HttpHandler
      */
     public function async(RequestInterface $request, array $options = [])
     {
-        if (!class_exists('GuzzleHttp\Promise\Promise')) {
+        if(!class_exists('GuzzleHttp\Promise\Promise'))
+        {
             throw new Exception('Install guzzlehttp/promises to use async with Guzzle 5');
         }
 
@@ -79,10 +81,14 @@ class Guzzle5HttpHandler
         );
 
         $promise = new Promise(
-            function () use ($futureResponse) {
-                try {
+            function() use ($futureResponse)
+            {
+                try
+                {
                     $futureResponse->wait();
-                } catch (Exception $e) {
+                }
+                catch(Exception $e)
+                {
                     // The promise is already delivered when the exception is
                     // thrown, so don't rethrow it.
                 }
@@ -93,11 +99,13 @@ class Guzzle5HttpHandler
         $futureResponse->then([$promise, 'resolve'], [$promise, 'reject']);
 
         return $promise->then(
-            function (Guzzle5ResponseInterface $response) {
+            function(Guzzle5ResponseInterface $response)
+            {
                 // Adapt the Guzzle 5 Response to a PSR-7 Response.
                 return $this->createPsr7Response($response);
             },
-            function (Exception $e) {
+            function(Exception $e)
+            {
                 return new RejectedPromise($e);
             }
         );
@@ -110,7 +118,7 @@ class Guzzle5HttpHandler
             $request->getUri(),
             array_merge_recursive([
                 'headers' => $request->getHeaders(),
-                'body' => $request->getBody(),
+                'body'    => $request->getBody(),
             ], $options)
         );
     }

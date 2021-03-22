@@ -65,7 +65,7 @@ class FetchAuthTokenCacheTest extends BaseTest
         // Run the test.
         $cachedFetcher = new FetchAuthTokenCache(
             $this->mockFetcher,
-            null,
+            NULL,
             $this->mockCache
         );
         $accessToken = $cachedFetcher->fetchAuthToken();
@@ -118,7 +118,7 @@ class FetchAuthTokenCacheTest extends BaseTest
         $this->mockCacheItem
             ->expects($this->any())
             ->method('get')
-            ->will($this->returnValue(null));
+            ->will($this->returnValue(NULL));
         $this->mockCacheItem
             ->expects($this->once())
             ->method('set')

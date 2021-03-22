@@ -4,6 +4,7 @@
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
+
 namespace ZBateson\StreamDecorators;
 
 use Psr\Http\Message\StreamInterface;
@@ -37,21 +38,21 @@ use GuzzleHttp\Psr7\StreamDecoratorTrait;
  */
 class NonClosingStream implements StreamInterface
 {
-    use StreamDecoratorTrait;
+	use StreamDecoratorTrait;
 
-    /**
-     * Overridden to detach the underlying stream without closing it.
-     */
-    public function close()
-    {
-        $this->stream = null;
-    }
+	/**
+	 * Overridden to detach the underlying stream without closing it.
+	 */
+	public function close()
+	{
+		$this->stream = NULL;
+	}
 
-    /**
-     * Overridden to detach the underlying stream without closing it.
-     */
-    public function detach()
-    {
-        $this->stream = null;
-    }
+	/**
+	 * Overridden to detach the underlying stream without closing it.
+	 */
+	public function detach()
+	{
+		$this->stream = NULL;
+	}
 }

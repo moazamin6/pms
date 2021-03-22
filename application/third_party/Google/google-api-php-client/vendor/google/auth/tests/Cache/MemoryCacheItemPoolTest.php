@@ -101,7 +101,8 @@ class MemoryCacheItemPoolTest extends TestCase
     {
         $keys = ['item1', 'item2'];
 
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             $this->saveItem($key, 'value');
         }
 
@@ -117,9 +118,12 @@ class MemoryCacheItemPoolTest extends TestCase
         $this->saveItem($keys[0], $value);
         $this->saveItem($keys[2], $value);
 
-        try {
+        try
+        {
             $this->pool->deleteItems($keys);
-        } catch (InvalidArgumentException $ex) {
+        }
+        catch(InvalidArgumentException $ex)
+        {
             // continue execution
         }
 
@@ -145,7 +149,8 @@ class MemoryCacheItemPoolTest extends TestCase
     {
         $keys = ['item1', 'item2'];
 
-        foreach ($keys as $key) {
+        foreach($keys as $key)
+        {
             $item = $this->pool->getItem($key);
             $item->set('value');
             $this->pool->saveDeferred($item);
@@ -206,7 +211,7 @@ class MemoryCacheItemPoolTest extends TestCase
         return [
             [1],
             [true],
-            [null],
+            [NULL],
             [new \DateTime()],
             ['{'],
             ['}'],
@@ -216,7 +221,7 @@ class MemoryCacheItemPoolTest extends TestCase
             ['\\'],
             ['@'],
             [':'],
-            [[]]
+            [[]],
         ];
     }
 }

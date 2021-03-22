@@ -22,6 +22,7 @@ namespace Google\Auth\Credentials;
  * so including this dependency is not necessary, and will result in a
  * PHP fatal error in the App Engine environment.
  */
+
 use google\appengine\api\app_identity\AppIdentityService;
 use Google\Auth\CredentialsLoader;
 
@@ -63,7 +64,7 @@ class AppIdentityCredentials extends CredentialsLoader
      */
     private $scope;
 
-    public function __construct($scope = array())
+    public function __construct($scope = [])
     {
         $this->scope = $scope;
     }
@@ -79,12 +80,14 @@ class AppIdentityCredentials extends CredentialsLoader
     {
         $appEngineProduction = isset($_SERVER['SERVER_SOFTWARE']) &&
             0 === strpos($_SERVER['SERVER_SOFTWARE'], 'Google App Engine');
-        if ($appEngineProduction) {
+        if($appEngineProduction)
+        {
             return true;
         }
         $appEngineDevAppServer = isset($_SERVER['APPENGINE_RUNTIME']) &&
             $_SERVER['APPENGINE_RUNTIME'] == 'php';
-        if ($appEngineDevAppServer) {
+        if($appEngineDevAppServer)
+        {
             return true;
         }
         return false;
@@ -109,13 +112,15 @@ class AppIdentityCredentials extends CredentialsLoader
      *
      * @throws \Exception
      */
-    public function fetchAuthToken(callable $httpHandler = null)
+    public function fetchAuthToken(callable $httpHandler = NULL)
     {
-        if (!self::onAppEngine()) {
-            return array();
+        if(!self::onAppEngine())
+        {
+            return [];
         }
 
-        if (!class_exists('google\appengine\api\app_identity\AppIdentityService')) {
+        if(!class_exists('google\appengine\api\app_identity\AppIdentityService'))
+        {
             throw new \Exception(
                 'This class must be run in App Engine, or you must include the AppIdentityService '
                 . 'mock class defined in tests/mocks/AppIdentityService.php'
@@ -136,14 +141,15 @@ class AppIdentityCredentials extends CredentialsLoader
      */
     public function getLastReceivedToken()
     {
-        if ($this->lastReceivedToken) {
+        if($this->lastReceivedToken)
+        {
             return [
                 'access_token' => $this->lastReceivedToken['access_token'],
-                'expires_at' => $this->lastReceivedToken['expiration_time'],
+                'expires_at'   => $this->lastReceivedToken['expiration_time'],
             ];
         }
 
-        return null;
+        return NULL;
     }
 
     /**

@@ -1313,7 +1313,7 @@ $lang["the_estimates_id_must_be_larger_then_last_estimate_id"] = "The estimates 
 $lang["send_to_client"] = "Send to client";
 $lang["estimate_sent_message"] = "The estimate has been sent!";
 $lang["send_estimate_bcc_to"] = "When sending estimate to client, send BCC to";
-        
+
 $lang["task_settings"] = "Task settings";
 $lang["enable_recurring_option_for_tasks"] = "Enable recurring option for tasks";
 $lang["past_recurring_date_error_message_title_for_tasks"] = "The selected start date and repeat type returns a past date.";
