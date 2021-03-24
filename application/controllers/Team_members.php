@@ -177,8 +177,6 @@ class Team_members extends MY_Controller
 			"phone"      => $this->input->post('phone'),
 			"gender"     => $this->input->post('gender'),
 			"job_title"  => $this->input->post('job_title'),
-			"phone"      => $this->input->post('phone'),
-			"gender"     => $this->input->post('gender'),
 			"user_type"  => "staff",
 			"created_at" => get_current_utc_time(),
 		];

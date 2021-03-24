@@ -1,57 +1,61 @@
 <div id="kanban-wrapper">
 	<?php
 	$columns_data = [];
-
+	
 	foreach($tasks as $task)
 	{
-
+		
 		$exising_items = get_array_value($columns_data, $task->status_id);
 		if(!$exising_items)
 		{
 			$exising_items = "";
 		}
-
+		
 		$task_labels = make_labels_view_data($task->labels_list);
 		$sub_task_icon = "";
 		if($task->parent_task_id)
 		{
 			$sub_task_icon = "<span class='sub-task-icon mr5' title='" . lang("sub_task") . "'><i class='fa fa-code-fork'></i></span>";
 		}
-
+		
 		if($task_labels)
 		{
 			$task_labels = "<div class='meta'>$task_labels</div>";
 		}
-
+		
 		$unread_comments_class = "";
 		if(isset($task->unread) && $task->unread && $task->unread != "0")
 		{
 			$unread_comments_class = "unread-comments-of-kanban unread";
 		}
-
+		
 		$batch_operation_checkbox = "";
 		if($this->login_user->user_type == "staff" && $can_edit_tasks && $project_id)
 		{
 			$batch_operation_checkbox = "<span data-act='batch-operation-task-checkbox' title='" . lang("batch_update") . "' class='checkbox-blank-sm pull-right invisible'></span>";
 		}
-
+		
 		$disable_dragging = can_edit_this_task_status($task->assigned_to) ? "" : "disable-dragging";
-
+		
 		$item = $exising_items . modal_anchor(get_uri("projects/task_view"), "<span class='avatar'>" .
 				"<img src='" . get_avatar($task->assigned_to_avatar) . "'>" .
 				"</span>" . $sub_task_icon . $task->id . ". " . $task->title . $batch_operation_checkbox .
 				$task_labels, ["class" => "kanban-item $disable_dragging $unread_comments_class", "data-id" => $task->id, "data-project_id" => $task->project_id, "data-sort" => $task->new_sort, "data-post-id" => $task->id, "title" => lang('task_info') . " #$task->id", "data-modal-lg" => "1"]);
-
+		
 		$columns_data[$task->status_id] = $item;
 	}
+	$task_counts = array_count_values(array_column($tasks, 'status_id'));
+	//    dd($task_counts);
 	?>
 
    <ul id="kanban-container" class="kanban-container clearfix">
-
+	   
 	   <?php foreach($columns as $column){ ?>
           <li class="kanban-col">
              <div class="kanban-col-title"
-                  style="background: <?php echo $column->color ? $column->color : "#2e4053"; ?>;"> <?php echo $column->key_name ? lang($column->key_name) : $column->title; ?> </div>
+                  style="background: <?php echo $column->color ? $column->color : "#2e4053"; ?>;"> <?php echo $column->key_name ? lang($column->key_name) : $column->title; ?>
+				 <?=$task_counts[$column->id] !== NULL ? '(' . $task_counts[$column->id] . ')' : ''?>
+             </div>
 
              <div class="kanban-input general-form hide">
 				 <?php
@@ -191,8 +195,8 @@
       }
 
       var isChrome = !!window.chrome && !!window.chrome.webstore;
-
-
+	   
+	   
 	   <?php if ($this->login_user->user_type == "staff" || ($this->login_user->user_type == "client" && $can_edit_tasks)) { ?>
       $(".kanban-item-list").each(function (index) {
          var id = this.id;

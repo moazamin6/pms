@@ -4,11 +4,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 //don't change or add new config in this file
 
-$config['app_version'] = '2.6.1';
+$config['app_version'] = '2.6.2';
 
-$config['app_update_url'] = 'https://releases.fairsketch.com/rise/';
+$config['app_update_url'] = '';
 
-$config['updates_path'] = './updates/';
+$config['updates_path'] = '';
 
 $config['app_csrf_exclude_uris'] = [
 	"notification_processor/create_notification",
