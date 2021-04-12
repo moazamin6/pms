@@ -18,9 +18,15 @@
 			$sub_task_icon = "<span class='sub-task-icon mr5' title='" . lang("sub_task") . "'><i class='fa fa-code-fork'></i></span>";
 		}
 		
+		$task_deadline='';
+		if($task->deadline)
+		{
+		   $task_deadline="<div class='meta'><strong>Deadline:</strong> $task->deadline</div>";
+		}
+		
 		if($task_labels)
 		{
-			$task_labels = "<div class='meta'>$task_labels</div>";
+			$task_labels = "<div class='mt5'>$task_labels</div>";
 		}
 		
 		$unread_comments_class = "";
@@ -39,7 +45,7 @@
 		
 		$item = $exising_items . modal_anchor(get_uri("projects/task_view"), "<span class='avatar'>" .
 				"<img src='" . get_avatar($task->assigned_to_avatar) . "'>" .
-				"</span>" . $sub_task_icon . $task->id . ". " . $task->title . $batch_operation_checkbox .
+				"</span>" . $sub_task_icon . $task->title . $batch_operation_checkbox .$task_deadline.
 				$task_labels, ["class" => "kanban-item $disable_dragging $unread_comments_class", "data-id" => $task->id, "data-project_id" => $task->project_id, "data-sort" => $task->new_sort, "data-post-id" => $task->id, "title" => lang('task_info') . " #$task->id", "data-modal-lg" => "1"]);
 		
 		$columns_data[$task->status_id] = $item;

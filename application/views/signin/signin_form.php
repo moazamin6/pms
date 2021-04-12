@@ -57,7 +57,7 @@
          <button class="btn btn-lg btn-primary btn-block mt15" type="submit"><?php echo lang('signin'); ?></button>
       </div>
 	   <?php echo form_close(); ?>
-      <div class="mt5"><?php echo anchor("signin/request_reset_password", lang("forgot_password")); ?></div>
+      <div class="" style="margin-top: 20px"><?php echo anchor("signin/request_reset_password", lang("forgot_password")); ?></div>
 
 	   <?php if(!get_setting("disable_client_signup")){ ?>
           <div class="mt20"><?php echo lang("you_dont_have_an_account") ?> &nbsp; <?php echo anchor("signup", lang("signup")); ?></div>
